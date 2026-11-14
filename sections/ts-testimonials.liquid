@@ -1,0 +1,146 @@
+<div class="{% if section.settings.tinted %}ts-section--tinted{% endif %}">
+<div class="container">
+    {%- if section.settings.heading != blank or section.settings.text != blank -%}
+        <div class="title-block">
+            {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+            {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+        </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+        <div class="ts-card-grid" style="--col: {{ section.settings.columns }}">
+            {%- for block in section.blocks -%}
+                <figure class="ts-quote" {{ block.shopify_attributes }}>
+                    {%- if block.settings.rating > 0 -%}
+                        <div class="ts-quote__rating" role="img" aria-label="Rated {{ block.settings.rating }} out of 5">
+                            {%- for i in (1..5) -%}
+                                <span class="ts-quote__star{% if i > block.settings.rating %} ts-quote__star--off{% endif %}">{%- render 'ts-icon', icon: 'star' -%}</span>
+                            {%- endfor -%}
+                        </div>
+                    {%- endif -%}
+                    <blockquote class="ts-quote__text">{{ block.settings.quote }}</blockquote>
+                    <figcaption class="ts-quote__author">
+                        {%- if block.settings.image != blank -%}
+                            {{ block.settings.image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'ts-quote__avatar', alt: '' }}
+                        {%- endif -%}
+                        <span>
+                            <strong>{{ block.settings.name }}</strong>
+                            {%- if block.settings.detail != blank -%}<small>{{ block.settings.detail }}</small>{%- endif -%}
+                        </span>
+                    </figcaption>
+                </figure>
+            {%- endfor -%}
+        </div>
+    {%- endif -%}
+
+    {%- if section.settings.show_stamped -%}
+        {%- comment -%} Stamped.io is already loaded site-wide (layout/theme.liquid); this shows every store review. {%- endcomment -%}
+        <div class="ts-reviews-widget">
+            <div id="stamped-reviews-widget" data-widget-type="full-page" data-limit="{{ section.settings.stamped_limit }}"></div>
+        </div>
+    {%- endif -%}
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "class": "ts-section",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Intro text"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns on desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stamped",
+      "label": "Show all Stamped.io reviews",
+      "info": "Displays the store's live reviews below the quotes",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "stamped_limit",
+      "label": "Reviews per page",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "default": 10
+    },
+    {
+      "type": "checkbox",
+      "id": "tinted",
+      "label": "Tinted background",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Quote",
+          "default": "<p>Add a customer testimonial here.</p>"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Customer name"
+        },
+        {
+          "type": "text",
+          "id": "detail",
+          "label": "Location or detail"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Star rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 5,
+          "info": "0 hides the stars"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        { "type": "quote" },
+        { "type": "quote" },
+        { "type": "quote" }
+      ]
+    }
+  ]
+}
+{% endschema %}

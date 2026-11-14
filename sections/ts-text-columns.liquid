@@ -1,0 +1,140 @@
+{%- liquid
+  assign wrapper_class = ''
+  if section.settings.style == 'brand'
+    assign wrapper_class = 'ts-section--brand'
+  elsif section.settings.tinted
+    assign wrapper_class = 'ts-section--tinted'
+  endif
+-%}
+<div class="{{ wrapper_class }}">
+    <div class="container">
+        {%- if section.settings.heading != blank or section.settings.text != blank -%}
+            <div class="title-block">
+                {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+                {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+            </div>
+        {%- endif -%}
+        <div class="ts-columns ts-columns--{{ section.settings.style }}" style="--col: {{ section.settings.columns }}">
+            {%- for block in section.blocks -%}
+                <div class="ts-card" {{ block.shopify_attributes }}>
+                    {%- if block.settings.image != blank and section.settings.style == 'image_cards' -%}
+                        <div class="ts-card__media">
+                            {%- assign image_alt = block.settings.image.alt | default: block.settings.title -%}
+                            {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '300, 500, 800', sizes: '(min-width: 1025px) 280px, (min-width: 768px) 45vw, 120px', alt: image_alt }}
+                        </div>
+                    {%- endif -%}
+                    <div class="ts-card__content">
+                        {%- if section.settings.style == 'brand' -%}
+                            <span class="ts-card__number" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+                        {%- elsif block.settings.icon != blank -%}
+                            {{ block.settings.icon | image_url: width: 100 | image_tag: class: 'ts-card__icon', loading: 'lazy', alt: '' }}
+                        {%- elsif block.settings.svg_icon != blank -%}
+                            <span class="ts-card__svg">{%- render 'ts-icon', icon: block.settings.svg_icon -%}</span>
+                        {%- endif -%}
+                        {%- if block.settings.title != blank -%}
+                            <h3 class="ts-card__title">{{ block.settings.title }}</h3>
+                        {%- endif -%}
+                        <div class="ts-rte">{{ block.settings.text }}</div>
+                    </div>
+                </div>
+            {%- endfor -%}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Text Columns",
+  "tag": "section",
+  "class": "ts-section",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Intro text"
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "default": "cards",
+      "options": [
+        { "value": "cards", "label": "Cards" },
+        { "value": "image_cards", "label": "Cards with images" },
+        { "value": "brand", "label": "Numbered, on brand color" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns on desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "tinted",
+      "label": "Tinted background",
+      "info": "Not used with the brand color style",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Shown with the \"Cards with images\" style"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "select",
+          "id": "svg_icon",
+          "label": "Built-in icon",
+          "info": "Used when no icon image is set",
+          "default": "",
+          "options": [{"value":"","label":"None"},{"value":"truck","label":"Truck"},{"value":"return","label":"Return"},{"value":"shield","label":"Shield"},{"value":"star","label":"Star"},{"value":"globe","label":"Globe"},{"value":"phone","label":"Phone"},{"value":"mail","label":"Mail"},{"value":"map-pin","label":"Map pin"},{"value":"clock","label":"Clock"},{"value":"tag","label":"Tag"},{"value":"percent","label":"Percent"},{"value":"users","label":"Users"},{"value":"award","label":"Award"},{"value":"leaf","label":"Leaf"},{"value":"ruler","label":"Ruler"},{"value":"shirt","label":"Shirt"},{"value":"check","label":"Check"},{"value":"heart","label":"Heart"},{"value":"gift","label":"Gift"},{"value":"briefcase","label":"Briefcase"},{"value":"compass","label":"Compass"},{"value":"chat","label":"Chat"}]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Column"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Share details that matter to your customers.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text Columns",
+      "blocks": [
+        { "type": "column" },
+        { "type": "column" },
+        { "type": "column" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,96 @@
+{%- comment -%}
+  Cart drawer. Rendered on every page from layout/theme.liquid and re-rendered with the Section Rendering API
+  (sections=ts-cart-drawer) after each cart change; assets/ts-cart.js swaps [data-cart-drawer-inner] and opens it.
+{%- endcomment -%}
+<div class="ts-drawer" id="CartDrawer" data-cart-drawer inert aria-hidden="true">
+    <div class="ts-drawer__overlay" data-cart-close></div>
+    <div class="ts-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="CartDrawerTitle" tabindex="-1">
+        <div class="ts-drawer__inner" data-cart-drawer-inner data-cart-count="{{ cart.item_count }}">
+            <header class="ts-drawer__header">
+                <h2 class="ts-drawer__title" id="CartDrawerTitle">
+                    {{ section.settings.title }}
+                    {%- if cart.item_count > 0 -%}<span class="ts-drawer__count">{{ cart.item_count }}</span>{%- endif -%}
+                </h2>
+                <button type="button" class="ts-drawer__close" data-cart-close aria-label="Close cart">
+                    <svg class="ts-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>
+                </button>
+            </header>
+
+            <p class="ts-drawer__status" role="status" aria-live="polite" data-cart-status></p>
+
+            {%- if cart.item_count > 0 -%}
+                <ul class="ts-drawer__items" role="list">
+                    {%- for item in cart.items -%}
+                        {%- render 'ts-cart-line', item: item, line: forloop.index, context: 'drawer' -%}
+                    {%- endfor -%}
+                </ul>
+
+                <footer class="ts-drawer__footer">
+                    {%- for discount in cart.cart_level_discount_applications -%}
+                        <p class="ts-drawer__row ts-drawer__row--discount"><span>{{ discount.title }}</span><span>-{{ discount.total_allocated_amount | money }}</span></p>
+                    {%- endfor -%}
+                    <p class="ts-drawer__row ts-drawer__row--total"><span>Subtotal</span><span>{{ cart.total_price | money_with_currency }}</span></p>
+                    {%- if section.settings.shipping_text != blank -%}
+                        <p class="ts-drawer__note">{{ section.settings.shipping_text }}</p>
+                    {%- endif -%}
+                    <div class="ts-drawer__actions">
+                        <a href="{{ routes.cart_url }}" class="ts-btn ts-btn--outline">View cart</a>
+                        <form action="{{ routes.cart_url }}" method="post">
+                            <button type="submit" name="checkout" class="ts-btn ts-btn--primary">Checkout</button>
+                        </form>
+                    </div>
+                </footer>
+            {%- else -%}
+                <div class="ts-drawer__empty">
+                    <span class="ts-drawer__empty-icon">{%- render 'ts-icon', icon: 'shirt' -%}</span>
+                    <p class="ts-drawer__empty-title">{{ section.settings.empty_title }}</p>
+                    {%- if section.settings.empty_text != blank -%}<p class="ts-drawer__empty-text">{{ section.settings.empty_text }}</p>{%- endif -%}
+                    <a href="{{ section.settings.empty_link | default: routes.all_products_collection_url }}" class="ts-btn ts-btn--primary">{{ section.settings.empty_button }}</a>
+                </div>
+            {%- endif -%}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart Drawer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Your cart"
+    },
+    {
+      "type": "text",
+      "id": "shipping_text",
+      "label": "Shipping and tax message",
+      "default": "Taxes and shipping calculated at checkout."
+    },
+    {
+      "type": "text",
+      "id": "empty_title",
+      "label": "Empty cart heading",
+      "default": "Your cart is empty"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Empty cart text",
+      "default": "Find authentic safari clothing and gear for your next adventure."
+    },
+    {
+      "type": "text",
+      "id": "empty_button",
+      "label": "Empty cart button",
+      "default": "Start shopping"
+    },
+    {
+      "type": "url",
+      "id": "empty_link",
+      "label": "Empty cart button link"
+    }
+  ]
+}
+{% endschema %}

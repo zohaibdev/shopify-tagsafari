@@ -1,0 +1,66 @@
+{%- comment -%}
+  One cart line, shared by the cart drawer and the cart page.
+  Params: item (line_item), line (1-based line number), context ('drawer' or 'page').
+  Quantity and remove controls work through assets/ts-cart.js; without JavaScript the page's
+  updates[] inputs and the remove link still work.
+{%- endcomment -%}
+{%- assign media = item.variant.featured_media | default: item.product.featured_media -%}
+<li class="ts-line ts-line--{{ context }}" data-cart-line="{{ line }}">
+    <a href="{{ item.url }}" class="ts-line__media" tabindex="-1" aria-hidden="true">
+        {%- if media -%}
+            {{ media | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120, 180, 240', sizes: '96px', alt: '' }}
+        {%- else -%}
+            {%- render 'ts-icon', icon: 'shirt' -%}
+        {%- endif -%}
+    </a>
+    <div class="ts-line__info">
+        <a href="{{ item.url }}" class="ts-line__title">{{ item.product.title }}</a>
+        {%- unless item.product.has_only_default_variant -%}
+            <p class="ts-line__variant">{{ item.variant.title }}</p>
+        {%- endunless -%}
+        {%- if item.sku != blank -%}
+            <p class="ts-line__variant ts-line__sku">{{ 'products.product.sku' | t }}{{ item.sku }}</p>
+        {%- endif -%}
+        {%- for property in item.properties -%}
+            {%- assign first_char = property.first | slice: 0 -%}
+            {%- if property.last != blank and first_char != '_' -%}
+                <p class="ts-line__variant">{{ property.first }}: {{ property.last }}</p>
+            {%- endif -%}
+        {%- endfor -%}
+        {%- if item.selling_plan_allocation -%}
+            <p class="ts-line__variant">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+        {%- endif -%}
+        {%- for discount in item.line_level_discount_allocations -%}
+            <p class="ts-line__discount">{%- render 'ts-icon', icon: 'tag' -%}{{ discount.discount_application.title }} (-{{ discount.amount | money }})</p>
+        {%- endfor -%}
+
+        <div class="ts-line__controls">
+            <div class="ts-qty">
+                <button type="button" class="ts-qty__btn" data-cart-qty="{{ item.quantity | minus: 1 }}" aria-label="Decrease quantity of {{ item.product.title | escape }}"{% if item.quantity <= 1 and context == 'drawer' %} data-cart-remove{% endif %}>&minus;</button>
+                <input
+                    class="ts-qty__input"
+                    type="number"
+                    {% if context == 'page' %}name="updates[]"{% endif %}
+                    value="{{ item.quantity }}"
+                    min="0"
+                    inputmode="numeric"
+                    aria-label="Quantity of {{ item.product.title | escape }}"
+                    data-cart-qty-input
+                >
+                <button type="button" class="ts-qty__btn" data-cart-qty="{{ item.quantity | plus: 1 }}" aria-label="Increase quantity of {{ item.product.title | escape }}">+</button>
+            </div>
+            <a href="{{ item.url_to_remove }}" class="ts-line__remove" data-cart-remove aria-label="Remove {{ item.product.title | escape }}">
+                <svg class="ts-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg>
+            </a>
+        </div>
+    </div>
+    <div class="ts-line__price">
+        {%- if item.original_line_price != item.final_line_price -%}
+            <s>{{ item.original_line_price | money }}</s>
+        {%- endif -%}
+        <span>{{ item.final_line_price | money }}</span>
+        {%- if item.quantity > 1 -%}
+            <small>{{ item.final_price | money }} each</small>
+        {%- endif -%}
+    </div>
+</li>

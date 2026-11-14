@@ -1,0 +1,263 @@
+  <nav aria-Label="{{ 'layout.general.nav_main' | t }}">
+    <div class="customer-links">
+      <ul role="menubar" aria-Label="{{ 'layout.general.nav_customer' | t }}">
+        <li role="menuitem">
+          <a
+            href="{{ routes.search_url }}"
+            class="open open-{{ section.id }}"
+            title="{{ 'general.search.title' | t }}"
+            aria-label="{{ 'general.search.title' | t }}"
+            role="button"
+            ><span class="icon icon-search" aria-hidden="true"></span
+          ></a>
+        </li>
+        <li id="cart-count-mobile" class="cart-count cart-info" role="menuitem">
+          {%- assign cartCount = cart.item_count | downcase -%}
+          <a
+            href="{{ routes.cart_url }}"
+            title="{{ 'layout.cart.title' | t }}"
+            role="button"
+            aria-label="{{ 'layout.cart.title' | t }}"
+            ><span
+              ><span class="icon icon-{{ section.settings.cart_icon }} relative"></span
+              ><span class="cartCountSelector {{ section.settings.cart_icon }}-icon size-{{ cartCount | size }}{% if cart.item_count < 1 %} hidden{% endif %}">
+                {{- cart.item_count -}}
+              </span></span
+            ></a
+          >
+        </li>
+        {% if shop.customer_accounts_enabled %}
+          <li class="account" role="menuitem">
+            {% if customer %}
+              <a
+                href="{{ routes.account_url }}"
+                title="{{ 'layout.customer.account' | t }}"
+                role="button"
+                aria-label="{{ 'layout.customer.account' | t }}"
+                ><span class="icon icon-user"></span
+              ></a>
+            {% else %}
+              <a
+                href="{{ routes.account_login_url }}"
+                title="{{ 'layout.customer.log_in' | t }}"
+                class="relative"
+                role="button"
+                aria-label="{{ 'layout.customer.log_in' | t }}"
+                ><span class="icon icon-user"></span
+              ></a>
+            {% endif %}
+          </li>
+        {% endif %}
+        <li role="menuitem">
+          <a
+            class="toggleMenu"
+            href="#"
+            aria-controls="responsiveMenu"
+            aria-expanded="false"
+            role="button"
+            aria-label="{{ 'layout.navigation.menu' | t }}"
+            ><span class="icon icon-menu relative"></span
+          ></a>
+        </li>
+      </ul>
+    </div>
+    <!-- Breakpoint is 583px by default, 600 - 17 to accomodate scrollbar -->
+    <ul
+      id="responsiveMenu"
+      class="responsiveMenu text-{{ section.settings.menu_alignment }}"
+      data-maxmobilewidth="600"
+      data-parentlinkdoubleswitch="0"
+      role="menubar"
+      aria-hidden="false"
+    >
+      {% if shop.customer_accounts_enabled and customer %}
+        <span class="account">
+          {% if customer %}
+            <a
+              href="{{ routes.account_url }}"
+              title="{{ 'layout.customer.account' | t }}"
+              role="button"
+              aria-label="{{ 'layout.customer.account' | t }}"
+              ><span class="icon icon-user"></span> {{ 'layout.customer.greeting' | t }}
+              {{ customer.first_name -}}</a
+            ><span class="separator"></span
+            ><a href="{{ routes.account_url }}" title="{{ 'layout.customer.account' | t }}">
+              {{- 'layout.customer.account' | t -}}</a
+            ><span class="separator"></span
+            ><a href="{{ routes.account_logout_url }}" title="{{ 'layout.customer.log_out' | t }}">
+              {{- 'layout.customer.log_out' | t -}}
+            </a>
+          {% else %}
+            <a
+              href="{{ routes.account_login_url }}"
+              title="{{ 'layout.customer.log_in' | t }}"
+              class="relative"
+              role="button"
+              aria-label="{{ 'layout.customer.log_in' | t }}"
+              ><span class="icon icon-user"></span
+            ></a>
+          {% endif %}
+        </span>
+      {% endif %}
+
+      {% if enabled_currencies or published_locales and locale_name != blank %}
+        {% form 'localization', id: 'localization_form-header', class: 'currency-selector' %}
+          {% if published_locales and locale_name != blank %}
+            <span class="account currencies drop-down form">
+              <select name="locale_code">
+                {% if locale_name == blank %}
+                  <option value="" selected="true">{{ 'general.language.change' | t }}</option>
+                {% endif %}
+                {% for locale in form.available_locales %}
+                  <option
+                    value="{{ locale.iso_code }}"
+                    {% if locale.iso_code == form.current_locale.iso_code %}
+                      selected="true"
+                    {% endif %}
+                  >
+                    {{ locale.endonym_name }}
+                  </option>
+                {% endfor %}
+              </select>
+            </span>
+          {% endif %}
+
+          {% if enabled_currencies %}
+            <span class="account currencies drop-down form">
+              <select name="currency_code">
+                {% for currency in form.available_currencies %}
+                  <option
+                    value="{{ currency.iso_code }}"
+                    {% if currency.iso_code == form.current_currency.iso_code %}
+                      selected="true"
+                    {% endif %}
+                  >
+                    {{ currency.iso_code }}
+                    {{ currency.symbol }}
+                  </option>
+                {% endfor %}
+              </select>
+            </span>
+          {% endif %}
+        {% endform %}
+      {% endif %}
+
+      {% for link in linklists[section.settings.menu].links %}
+        {%- capture cycleIndex -%}{{ link.handle }}-{{ forloop.index }}{%- endcapture -%}
+        {%- assign sub_links = false -%}
+        {%- assign sub_sub_links = false -%}
+        {% for sub_link in link.links %}
+          {% if link.links.size > 0 %}{%- assign sub_links = true -%}{% endif %}
+          {% for sub_sub_link in sub_link.links %}
+            {%- assign sub_sub_links = true -%}
+          {% endfor %}
+        {% endfor %}
+
+        <li
+          class="parent-level{% if link.links != blank %} parent has-dropdown{% unless sub_links or sub_sub_links %} relative{% endunless %} plus-{{ section.settings.menu_alignment }}{% endif %}{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}"
+          role="menuitem"
+          {% if link.links != blank %}
+            aria-haspopup="true"
+          {% endif %}
+        >
+          <a
+            href="{{ link.url }}"
+            class="parent{% if link.active %} active{% endif %}"
+            {% if link.active %}
+              aria-current="page"
+            {% endif %}
+            title="{{ link.title | escape }}"
+            tabindex="0"
+            ><span>{{ link.title }}</span></a
+          >
+
+          {%- assign has_image = false -%}
+          {%- assign link_collection = false -%}
+
+          {% if link.type == 'collection_link' or link.type == 'catalog_link' %}
+            {%- assign link_collection = true -%}
+            {%- assign link_handle = link.url | split: '/' | last -%}
+            {%- assign collection = collections[link_handle] -%}
+            {%- capture imgID -%}{{ collection.handle }}-{{ forloop.index }}{%- endcapture -%}
+            {%- assign id = imgID -%}
+
+            {% if section.settings.use_image %}
+              {% if section.settings.use_product_image %}
+                {%- assign img_src = collection.products.first.featured_media.preview_image -%}
+              {% elsif section.settings.use_product_image == false %}
+                {% if collection.image %}
+                  {%- assign img_src = collection.image -%}
+                {% else %}
+                  {%- assign img_src = collection.products.first.featured_media.preview_image -%}
+                {% endif %}
+              {% endif %}
+              {%- assign has_image = true -%}
+            {% endif %}
+          {% endif %}
+
+          {% if link.links != blank %}
+            {% if sub_links or sub_sub_links %}
+              {%- assign use_image = true -%}
+            {% else %}
+              {%- assign use_image = false -%}
+            {% endif %}
+
+            <ul
+              class="parent-level-ul {% if sub_links or sub_sub_links %}mega text-left{% else %}dropdown {% if sub_sub_links %}semi {% endif %}text-{{ section.settings.menu_alignment }}{% endif %}"
+              role="menu"
+              aria-hidden="true"
+            >
+              {% if has_image and use_image %}
+                <span class="three">
+                  <li class="twelve negative-left negative-right">
+                    {%- render 'image-load', img_src: img_src, size: 360, id: img_src.id, alt: link.title -%}
+                  </li>
+                </span>
+              {% endif %}
+              <span class="{% if has_image and use_image %}has_image_{{ section.settings.menu_alignment }} {% else %}has_no_image_{{ section.settings.menu_alignment }} {% endif %}{% if sub_links and sub_sub_links and link_collection or has_image and use_image %}{% if has_image %}eight right{% else %}twelve{% endif %}{% endif %}">
+                {% for sub_link in link.links %}
+                  <li
+                    class="child-level{% if sub_link.links != blank %} has-dropdown{% endif %} three{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}"
+                    role="menuitem"
+                    {% if sub_link.links != blank %}
+                      aria-haspopup="true"
+                    {% endif %}
+                  >
+                    <a
+                      href="{{ sub_link.url }}"
+                      class="child{% if sub_link.links != blank %} parent{% endif %}{% if sub_link.active %} active{% endif %}"
+                      {% if sub_link.active %}
+                        aria-current="page"
+                      {% endif %}
+                      title="{{ sub_link.title | escape }}"
+                      tabindex="0"
+                      ><span>{{ sub_link.title }}</span></a
+                    >
+                    {% if sub_link.links != blank %}
+                      <ul role="menu" aria-hidden="true">
+                        {% for sub_sub_link in sub_link.links %}
+                          <li class="grand-child-level" role="menuitem">
+                            <a
+                              href="{{  sub_sub_link.url }}"
+                              class="grand-child{% if sub_sub_link.active %} active{% endif %}"
+                              {% if sub_sub_link.active %}
+                                aria-current="page"
+                              {% endif %}
+                              title="{{ sub_sub_link.title | escape }}"
+                              tabindex="0"
+                            >
+                              {{- sub_sub_link.title -}}
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </span>
+            </ul>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>

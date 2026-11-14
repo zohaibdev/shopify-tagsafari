@@ -1,0 +1,227 @@
+{
+  "sections": {
+    "policy": {
+      "type": "ts-policy",
+      "blocks": {
+        "intro_1": {
+          "type": "intro",
+          "settings": {
+            "text": "<p>TAG® Safari values your support and wants you to be fully satisfied with the clothing and accessories you purchase. We only use natural hand picked cotton materials that suit the most rugged conditions, and our accessories are made from genuine game skins obtained from renewable resources.</p>"
+          }
+        },
+        "section_2": {
+          "type": "section",
+          "settings": {
+            "heading": "Exchanges & Returns",
+            "text": "<p>We do not want you to have any products you are not satisfied with. If you are not fully satisfied with your purchase, please request a Return Merchandise Authorization (RMA) by logging on to your account at www.tagsafari.com and using your e-mail and password you selected when making the purchase or simply call us and we will issue the RMA. We will refund the purchase price of the items you return, after they are received in our warehouse. Clothing must be unused, unworn, have original tags and packaging to receive a refund. COST OF SHIPPING IS NON-REFUNDABLE. A 10% re-stocking fee may apply for all orders returned after 30 days.</p>"
+          }
+        },
+        "section_3": {
+          "type": "section",
+          "settings": {
+            "heading": "Shipping & Transit Times",
+            "text": "<p>Orders received by 12 noon U.S. Central Time are shipped on the same day by UPS and U.S. Postal Service from Houston, Texas. Orders placed on weekends and holidays are shipped on the first business day thereafter. Ground shipping transit time is 3-5 business days, anywhere in the continental U.S. and Canada. We offer Next Day Air, 2nd Day Air and 3 Day shipping services for time sensitive orders. Select Air shipping for urgent orders. International shipping options include U.S. Postal Service International.</p>"
+          }
+        },
+        "section_4": {
+          "type": "section",
+          "settings": {
+            "heading": "Natural Material Characteristics",
+            "text": "<p>We use handpicked long staple cotton from Africa. Characteristics include high tensile strength with natural slubs. The pigment-dyed and pre-washed made to fade process ensures uniqueness and no two products will have exactly the same color. Our game skins with their natural tick marks and scratches add character and are sourced from conservation programs, game farms and licensed hunts. We support the efforts of the CAMPFIRE Program in Zimbabwe. &lt;/ p &gt;</p>"
+          }
+        }
+      },
+      "block_order": [
+        "intro_1",
+        "section_2",
+        "section_3",
+        "section_4"
+      ],
+      "settings": {
+        "eyebrow": "Policies",
+        "title": "Request Return Authorization",
+        "summary": "",
+        "last_updated": "",
+        "show_toc": true,
+        "toc_title": "On this page",
+        "help_heading": "Need help? Contact us",
+        "help_text": "<p>Our team is happy to help. Call us toll free on <a href=\"tel:+18008242703\">1-800-824-2703</a> or send us a message.</p>",
+        "help_button_label": "Contact Us",
+        "help_button_link": "shopify://pages/contact"
+      }
+    },
+    "newsletter": {
+      "type": "ts-newsletter",
+      "settings": {
+        "eyebrow": "Newsletter",
+        "heading": "Join the adventure",
+        "text": "<p>Safari stories, travel tips and new arrivals, straight to your inbox.</p>",
+        "button_label": "Subscribe",
+        "success_message": "Thanks for subscribing! Look out for our next email.",
+        "disclaimer": "",
+        "layout": "split",
+        "background": "none",
+        "image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg",
+        "image_style": "overlay",
+        "overlay_opacity": 55,
+        "link_label": "Read our safari blog",
+        "link_url": "shopify://pages/safari-blog"
+      },
+      "blocks": {
+        "stories": {
+          "type": "feature",
+          "settings": {
+            "icon": "compass",
+            "text": "Safari stories"
+          }
+        },
+        "tips": {
+          "type": "feature",
+          "settings": {
+            "icon": "globe",
+            "text": "Travel tips"
+          }
+        },
+        "arrivals": {
+          "type": "feature",
+          "settings": {
+            "icon": "tag",
+            "text": "New arrivals"
+          }
+        }
+      },
+      "block_order": [
+        "stories",
+        "tips",
+        "arrivals"
+      ]
+    },
+    "logos": {
+      "type": "ts-logos",
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/houston_safari_club_logo.png",
+            "name": "Houston Safari Club",
+            "link": ""
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wild_sheep_foundation_logo.png",
+            "name": "Wild Sheep Foundation",
+            "link": ""
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/age_africa_logo.png",
+            "name": "Advancing Girls Education In Africa",
+            "link": ""
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/dallas_safari_club_logo.png",
+            "name": "Dallas Safari Club",
+            "link": ""
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Texas_Parks_Wildlife_logo.png",
+            "name": "Texas Parks & Wildlife",
+            "link": ""
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sethule_orphans_trust_logo.png",
+            "name": "Sethule Orphans Trust",
+            "link": ""
+          }
+        },
+        "logo_7": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/safari_club_international_logo.png",
+            "name": "Safari Club International",
+            "link": ""
+          }
+        },
+        "logo_8": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/texas_wildlife_association_logo.png",
+            "name": "Texas Wildlife Association",
+            "link": ""
+          }
+        },
+        "logo_9": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wildlife_conservation_society_logo.png",
+            "name": "Wildlife Conservation Society",
+            "link": ""
+          }
+        },
+        "logo_10": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/WWF_world_wildlife_fund.png",
+            "name": "World Wildlife Fund",
+            "link": ""
+          }
+        },
+        "logo_11": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wateraid_logo.png",
+            "name": "WaterAid America",
+            "link": ""
+          }
+        },
+        "logo_12": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sierra_club_logo.png",
+            "name": "Sierra Club",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6",
+        "logo_7",
+        "logo_8",
+        "logo_9",
+        "logo_10",
+        "logo_11",
+        "logo_12"
+      ],
+      "settings": {
+        "heading": "Member & Supporter of These Fine Organizations",
+        "text": "",
+        "duration": 40,
+        "grayscale": true,
+        "tinted": false
+      }
+    }
+  },
+  "order": [
+    "policy",
+    "newsletter",
+    "logos"
+  ]
+}

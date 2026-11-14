@@ -1,0 +1,733 @@
+/* =============================================================================
+   TAG Safari forms: one stylesheet for every form on the site
+   Contact, franchise and reseller enquiries (ts-contact, affiliate-form), quick order (ts-quick-order),
+   wholesale (page-contact-template), newsletter (ts-newsletter) and customer accounts
+   (login, register, password reset, activation, addresses). Inline validation: assets/ts-forms.js.
+   Field names, {% form %} tags, hidden subject fields and spam protection are untouched: styling only.
+   ============================================================================= */
+
+:root {
+  --ts-input-h: 52px;
+  --ts-input-radius: 12px;
+  --ts-input-border: var(--ts-border-strong, rgb(26 90 74 / 20%));
+  --ts-focus-ring: 0 0 0 4px color-mix(in srgb, var(--sy) 22%, transparent);
+  --ts-form-gap: 18px;
+}
+
+/* ---------- Card container ---------- */
+.ts-contact__form,
+.ts-quick-order,
+.affiliate-form-section .affiliate-form-wrapper,
+[data-section-type="page-contact"] #ContactForm,
+.content.customers-page form {
+  padding: clamp(24px, 3.5vw, 44px);
+  border: 1px solid var(--ts-border, rgb(26 90 74 / 10%));
+  border-radius: var(--ts-radius, 15px);
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 4%), 0 18px 40px -18px rgb(26 58 24 / 18%);
+}
+
+.ts-quick-order,
+.affiliate-form-section .affiliate-form-wrapper {
+  max-width: 960px;
+  margin-inline: auto;
+}
+
+[data-section-type="page-contact"] #ContactForm {
+  max-width: 960px;
+  margin-inline: auto;
+  text-align: left;
+}
+
+.ts-contact__form .ts-heading,
+.ts-quick-order .ts-heading {
+  margin-bottom: 8px;
+  font-size: var(--ts-h2);
+}
+
+.ts-contact__intro {
+  margin-bottom: 26px;
+  color: var(--body_font_color);
+}
+
+/* ---------- Contact layout: details beside the form ---------- */
+.ts-contact {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(20px, 3vw, 40px);
+  align-items: start;
+}
+
+.ts-contact__info {
+  display: grid;
+  gap: 16px;
+}
+
+.ts-contact__info .ts-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
+}
+
+.ts-contact__info .ts-card__title {
+  margin-bottom: 6px;
+}
+
+@media (max-width: 1024px) {
+  .ts-contact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ts-contact__info {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    order: 2;
+  }
+}
+
+/* ---------- Grid ---------- */
+.ts-form__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--ts-form-gap);
+}
+
+.ts-form__field {
+  margin: 0 0 var(--ts-form-gap);
+}
+
+@media (max-width: 767px) {
+  .ts-form__row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- Labels ---------- */
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) label:not(:has(input[type="checkbox"], input[type="radio"])) {
+  display: block;
+  margin: 0 0 8px;
+  font-size: var(--ts-text-sm, 14px);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--headline_font_color);
+}
+
+/* Required marker */
+:is(.ts-form, .affiliate-form) label [aria-hidden="true"] {
+  color: var(--error_color);
+}
+
+/* ---------- Text fields, selects, textareas ---------- */
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) :is(input[type="text"], input[type="email"], input[type="tel"], input[type="password"], input[type="number"], input[type="url"], input[type="search"], input:not([type]), select, textarea) {
+  display: block;
+  width: 100%;
+  height: var(--ts-input-h);
+  min-height: var(--ts-input-h);
+  margin: 0;
+  padding: 0 16px;
+  box-sizing: border-box;
+  border: 1px solid var(--ts-input-border);
+  border-radius: var(--ts-input-radius);
+  background: #fff;
+  box-shadow: none;
+  font: inherit;
+  font-size: 16px; /* 16px stops iOS zooming into the field */
+  line-height: 1.4;
+  color: var(--headline_font_color);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  appearance: none;
+}
+
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) textarea:not([data-ts-x]) {
+  /* :not() raises this to the field rule's weight so it wins by coming later. */
+  height: auto;
+  min-height: 150px;
+  padding: 14px 16px;
+  resize: vertical;
+}
+
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) :is(input, select, textarea)::placeholder {
+  color: color-mix(in srgb, var(--body_font_color) 70%, transparent);
+}
+
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) :is(input, select, textarea):hover {
+  border-color: color-mix(in srgb, var(--sy) 45%, var(--ts-input-border));
+}
+
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) :is(input, select, textarea):focus {
+  outline: none;
+  border-color: var(--sy);
+  box-shadow: var(--ts-focus-ring);
+}
+
+/* Styled select: custom chevron */
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) select:not([data-ts-x]) {
+  padding-right: 44px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23303a18' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px;
+  cursor: pointer;
+}
+
+/* Invalid state (server errors set aria-invalid; assets/ts-forms.js sets it inline) */
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) :is(input, select, textarea)[aria-invalid="true"] {
+  border-color: var(--error_color);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--error_color) 12%, transparent);
+}
+
+/* ---------- Checkboxes and radios: custom-drawn, native inputs underneath ---------- */
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) :is(input[type="checkbox"], input[type="radio"]) {
+  position: relative;
+  top: 0; /* the old theme CSS nudged these up 2px */
+  flex: 0 0 22px;
+  display: inline-grid;
+  place-content: center;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  padding: 0;
+  border: 2px solid color-mix(in srgb, var(--headline_font_color) 35%, #fff);
+  border-radius: 6px;
+  background: #fff;
+  vertical-align: middle;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) input[type="radio"] {
+  border-radius: 50%;
+}
+
+/* Tick for checkboxes, dot for radios */
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) :is(input[type="checkbox"], input[type="radio"]):before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  transition: transform 0.15s;
+}
+
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) input[type="radio"]:before {
+  display: none;
+}
+
+/* Selected radio: teal ring with a centred teal dot, painted as a gradient so it stays exactly centred. */
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) input[type="radio"]:checked {
+  border-color: var(--sy);
+  background: radial-gradient(circle at center, var(--sy) 0 4.5px, #fff 5px);
+}
+
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) input[type="checkbox"]:before {
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  clip-path: polygon(14% 52%, 0 66%, 38% 100%, 100% 22%, 86% 8%, 38% 72%);
+}
+
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) input[type="checkbox"]:checked {
+  border-color: var(--sy);
+  background: var(--sy);
+}
+
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) :is(input[type="checkbox"], input[type="radio"]):checked:before {
+  transform: scale(1);
+}
+
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) :is(input[type="checkbox"], input[type="radio"]):hover {
+  border-color: var(--sy);
+}
+
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) :is(input[type="checkbox"], input[type="radio"]):focus-visible {
+  outline: none;
+  box-shadow: var(--ts-focus-ring);
+}
+
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) :is(input[type="checkbox"], input[type="radio"])[aria-invalid="true"] {
+  border-color: var(--error_color);
+}
+
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) label:has(input[type="checkbox"], input[type="radio"]) {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+/* ---------- Submit buttons ---------- */
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) :is(button[type="submit"], input[type="submit"], .btn-submit):not(.ts-newsletter__button):not(.cancel) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: var(--ts-input-h);
+  margin: 8px 0 0;
+  padding: 0 28px;
+  border: 0;
+  border-radius: var(--ts-input-radius);
+  background: linear-gradient(135deg, var(--sy), color-mix(in srgb, var(--sy) 70%, var(--ts-dark)));
+  box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--sy) 70%, transparent);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+}
+
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) :is(button[type="submit"], input[type="submit"], .btn-submit):not(.ts-newsletter__button):not(.cancel):hover {
+  filter: brightness(1.06);
+  box-shadow: 0 14px 28px -12px color-mix(in srgb, var(--sy) 80%, transparent);
+  transform: translateY(-1px);
+}
+
+:is(.ts-form, .affiliate-form, [data-section-type="page-contact"] #ContactForm, .content.customers-page form) :is(button[type="submit"], input[type="submit"], .btn-submit):focus-visible {
+  outline: none;
+  box-shadow: var(--ts-focus-ring);
+}
+
+@media (min-width: 768px) {
+  /* On wide forms the button need not span the full card. */
+  .ts-quick-order :is(button[type="submit"]),
+  [data-section-type="page-contact"] #ContactForm input[type="submit"] {
+    width: auto;
+    min-width: 260px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.ts-form, .affiliate-form) :is(button, input)[type="submit"]:hover {
+    transform: none;
+  }
+}
+
+/* ---------- Messages with icons ---------- */
+.ts-form__notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0 0 22px;
+  padding: 14px 18px;
+  border-radius: var(--ts-input-radius);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.ts-form__notice:before {
+  content: "";
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  background: currentColor;
+  -webkit-mask: var(--ts-notice-icon) center / contain no-repeat;
+  mask: var(--ts-notice-icon) center / contain no-repeat;
+}
+
+.ts-form__notice p {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+}
+
+.ts-form__notice--success {
+  --ts-notice-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='m8 12 3 3 5-6'/%3E%3C/svg%3E");
+  border: 1px solid color-mix(in srgb, var(--sy) 30%, transparent);
+  background: color-mix(in srgb, var(--sy) 10%, #fff);
+  color: color-mix(in srgb, var(--sy) 70%, var(--ts-dark));
+}
+
+.ts-form__notice--error,
+.content.customers-page .errors {
+  --ts-notice-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v6M12 16.5v.5'/%3E%3C/svg%3E");
+  border: 1px solid color-mix(in srgb, var(--error_color) 30%, transparent);
+  background: color-mix(in srgb, var(--error_color) 7%, #fff);
+  color: var(--error_color);
+}
+
+.content.customers-page .errors {
+  margin: 0 0 20px;
+  padding: 14px 18px;
+  border-radius: var(--ts-input-radius);
+}
+
+.content.customers-page .errors ul {
+  margin: 0;
+  padding: 0 0 0 18px;
+}
+
+/* Inline field error added by assets/ts-forms.js (and the server-side error under the contact email field) */
+.ts-field-error,
+.ts-form__error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0 0;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--error_color);
+}
+
+.ts-field-error:before,
+.ts-form__error:before {
+  content: "!";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--error_color);
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.ts-form__captcha {
+  margin: 14px 0 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--body_font_color);
+}
+
+.ts-form__captcha a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* ---------- Quick order (sections/ts-quick-order.liquid) ---------- */
+.ts-quick-order__group {
+  margin: 0 0 12px;
+  padding: 0;
+  border: 0;
+}
+
+.ts-quick-order__legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 6px 0 16px;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--sy);
+}
+
+.ts-quick-order__legend:after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--ts-border);
+}
+
+.ts-quick-order__hint {
+  margin: -6px 0 16px;
+  padding: 0;
+  font-size: 14px;
+}
+
+.ts-quick-order__line {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 96px 52px;
+  gap: 0 14px;
+  align-items: end;
+}
+
+.ts-quick-order__remove,
+.ts-quick-order__add {
+  border: 1px solid var(--ts-input-border);
+  background: #fff;
+  font: inherit;
+  color: var(--headline_font_color);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.ts-quick-order__remove {
+  width: 52px;
+  height: var(--ts-input-h);
+  margin: 0 0 var(--ts-form-gap);
+  border-radius: var(--ts-input-radius);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.ts-quick-order__add {
+  min-height: 44px;
+  margin: 0 0 20px;
+  padding: 0 20px;
+  border-style: dashed;
+  border-radius: var(--ts-input-radius);
+  font-weight: 600;
+}
+
+.ts-quick-order__remove[hidden],
+.ts-quick-order__add[hidden] {
+  display: none;
+}
+
+.ts-quick-order__remove:hover,
+.ts-quick-order__add:hover {
+  border-color: var(--sy);
+  color: var(--sy);
+}
+
+.ts-quick-order__remove:focus-visible,
+.ts-quick-order__add:focus-visible {
+  outline: none;
+  box-shadow: var(--ts-focus-ring);
+}
+
+@media (max-width: 767px) {
+  .ts-quick-order__line {
+    grid-template-columns: 1fr 1fr 72px 52px;
+    gap: 0 10px;
+    padding-top: 16px;
+    border-top: 1px solid var(--ts-border);
+  }
+
+  .ts-quick-order__line:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .ts-quick-order__item {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------- Affiliate / reseller form (sections/affiliate-form.liquid) ---------- */
+.affiliate-form-section {
+  padding-block: var(--ts-pad, 60px);
+}
+
+.affiliate-form-wrapper .affiliate-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--ts-form-gap);
+}
+
+.affiliate-form-wrapper .affiliate-form > .twelve,
+.affiliate-form-wrapper .affiliate-form .radio-field,
+.affiliate-form-wrapper .affiliate-form .action {
+  grid-column: 1 / -1;
+}
+
+.affiliate-form-wrapper .affiliate-form .form-field,
+.affiliate-form-wrapper .affiliate-form .radio-field {
+  width: auto;
+  margin: 0 0 var(--ts-form-gap);
+}
+
+/* Reason options: one aligned row per radio + label, the whole row is clickable */
+.affiliate-form-wrapper .radio-options {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 0 14px;
+  margin-top: 6px;
+  padding: 4px 18px;
+  border: 1px solid var(--ts-input-border);
+  border-radius: var(--ts-input-radius);
+}
+
+.affiliate-form-wrapper .radio-options br {
+  display: none;
+}
+
+/* :is(label, #ts-id) lifts this to ID weight so it beats the general label rule above. */
+.affiliate-form-wrapper .affiliate-form .radio-field .radio-options label:is(label, #ts-id) {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  margin: 0;
+  padding: 6px 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.affiliate-form-wrapper .radio-options input:checked + label {
+  color: var(--sy);
+}
+
+@media (max-width: 767px) {
+  .affiliate-form-wrapper .affiliate-form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- Wholesale form (sections/page-contact-template.liquid; posts to its existing handler) ---------- */
+[data-section-type="page-contact"] {
+  padding-block: var(--ts-pad, 60px);
+}
+
+[data-section-type="page-contact"] h1 {
+  display: none; /* the page banner already shows the title */
+}
+
+[data-section-type="page-contact"] #ContactForm > .grid:not(:has(input, textarea, select)) {
+  display: none;
+}
+
+[data-section-type="page-contact"] #ContactForm :is(table, thead, tbody) {
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
+[data-section-type="page-contact"] #ContactForm tr {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0 var(--ts-form-gap);
+  border: 0;
+  background: none;
+}
+
+[data-section-type="page-contact"] #ContactForm :is(th, td) {
+  display: block;
+  grid-column: span 1;
+  height: auto;
+  margin: 0 0 var(--ts-form-gap);
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+}
+
+[data-section-type="page-contact"] #ContactForm [colspan="2"] {
+  grid-column: span 2;
+}
+
+[data-section-type="page-contact"] #ContactForm [colspan="3"] {
+  grid-column: span 3;
+}
+
+[data-section-type="page-contact"] #ContactForm [colspan="4"] {
+  grid-column: 1 / -1;
+}
+
+[data-section-type="page-contact"] #ContactForm h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0 4px;
+  font-family: var(--body_font);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--sy);
+}
+
+[data-section-type="page-contact"] #ContactForm h3:after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--ts-border);
+}
+
+@media (max-width: 767px) {
+  [data-section-type="page-contact"] #ContactForm tr {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  [data-section-type="page-contact"] #ContactForm :is(th, td, [colspan]) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------- Customer account forms (templates/customers/*) ---------- */
+.content.customers-page h1 {
+  margin-bottom: 24px;
+  font-size: var(--ts-h1);
+  text-align: center;
+}
+
+.content.customers-page form {
+  max-width: 520px;
+  margin: 0 auto 30px;
+}
+
+.content.customers-page form .form {
+  margin: 0 0 var(--ts-form-gap);
+}
+
+.content.customers-page form a {
+  color: var(--sy);
+}
+
+.content.customers-page :is(.account-secondary, .cancel) {
+  display: inline-block;
+  min-height: 44px;
+  margin-top: 12px;
+  padding: 10px 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  color: var(--sy);
+  cursor: pointer;
+}
+
+/* Join Affiliate Program: welcome text beside the form */
+.ts-affiliate {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+  max-width: 1240px;
+  margin-inline: auto;
+}
+
+.ts-affiliate__intro {
+  position: sticky;
+  top: calc(var(--ts-header-h, 160px) + 24px);
+}
+
+.ts-affiliate__intro .ts-heading {
+  margin-bottom: 18px;
+}
+
+.ts-affiliate__intro .ts-rte p {
+  color: var(--body_font_color);
+}
+
+.ts-affiliate .affiliate-form-wrapper {
+  max-width: none;
+  margin: 0;
+}
+
+/* Two columns inside a narrower card read better as one. */
+@media (max-width: 1280px) {
+  .ts-affiliate .affiliate-form-wrapper .affiliate-form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .ts-affiliate {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ts-affiliate__intro {
+    position: static;
+  }
+}

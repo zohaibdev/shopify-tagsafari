@@ -1,0 +1,329 @@
+{%- comment -%}
+  Size guide: category tabs, inch/cm toggle, editable size tables, measuring guides and a help card.
+  Tables are "chart" blocks: one row per line, cells separated by |, first line is the header.
+  The product-page size popup (snippets/size_popup.liquid) loads this section from the size chart page.
+{%- endcomment -%}
+{%- assign uid = 'size-' | append: section.id -%}
+{%- comment -%} Unique category names in block order, e.g. "Men|Women|Hats & Helmets|". {%- endcomment -%}
+{%- assign categories = '' -%}
+{%- for block in section.blocks -%}
+    {%- assign cat = block.settings.category | strip -%}
+    {%- if cat == blank -%}{%- continue -%}{%- endif -%}
+    {%- assign seen = '|' | append: categories -%}
+    {%- assign cat_key = '|' | append: cat | append: '|' -%}
+    {%- unless seen contains cat_key -%}
+        {%- assign categories = categories | append: cat | append: '|' -%}
+    {%- endunless -%}
+{%- endfor -%}
+{%- assign category_list = categories | split: '|' -%}
+
+<div class="ts-size" id="{{ uid }}" data-size-chart data-default-unit="{{ section.settings.default_unit }}">
+    <header class="ts-size__header">
+        <div class="container">
+            {%- if section.settings.eyebrow != blank -%}<span class="ts-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+            <h1 class="ts-size__title">{{ section.settings.title | default: page.title }}</h1>
+            {%- if section.settings.intro != blank -%}<div class="ts-size__intro">{{ section.settings.intro }}</div>{%- endif -%}
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="ts-size__toolbar">
+            {%- if category_list.size > 1 -%}
+                <div class="ts-size__tabs" role="tablist" aria-label="Size chart category">
+                    {%- for cat in category_list -%}
+                        {%- assign cat_id = cat | handleize -%}
+                        <button type="button" class="ts-size__tab" role="tab" id="{{ uid }}-tab-{{ cat_id }}" aria-controls="{{ uid }}-panel-{{ cat_id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"{% unless forloop.first %} tabindex="-1"{% endunless %} data-size-tab="{{ cat_id }}">{{ cat }}</button>
+                    {%- endfor -%}
+                </div>
+            {%- endif -%}
+            <div class="ts-size__units" role="group" aria-label="Measurement units">
+                <button type="button" class="ts-size__unit" data-size-unit="in" aria-pressed="{% if section.settings.default_unit == 'in' %}true{% else %}false{% endif %}">Inches</button>
+                <button type="button" class="ts-size__unit" data-size-unit="cm" aria-pressed="{% if section.settings.default_unit == 'cm' %}true{% else %}false{% endif %}">Centimetres</button>
+            </div>
+        </div>
+
+        {%- for cat in category_list -%}
+            {%- assign cat_id = cat | handleize -%}
+            <div class="ts-size__panel" role="{% if category_list.size > 1 %}tabpanel{% else %}region{% endif %}" id="{{ uid }}-panel-{{ cat_id }}" aria-labelledby="{{ uid }}-tab-{{ cat_id }}" data-size-panel="{{ cat_id }}"{% unless forloop.first %} hidden{% endunless %}>
+                {%- for block in section.blocks -%}
+                    {%- assign block_cat = block.settings.category | strip | handleize -%}
+                    {%- if block_cat != cat_id -%}{%- continue -%}{%- endif -%}
+
+                    {%- case block.type -%}
+                        {%- when 'guide' -%}
+                            <section class="ts-measure" {{ block.shopify_attributes }}>
+                                <div class="ts-measure__text">
+                                    <h2 class="ts-measure__title">{{ block.settings.title }}</h2>
+                                    {%- assign steps = block.settings.steps | newline_to_br | split: '<br />' -%}
+                                    <ol class="ts-measure__steps">
+                                        {%- for step in steps -%}
+                                            {%- assign step = step | strip -%}
+                                            {%- if step == blank -%}{%- continue -%}{%- endif -%}
+                                            {%- assign parts = step | split: ':' -%}
+                                            <li>
+                                                {%- if parts.size > 1 -%}
+                                                    <strong>{{ parts.first | strip }}</strong>
+                                                    <span>{{ step | remove_first: parts.first | remove_first: ':' | strip }}</span>
+                                                {%- else -%}
+                                                    <span>{{ step }}</span>
+                                                {%- endif -%}
+                                            </li>
+                                        {%- endfor -%}
+                                    </ol>
+                                </div>
+                                {%- if block.settings.image != blank -%}
+                                    <div class="ts-measure__media">
+                                        {{ block.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300, 500, 700', sizes: '(min-width: 768px) 320px, 80vw', alt: block.settings.title }}
+                                        {%- if block.settings.image_2 != blank -%}
+                                            {{ block.settings.image_2 | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300, 500, 700', sizes: '(min-width: 768px) 320px, 80vw', alt: block.settings.title }}
+                                        {%- endif -%}
+                                    </div>
+                                {%- endif -%}
+                            </section>
+
+                        {%- when 'chart' -%}
+                            {%- assign rows = block.settings.rows | newline_to_br | split: '<br />' -%}
+                            <section class="ts-chart" id="{{ uid }}-{{ block.id }}" data-size-tags="{{ block.settings.tags | downcase | escape }}" {{ block.shopify_attributes }}>
+                                <div class="ts-chart__head">
+                                    <h3 class="ts-chart__title">{{ block.settings.title }}</h3>
+                                </div>
+                                <div class="ts-chart__body{% if block.settings.image != blank %} ts-chart__body--with-image{% endif %}">
+                                    <div class="ts-chart__table-wrap" data-size-scroll>
+                                        <div class="ts-chart__scroll" tabindex="0" role="region" aria-label="{{ block.settings.title | escape }} sizes">
+                                            <table class="ts-chart__table">
+                                                {%- for row in rows -%}
+                                                    {%- assign row = row | strip -%}
+                                                    {%- if row == blank -%}{%- continue -%}{%- endif -%}
+                                                    {%- assign cells = row | split: '|' -%}
+                                                    {%- if forloop.first -%}
+                                                        <thead><tr>
+                                                            {%- for cell in cells -%}<th scope="col" data-size-cell>{{ cell | strip }}</th>{%- endfor -%}
+                                                        </tr></thead><tbody>
+                                                    {%- else -%}
+                                                        <tr>
+                                                            {%- for cell in cells -%}
+                                                                {%- if forloop.first -%}<th scope="row">{{ cell | strip }}</th>{%- else -%}<td data-size-cell>{{ cell | strip }}</td>{%- endif -%}
+                                                            {%- endfor -%}
+                                                        </tr>
+                                                    {%- endif -%}
+                                                    {%- if forloop.last -%}</tbody>{%- endif -%}
+                                                {%- endfor -%}
+                                            </table>
+                                        </div>
+                                    </div>
+                                    {%- if block.settings.image != blank -%}
+                                        <div class="ts-chart__media">
+                                            {{ block.settings.image | image_url: width: 500 | image_tag: loading: 'lazy', widths: '250, 400, 500', sizes: '200px', alt: block.settings.title }}
+                                            {%- if block.settings.image_2 != blank -%}
+                                                {{ block.settings.image_2 | image_url: width: 500 | image_tag: loading: 'lazy', widths: '250, 400, 500', sizes: '200px', alt: block.settings.title }}
+                                            {%- endif -%}
+                                        </div>
+                                    {%- endif -%}
+                                </div>
+                            </section>
+                    {%- endcase -%}
+                {%- endfor -%}
+
+                {%- if section.settings.units_note != blank -%}
+                    <p class="ts-size__note">{{ section.settings.units_note }}</p>
+                {%- endif -%}
+            </div>
+        {%- endfor -%}
+
+        {%- if section.settings.tip != blank -%}
+            <aside class="ts-notice ts-notice--warning ts-size__tip">
+                <span class="ts-notice__icon">{%- render 'ts-icon', icon: 'ruler' -%}</span>
+                <div>
+                    <p class="ts-notice__title">{{ section.settings.tip_title }}</p>
+                    <div class="ts-rte">{{ section.settings.tip }}</div>
+                </div>
+            </aside>
+        {%- endif -%}
+
+        {%- if section.settings.help_heading != blank -%}
+            <div class="ts-help-card ts-size__help">
+                <span class="ts-help-card__icon">{%- render 'ts-icon', icon: 'chat' -%}</span>
+                <div class="ts-help-card__body">
+                    <h2 class="ts-help-card__title">{{ section.settings.help_heading }}</h2>
+                    {%- if section.settings.help_text != blank -%}<div class="ts-rte">{{ section.settings.help_text }}</div>{%- endif -%}
+                </div>
+                {%- if section.settings.help_button_label != blank and section.settings.help_button_link != blank -%}
+                    <a href="{{ section.settings.help_button_link }}" class="th-btn ts-help-card__button">{{ section.settings.help_button_label }}</a>
+                {%- endif -%}
+            </div>
+        {%- endif -%}
+    </div>
+</div>
+
+<script src="{{ 'ts-size-chart.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Size Guide",
+  "tag": "section",
+  "class": "ts-section ts-section--flush",
+  "max_blocks": 40,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Size guide"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "info": "Leave blank to use the page title"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro"
+    },
+    {
+      "type": "select",
+      "id": "default_unit",
+      "label": "Default unit",
+      "default": "in",
+      "options": [
+        { "value": "in", "label": "Inches" },
+        { "value": "cm", "label": "Centimetres" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "units_note",
+      "label": "Note under the tables",
+      "default": "All measurements are in inches unless marked in cm."
+    },
+    {
+      "type": "header",
+      "content": "Measuring tip"
+    },
+    {
+      "type": "text",
+      "id": "tip_title",
+      "label": "Tip heading",
+      "default": "Measuring tip"
+    },
+    {
+      "type": "richtext",
+      "id": "tip",
+      "label": "Tip text"
+    },
+    {
+      "type": "header",
+      "content": "Help card"
+    },
+    {
+      "type": "text",
+      "id": "help_heading",
+      "label": "Heading",
+      "default": "Need help with sizing?"
+    },
+    {
+      "type": "richtext",
+      "id": "help_text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "help_button_label",
+      "label": "Button label",
+      "default": "Contact Us"
+    },
+    {
+      "type": "url",
+      "id": "help_button_link",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "guide",
+      "name": "How to measure",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category tab",
+          "default": "Men",
+          "info": "Blocks with the same category appear under the same tab"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "How to measure"
+        },
+        {
+          "type": "textarea",
+          "id": "steps",
+          "label": "Steps",
+          "info": "One step per line, e.g. Chest: Measure around your upper chest"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Illustration"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Second illustration"
+        }
+      ]
+    },
+    {
+      "type": "chart",
+      "name": "Size table",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category tab",
+          "default": "Men"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Size table"
+        },
+        {
+          "type": "textarea",
+          "id": "rows",
+          "label": "Table",
+          "info": "One row per line, cells separated by |. The first line is the header row. Use \" for inches so the cm toggle can convert them."
+        },
+        {
+          "type": "text",
+          "id": "tags",
+          "label": "Product tags",
+          "info": "Comma-separated product tags whose size popup should open this table"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Garment image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Second garment image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Size Guide",
+      "blocks": [
+        { "type": "guide" },
+        { "type": "chart" }
+      ]
+    }
+  ]
+}
+{% endschema %}

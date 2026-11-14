@@ -1,0 +1,236 @@
+{
+  "sections": {
+    "policy": {
+      "type": "ts-policy",
+      "blocks": {
+        "section_1": {
+          "type": "section",
+          "settings": {
+            "heading": "Track Your Order",
+            "text": "<p>If you need help tracking your order, give us a call at 1-800-824-2743 M-F 10am-5pm CST. We are always ready and happy to help you. You may also login to your account LOGIN and check your order status Please allow 1 business day after receiving \"your order has shipped\" email notification for tracking to activate .</p>"
+          }
+        },
+        "section_2": {
+          "type": "section",
+          "settings": {
+            "heading": "About Free Shipping",
+            "text": "<p>Free standard (USPS – United States Postal Service) ground shipping and returns applies to orders over $200 after any promo codes or other promotions are applied. Free ground Shipping is valid within the Continental 48 States (not eligible for Hawaii, Alaska or International orders). Items purchased with a PO (purchase order) do not qualify for Free Shipping. Free Shipping does not apply to special orders and over sized/overweight products. If you return your purchase, then the cost of shipping will be deducted from any refund or credit. Free Shipping may not be combined with other offers or discounts.</p>"
+          }
+        },
+        "section_3": {
+          "type": "section",
+          "settings": {
+            "heading": "International Orders",
+            "text": "<p>Prices are shown in US dollars. For conversion, we recommend using a Currency Converter. Any import duties, taxes or brokerage fees due at the time of delivery are the sole responsibility of the receiving customer. Packing slips for International Shipments cannot be marked as a \"gift\" or with altered prices. International Orders may require 3-5 business days or more of additional processing time prior to shipment as we may need to consolidate items to one location for shipment. When \"Fast International Shipping\" method is selected, orders will be shipped by a carrier of our choice (USPS, \u0007DHL,\b or UPS). Typical transit time will be 3-5 business days. If you are visiting the US we can ship any product to your hotel or any UPS store for pickup</p>"
+          }
+        },
+        "section_4": {
+          "type": "section",
+          "settings": {
+            "heading": "Worldwide Delivery",
+            "text": "<p>We regularly ship to our clients across the globe. The majority of these orders come from Australia, Canada, New Zealand, Norway, South Africa, Switzerland, Singapore and Hong Kong, but we are able to ship to just about any destination worldwide. Through the Royal Mail and our courier network we are able to get your order to you within a matter of days. The options and prices for shipping your order to you will be shown when you select your country in your shopping basket and they are usually accurate. Should we be out in our delivery estimates then we will send you an email to let you know. Rest assured that we always charge our clients exactly what the couriers charge us. All timings for delivery are based on information from couriers and postal services and should be deemed to be approximates. Please always select the delivery method which allows for a reasonable amount of time for your parcel to arrive. If you are leaving soon, then opt for the fastest courier option. Should you be concerned about a parcel going astray, please opt for a tracked service - and please monitor the tracking information once a day to see if the goods have been delayed for any reason by the customs department or the courier. The tracking page will have links to the contact information for the courier in your country and they will be able to assist you in clearing goods into your country. We are not able to assist you in finding a parcel should you have opted for an untracked service. International shipments (sent to addresses outside of the US) may take longer and are subject to the shipping method being used and factors including but not limited to: the time it takes to clear customs, the time it takes for you to settle your account with customs, local weather, and local delivery to you. Clearing goods through customs is out of our hands. We provide all the correct paperwork with each shipment, but the relationship is between you, the courier, and the customs department in your country. We have no control over this process. All customs and courier charges related to the clearing of goods into your country are for your account and are not covered by TAG Safari. Should you opt not to pay to have the goods cleared then we will not automatically arrange for the goods to be returned to us without clear instruction from you the client in writing to give us permission to do so - and permission to charge you for any related costs we may incur before refunding you for your returned order. Please note again that we are not able to do this without written permissions from you the client. If this is not received in good time then the courier will usually abandon your parcel to the relevant customs department in your country and no refund will be issued by TAG Safari for the goods. Refunds are only ever made where goods are received back by TAG Safari in sale-able condition - as per our returns terms and conditions. The choice of which delivery service to use is up to you as our client to decide at checkout. Please use your discretion as we will send your order using the service which you select. Should we find a more cost effective delivery method for your parcel then we will contact you to give you the option to use this method. Where you have opted to cancel items off your order, we will still automatically use the delivery method which you selected at checkout unless you advise us otherwise before your order has been dispatched. Once an order has been dispatched we are not able to recall it.</p>"
+          }
+        },
+        "section_5": {
+          "type": "section",
+          "settings": {
+            "heading": "Additional Shipping Information",
+            "text": "<p><strong>Shipping &amp; Transit Times:</strong></p><p>Orders received by 12 noon U.S. Central Time are shipped on the same day by UPS and U.S. Postal Service from Houston, Texas. Orders placed on weekends and holidays are shipped on the first business day thereafter. Ground shipping transit time is 3-5 business days, anywhere in the continental U.S. and Canada. We offer Next Day Air, 2nd Day Air and 3 Day shipping services for time sensitive orders. Select Air shipping for urgent orders. International shipping options include U.S. Postal Service International.</p><p><strong>Shipping Rates &amp; Delivery:</strong></p><p><strong>SERVICE</strong></p><p><strong>COST</strong></p><p><strong>DELIVERY TIME</strong></p><p>USPS First Class</p><p>\u0007FREE DELIVERY</p><p>\b5-7 BUSINESS DAYS</p><p>UPS 2nd Day Air</p><p>\u0007$15.00</p><p>\b2 BUSINESS DAYS</p><p>UPS Next Day Air</p><p>\u0007$25.00</p><p>\b1 BUSINESS DAY</p><p><strong>US National Holidays and Express Shipping:</strong></p><p>TAG Safari cannot ship packages on days that are US national holidays. The following dates are affected.</p><p>Thursday, November 22 (Thanksgiving Day)</p><p>Monday, December 24 (Christmas Eve)</p><p>Tuesday, December 25 (Christmas Day)</p><p>Tuesday, January 1 (New Year's Day 2019)</p><p>Monday, February 18 (President's Day)</p><p>Monday, May 27 (Memorial Day)</p><p>Thursday, July 4 (Independence Day)</p><p>Monday, September 2 (Labor Day)</p><p>Thursday, November 28 (Thanksgiving Day)</p><p>Tuesday, December 24 (Christmas Eve)</p><p>Wednesday, December 25 (Christmas Day)</p><p>Wednesday, January 1 (New Year's Day 2020)</p><p>Express orders placed during a national holiday, or during the weekend of a national holiday, will not be shipped until the following business day.</p><p><strong>Pricing &amp; Information Disclaimer:</strong></p><p>Our goal is to provide accuracy in all prices, delivery rates and other information. All prices in our source books and online are in U.S. dollars and are subject to any applicable taxes according to state and local laws. Availability, prices and delivery rates are subject to change. There may be errors in the prices, descriptions or images of certain merchandise, and we reserve the right to restrict orders of those items and correct any errors, inaccuracies or omissions.</p><p><strong>Queries:</strong></p><p><strong>When will my order ship?</strong></p><p>After your payment is verified, it takes up to 24 hours to process and ship your order. This does not include weekends or holidays. Purchases made after 12 noon US Central time will not be shipped out until the next business day. If you order after 12 noon CST on a Friday, your order will likely be shipped out on the following Monday.</p><p><strong>Will I have to pay international taxes &amp; duties?</strong></p><p>Your order may be subject to import duties and taxes, which are levied once a shipment reaches your country. The general amount for the duties and taxes fee is about 20% of the dollar amount of the merchandise. However, this is just a general guideline and may vary depending on the country to which the order was shipped. You should contact your customs office for specific amounts and percentages.</p><p>TAG Safari cannot control and is not responsible for any duties/taxes applied to your package. You will be responsible for paying additional charges for customs clearance. Customs policies vary widely from country to country; please contact your local customs office for further information. Note, in rare occasions custom agents may delay delivery of some packages.</p><p><strong>How are taxes and duties calculated?</strong></p><p>For Duties Delivered Paid (DDP) Orders: Duties and taxes may be included in the price depending on ship to country. If not included in the price, they will be shown at checkout.</p><p>For Duties Delivered Unpaid (DDU) Orders: As a customer, you are liable for all import duties, customs and taxes levied. Payment of these is required to release your order from customs on arrival.</p><p><strong>For Further Assistance:</strong></p><p>As always, please feel free to call our customer service representatives at 1-800-824-2703 / 1-713-688-3424 Monday - Friday 10:00 AM - 5 PM CST.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "section_1",
+        "section_2",
+        "section_3",
+        "section_4",
+        "section_5"
+      ],
+      "settings": {
+        "eyebrow": "Policies",
+        "title": "Shipping Information",
+        "summary": "",
+        "last_updated": "",
+        "show_toc": true,
+        "toc_title": "On this page",
+        "help_heading": "Need help? Contact us",
+        "help_text": "<p>Our team is happy to help. Call us toll free on <a href=\"tel:+18008242703\">1-800-824-2703</a> or send us a message.</p>",
+        "help_button_label": "Contact Us",
+        "help_button_link": "shopify://pages/contact"
+      }
+    },
+    "newsletter": {
+      "type": "ts-newsletter",
+      "settings": {
+        "eyebrow": "Newsletter",
+        "heading": "Join the adventure",
+        "text": "<p>Safari stories, travel tips and new arrivals, straight to your inbox.</p>",
+        "button_label": "Subscribe",
+        "success_message": "Thanks for subscribing! Look out for our next email.",
+        "disclaimer": "",
+        "layout": "split",
+        "background": "none",
+        "image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg",
+        "image_style": "overlay",
+        "overlay_opacity": 55,
+        "link_label": "Read our safari blog",
+        "link_url": "shopify://pages/safari-blog"
+      },
+      "blocks": {
+        "stories": {
+          "type": "feature",
+          "settings": {
+            "icon": "compass",
+            "text": "Safari stories"
+          }
+        },
+        "tips": {
+          "type": "feature",
+          "settings": {
+            "icon": "globe",
+            "text": "Travel tips"
+          }
+        },
+        "arrivals": {
+          "type": "feature",
+          "settings": {
+            "icon": "tag",
+            "text": "New arrivals"
+          }
+        }
+      },
+      "block_order": [
+        "stories",
+        "tips",
+        "arrivals"
+      ]
+    },
+    "logos": {
+      "type": "ts-logos",
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/houston_safari_club_logo.png",
+            "name": "Houston Safari Club",
+            "link": ""
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wild_sheep_foundation_logo.png",
+            "name": "Wild Sheep Foundation",
+            "link": ""
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/age_africa_logo.png",
+            "name": "Advancing Girls Education In Africa",
+            "link": ""
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/dallas_safari_club_logo.png",
+            "name": "Dallas Safari Club",
+            "link": ""
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Texas_Parks_Wildlife_logo.png",
+            "name": "Texas Parks & Wildlife",
+            "link": ""
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sethule_orphans_trust_logo.png",
+            "name": "Sethule Orphans Trust",
+            "link": ""
+          }
+        },
+        "logo_7": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/safari_club_international_logo.png",
+            "name": "Safari Club International",
+            "link": ""
+          }
+        },
+        "logo_8": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/texas_wildlife_association_logo.png",
+            "name": "Texas Wildlife Association",
+            "link": ""
+          }
+        },
+        "logo_9": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wildlife_conservation_society_logo.png",
+            "name": "Wildlife Conservation Society",
+            "link": ""
+          }
+        },
+        "logo_10": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/WWF_world_wildlife_fund.png",
+            "name": "World Wildlife Fund",
+            "link": ""
+          }
+        },
+        "logo_11": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wateraid_logo.png",
+            "name": "WaterAid America",
+            "link": ""
+          }
+        },
+        "logo_12": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sierra_club_logo.png",
+            "name": "Sierra Club",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6",
+        "logo_7",
+        "logo_8",
+        "logo_9",
+        "logo_10",
+        "logo_11",
+        "logo_12"
+      ],
+      "settings": {
+        "heading": "Member & Supporter of These Fine Organizations",
+        "text": "",
+        "duration": 40,
+        "grayscale": true,
+        "tinted": false
+      }
+    }
+  },
+  "order": [
+    "policy",
+    "newsletter",
+    "logos"
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "sections": {
+    "policy": {
+      "type": "ts-policy",
+      "blocks": {
+        "intro_1": {
+          "type": "intro",
+          "settings": {
+            "text": "<p>We stand behind all our products and are confident that they will perform as designed.</p><p>If you are not 100% satisfied with one of our products, you may return it within one year of purchase for a refund.</p><p>After one year, we will consider any items for return that are defective due to materials or craftsmanship.</p><p>For details, please refer to our <a href=\"/pages/exchange-return-policy\">Return Policy</a>.</p>"
+          }
+        },
+        "section_2": {
+          "type": "section",
+          "settings": {
+            "heading": "Return Policy",
+            "text": "<p>If you are not 100% satisfied with one of our products, you may return it within one year of purchase for a refund.</p><p>After one year, we will consider any items for return that are defective due to materials or craftsmanship.</p><p>We require proof of purchase to honor a refund. If you provide us your information when you check out, we will typically have a record of your purchase. Otherwise, we require a physical receipt.</p><p>Please include your proof of purchase with the products you wish to return in your package of the returned item(s). We will reimburse the original purchase price to your original method of payment.</p>"
+          }
+        },
+        "section_3": {
+          "type": "section",
+          "settings": {
+            "heading": "Special Conditions",
+            "text": "<p>To protect all our customers and make sure that we handle every return with reasonable fairness, we cannot accept a return (even within one year of purchase) in certain situations, including:</p><ul><li>Products damaged by misuse, abuse, improper care or negligence, or accidents (including pet damage)</li><li>Products showing excessive wear and tear</li><li>Products lost or damaged due to fire, flood, or natural disaster</li><li>Products with a missing label or label that has been defaced</li><li>Products returned for personal reasons unrelated to product performance or satisfaction</li><li>Products that have been soiled or contaminated, until they have been properly cleaned</li><li>Certain products that are restricted from importation into the United States or require a license</li><li>On rare occasions, past habitual abuse of our Generous Return Policy</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "intro_1",
+        "section_2",
+        "section_3"
+      ],
+      "settings": {
+        "eyebrow": "Policies",
+        "title": "Our 100% Satisfaction Guarantee",
+        "summary": "",
+        "last_updated": "",
+        "show_toc": true,
+        "toc_title": "On this page",
+        "help_heading": "Need help? Contact us",
+        "help_text": "<p>Our team is happy to help. Call us toll free on <a href=\"tel:+18008242703\">1-800-824-2703</a> or send us a message.</p>",
+        "help_button_label": "Contact Us",
+        "help_button_link": "shopify://pages/contact"
+      }
+    },
+    "newsletter": {
+      "type": "ts-newsletter",
+      "settings": {
+        "eyebrow": "Newsletter",
+        "heading": "Join the adventure",
+        "text": "<p>Safari stories, travel tips and new arrivals, straight to your inbox.</p>",
+        "button_label": "Subscribe",
+        "success_message": "Thanks for subscribing! Look out for our next email.",
+        "disclaimer": "",
+        "layout": "split",
+        "background": "none",
+        "image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg",
+        "image_style": "overlay",
+        "overlay_opacity": 55,
+        "link_label": "Read our safari blog",
+        "link_url": "shopify://pages/safari-blog"
+      },
+      "blocks": {
+        "stories": {
+          "type": "feature",
+          "settings": {
+            "icon": "compass",
+            "text": "Safari stories"
+          }
+        },
+        "tips": {
+          "type": "feature",
+          "settings": {
+            "icon": "globe",
+            "text": "Travel tips"
+          }
+        },
+        "arrivals": {
+          "type": "feature",
+          "settings": {
+            "icon": "tag",
+            "text": "New arrivals"
+          }
+        }
+      },
+      "block_order": [
+        "stories",
+        "tips",
+        "arrivals"
+      ]
+    },
+    "logos": {
+      "type": "ts-logos",
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/houston_safari_club_logo.png",
+            "name": "Houston Safari Club",
+            "link": ""
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wild_sheep_foundation_logo.png",
+            "name": "Wild Sheep Foundation",
+            "link": ""
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/age_africa_logo.png",
+            "name": "Advancing Girls Education In Africa",
+            "link": ""
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/dallas_safari_club_logo.png",
+            "name": "Dallas Safari Club",
+            "link": ""
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Texas_Parks_Wildlife_logo.png",
+            "name": "Texas Parks & Wildlife",
+            "link": ""
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sethule_orphans_trust_logo.png",
+            "name": "Sethule Orphans Trust",
+            "link": ""
+          }
+        },
+        "logo_7": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/safari_club_international_logo.png",
+            "name": "Safari Club International",
+            "link": ""
+          }
+        },
+        "logo_8": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/texas_wildlife_association_logo.png",
+            "name": "Texas Wildlife Association",
+            "link": ""
+          }
+        },
+        "logo_9": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wildlife_conservation_society_logo.png",
+            "name": "Wildlife Conservation Society",
+            "link": ""
+          }
+        },
+        "logo_10": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/WWF_world_wildlife_fund.png",
+            "name": "World Wildlife Fund",
+            "link": ""
+          }
+        },
+        "logo_11": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wateraid_logo.png",
+            "name": "WaterAid America",
+            "link": ""
+          }
+        },
+        "logo_12": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sierra_club_logo.png",
+            "name": "Sierra Club",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6",
+        "logo_7",
+        "logo_8",
+        "logo_9",
+        "logo_10",
+        "logo_11",
+        "logo_12"
+      ],
+      "settings": {
+        "heading": "Member & Supporter of These Fine Organizations",
+        "text": "",
+        "duration": 40,
+        "grayscale": true,
+        "tinted": false
+      }
+    }
+  },
+  "order": [
+    "policy",
+    "newsletter",
+    "logos"
+  ]
+}

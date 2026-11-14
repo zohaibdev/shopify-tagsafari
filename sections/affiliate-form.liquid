@@ -1,0 +1,166 @@
+<section class="affiliate-form-section">
+  {%- assign has_intro = false -%}
+  {%- if section.settings.heading != blank or section.settings.text != blank -%}{%- assign has_intro = true -%}{%- endif -%}
+  <div class="boost-pfs-container-default{% if has_intro %} ts-affiliate{% endif %}">
+    {%- if has_intro -%}
+      {%- comment -%} Welcome text beside the form (two columns on desktop, stacked on mobile). {%- endcomment -%}
+      <div class="ts-affiliate__intro">
+        {%- if section.settings.eyebrow != blank -%}<span class="ts-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="ts-heading">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<div class="ts-rte">{{ section.settings.text }}</div>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="affiliate-form-wrapper">
+      {%- form 'contact', class: 'affiliate-form' -%}
+        <input type="hidden" name="contact[Subject]" value="TAG Reseller Enquiry">
+
+                      {% if form.posted_successfully? %}
+              <div class="twelve">
+                <div class="success successForm feedback">
+                  <p>{{ 'contact.form.post_success' | t }}</p>
+                </div>
+              </div>
+              {% endif %}
+
+              {% if form.errors %}
+              <div class="twelve">
+                <div class="errors errorForm feedback">
+                  <p>{{ 'contact.form.post_error' | t }} {{ 'contact.form.post_error_msg1' | t }} {{ form.errors | size | pluralize: 'error', 'errors' }} {{ 'contact.form.post_error_msg2' | t }}</p>
+                  <ul class="unformatted">
+                    {% for field in form.errors %}
+                    {% if field == 'form' %}
+                    <li>{{ form.errors.messages[field] }}</li>
+                    {% else %}
+                    <li>{{ form.errors.translated_fields[field] }} - {{ form.errors.messages[field] }}</li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+              {% endif %}
+        <div class="form-field">
+          <label for="name">Name*</label>
+          <input type="text" id="name" name="contact[Name]" required>
+        </div>
+
+        <div class="form-field">
+          <label for="surname">Surname*</label>
+          <input type="text" id="surname" name="contact[Surname]" required>
+        </div>
+
+        <div class="form-field">
+          <label for="company">Company Name</label>
+          <input type="text" id="company" name="contact[Company]">
+        </div>
+
+        <div class="form-field">
+          <label for="phone">Telephone Number*</label>
+          <input type="tel" id="phone" name="contact[Phone]" required>
+        </div>
+
+        <div class="form-field">
+          <label for="email">Email Address*</label>
+          <input type="email" id="email" name="contact[email]" required>
+        </div>
+
+        <div class="form-field">
+          <label for="country">Country*</label>
+          <select id="country" name="contact[Country]" required>
+            <option value="" disabled selected>Select your country</option>
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+            <option value="UK">UK</option>
+            <option value="South Africa">South Africa</option>
+            <!-- Add more options as needed -->
+          </select>
+        </div>
+
+        <div class="radio-field">
+          <label>Reason to become an Affiliate*</label>
+          <div class="radio-options">
+            <input
+              type="radio"
+              id="distributor"
+              name="contact[Reason]"
+              value="I would like to become a distributor."
+              required
+            >
+            <label for="distributor">I would like to become a distributor.</label><br>
+
+            <input
+              type="radio"
+              id="franchise"
+              name="contact[Reason]"
+              value="I would like to buy the franchise."
+              required
+            >
+            <label for="franchise">I would like to buy the franchise.</label><br>
+
+            <input
+              type="radio"
+              id="country_promoter"
+              name="contact[Reason]"
+              value="I would like to bring TAGSafari to my country."
+              required
+            >
+            <label for="country_promoter">I would like to bring TAGSafari to my country.</label><br>
+
+            <input
+              type="radio"
+              id="promote_website"
+              name="contact[Reason]"
+              value="I would like to promote TAGSafari on my website."
+              required
+            >
+            <label for="promote_website">I would like to promote TAGSafari on my website.</label><br>
+
+            <input
+              type="radio"
+              id="other_terms"
+              name="contact[Reason]"
+              value="I would like to discuss affiliation opportunities with TAGSafari under other terms not listed above."
+              required
+            >
+            <label for="other_terms"
+              >I would like to discuss affiliation opportunities with TAGSafari under other terms not listed above.</label
+            >
+          </div>
+        </div>
+
+        <div class="action">
+          <button type="submit" class="btn-submit">Submit</button>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Affiliate Form",
+  "class": "affiliate-form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "info": "With a heading or text, they appear beside the form"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Affiliate Form"
+    }
+  ]
+}
+{% endschema %}

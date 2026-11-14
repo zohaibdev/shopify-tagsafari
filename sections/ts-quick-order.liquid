@@ -1,0 +1,195 @@
+{%- assign form_id = 'QuickOrder-' | append: section.id -%}
+
+<div class="{% if section.settings.tinted %}ts-section--tinted{% endif %}">
+<div class="container">
+    <div class="ts-quick-order" id="quick-order-{{ section.id }}">
+        {%- if section.settings.heading != blank -%}
+            <h2 class="ts-heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+            <div class="ts-rte ts-contact__intro">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {%- comment -%}
+          Sent through Shopify's contact form: the store receives every field by email. This is an order
+          request, not a Shopify order; Shopify's spam protection (hCaptcha) covers this form automatically.
+        {%- endcomment -%}
+        {%- form 'contact', id: form_id, class: 'ts-quick-order__form ts-form' -%}
+            {%- if section.settings.subject != blank -%}
+                <input type="hidden" name="contact[Subject]" value="{{ section.settings.subject | escape }}">
+            {%- endif -%}
+            {%- if form.posted_successfully? -%}
+                <div class="ts-form__notice ts-form__notice--success" role="status" tabindex="-1" autofocus>
+                    <p>{{ section.settings.success_message | default: 'Thank you. Your order request has been sent and our team will be in touch to confirm it.' }}</p>
+                </div>
+            {%- elsif form.errors -%}
+                <div class="ts-form__notice ts-form__notice--error" role="alert" tabindex="-1" autofocus>
+                    <p>{{ 'contact.form.form_error' | t }}</p>
+                    {%- if form.errors contains 'email' -%}
+                        <p>{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}.</p>
+                    {%- endif -%}
+                </div>
+            {%- endif -%}
+
+            <fieldset class="ts-quick-order__group">
+                <legend class="ts-quick-order__legend">Your details</legend>
+                <div class="ts-form__row">
+                    <div class="ts-form__field">
+                        <label for="{{ form_id }}-name">Name <span aria-hidden="true">*</span></label>
+                        <input type="text" id="{{ form_id }}-name" name="contact[Name]" autocomplete="name" required aria-required="true">
+                    </div>
+                    <div class="ts-form__field">
+                        <label for="{{ form_id }}-email">Email <span aria-hidden="true">*</span></label>
+                        <input type="email" id="{{ form_id }}-email" name="contact[email]" autocomplete="email" autocapitalize="off" spellcheck="false" required aria-required="true" value="{{ form.email }}">
+                    </div>
+                </div>
+                <div class="ts-form__row">
+                    <div class="ts-form__field">
+                        <label for="{{ form_id }}-address">Address <span aria-hidden="true">*</span></label>
+                        <input type="text" id="{{ form_id }}-address" name="contact[Address]" autocomplete="street-address" required aria-required="true">
+                    </div>
+                    <div class="ts-form__field">
+                        <label for="{{ form_id }}-mobile">Cel / Mobile Number <span aria-hidden="true">*</span></label>
+                        <input type="tel" id="{{ form_id }}-mobile" name="contact[Mobile]" autocomplete="tel" required aria-required="true">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="ts-quick-order__group">
+                <legend class="ts-quick-order__legend">Order details</legend>
+                <p class="ts-quick-order__hint" id="{{ form_id }}-lines-hint">Add one line per item. Colour and size are optional; leave them blank if they don't apply.</p>
+                <div class="ts-quick-order__lines" data-order-lines aria-describedby="{{ form_id }}-lines-hint">
+                    <div class="ts-quick-order__line" data-order-line>
+                        <div class="ts-form__field ts-quick-order__item">
+                            <label for="{{ form_id }}-item-1"><span data-line-label>Item 1</span> <span aria-hidden="true">*</span></label>
+                            <input type="text" id="{{ form_id }}-item-1" name="contact[Item 1]" placeholder="Product / style" required aria-required="true" data-field="Item">
+                        </div>
+                        <div class="ts-form__field">
+                            <label for="{{ form_id }}-colour-1">Colour</label>
+                            <input type="text" id="{{ form_id }}-colour-1" name="contact[Colour 1]" data-field="Colour">
+                        </div>
+                        <div class="ts-form__field">
+                            <label for="{{ form_id }}-size-1">Size</label>
+                            <input type="text" id="{{ form_id }}-size-1" name="contact[Size 1]" data-field="Size">
+                        </div>
+                        <div class="ts-form__field ts-quick-order__qty">
+                            <label for="{{ form_id }}-quantity-1">Qty <span aria-hidden="true">*</span></label>
+                            <input type="number" id="{{ form_id }}-quantity-1" name="contact[Quantity 1]" min="1" step="1" inputmode="numeric" value="1" required aria-required="true" data-field="Quantity">
+                        </div>
+                        <button type="button" class="ts-quick-order__remove" data-remove-line aria-label="Remove item 1" hidden>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <button type="button" class="ts-quick-order__add" data-add-line>+ Add another item</button>
+            </fieldset>
+
+            <div class="ts-form__field">
+                <label for="{{ form_id }}-notes">Order notes</label>
+                <textarea id="{{ form_id }}-notes" name="contact[body]" placeholder="Logo details, placement, delivery date or anything else we should know">{{ form.body }}</textarea>
+            </div>
+
+            <button type="submit" class="th-btn">{{ section.settings.button_label | default: 'Send order request' }}</button>
+            {%- render 'captcha-notice' -%}
+        {%- endform -%}
+    </div>
+</div>
+</div>
+
+<script>
+  // Order lines: add/remove rows and keep their field names numbered (contact[Item 1], contact[Item 2] ...),
+  // so each line arrives as its own labelled field in the store's email.
+  (function() {
+    var form = document.getElementById({{ form_id | json }});
+    if (!form) return;
+    var list = form.querySelector('[data-order-lines]');
+    var MAX_LINES = 30;
+    var renumber = function() {
+      var lines = list.querySelectorAll('[data-order-line]');
+      lines.forEach(function(line, index) {
+        var n = index + 1;
+        line.querySelectorAll('[data-line-label]').forEach(function(el) { el.textContent = 'Item ' + n; });
+        line.querySelectorAll('[data-field]').forEach(function(input) {
+          var field = input.getAttribute('data-field');
+          input.name = 'contact[' + field + ' ' + n + ']';
+          input.id = {{ form_id | json }} + '-' + field.toLowerCase() + '-' + n;
+          var label = input.parentNode.querySelector('label');
+          if (label) label.htmlFor = input.id;
+        });
+        var remove = line.querySelector('[data-remove-line]');
+        remove.setAttribute('aria-label', 'Remove item ' + n);
+        remove.hidden = lines.length === 1;
+      });
+      form.querySelector('[data-add-line]').hidden = lines.length >= MAX_LINES;
+    };
+    form.querySelector('[data-add-line]').addEventListener('click', function() {
+      var line = list.querySelector('[data-order-line]').cloneNode(true);
+      line.querySelectorAll('[data-field]').forEach(function(input) {
+        input.value = input.getAttribute('data-field') === 'Quantity' ? '1' : '';
+      });
+      list.appendChild(line);
+      renumber();
+      line.querySelector('[data-field="Item"]').focus();
+    });
+    list.addEventListener('click', function(event) {
+      var remove = event.target.closest('[data-remove-line]');
+      if (!remove) return;
+      var line = remove.closest('[data-order-line]');
+      var next = line.nextElementSibling || line.previousElementSibling;
+      line.remove();
+      renumber();
+      if (next) next.querySelector('[data-field="Item"]').focus();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Quick Order Form",
+  "tag": "section",
+  "class": "ts-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Quick Order Form"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Intro text"
+    },
+    {
+      "type": "text",
+      "id": "subject",
+      "label": "Email subject",
+      "default": "TAG Quick Order Request",
+      "info": "Added to every request sent from this form"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Send order request"
+    },
+    {
+      "type": "textarea",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you. Your order request has been sent and our team will be in touch to confirm it."
+    },
+    {
+      "type": "checkbox",
+      "id": "tinted",
+      "label": "Tinted background",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quick Order Form"
+    }
+  ]
+}
+{% endschema %}

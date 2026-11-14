@@ -1,0 +1,141 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1">
+{%- if page_description -%}<meta name="description" content="{{ page_description | escape }}" />{%- endif -%}
+<meta name="theme-color" content="{{ settings.button_color }}">
+<title>{% if template == '404' %}{{ 'general.404.title' | t }}{% elsif template == 'password' %}{{ shop.name }}{% if shop.password_message != blank %} {{ shop.password_message }}{% endif %}{% elsif template == 'gift_card' %}{{ 'gift_cards.issued.title' | t: value: formatted_initial_value_stripped, shop: shop.name }}{% else %}{{ page_title | escape }}{% if current_tags %}{%- capture meta_tags -%}{%- for tag in current_tags -%}{{ tag | split: '_' | last | prepend: ' ' }}{%- endfor -%}{%- endcapture -%}{{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} | {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% endif %}{% unless page_title contains shop.name or template == 'password' %} | {{ shop.name }}{% endunless %}</title> 
+{%- if template contains 'collection' and current_tags -%}
+<meta name="robots" content="noindex" />
+<link rel="canonical" href="{{ shop.url }}{{ collection.url }}" />
+{%- else -%}
+<link rel="canonical" href="{{ canonical_url }}" />
+{%- endif -%}
+{%- if settings.favicon != blank -%}<link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">{%- endif -%}
+
+<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+<link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+<link rel="preconnect" href="https://monorail-edge.shopifysvc.com">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<link rel="preload" href="{{ 'styles.min.css' | asset_url }}" as="style">
+<link rel="preload" as="font" href="{{ settings.header_type | font_url }}" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="{{ settings.base_type | font_url }}" type="font/woff2" crossorigin>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+      {{ "slick.min.js" | asset_url | script_tag }}
+    {{ 'slick.css' | asset_url | stylesheet_tag }}
+    {{ 'slick-theme.css' | asset_url | stylesheet_tag }}  
+<link rel="preload" href="{{ 'script.initial.js' | asset_url }}" as="script">
+<link rel="preload" href="{{ 'script.jquery.js' | asset_url }}" as="script">
+<link rel="preload" href="{{ 'script.swiper.js' | asset_url }}" as="script">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css">
+{{ 'custom.js' | asset_url | script_tag }}
+{%- render 'css-variables' -%}
+
+<!-- https://stackoverflow.com/questions/32759272/how-to-load-css-asynchronously -->
+<style>
+@keyframes fancybox-rotate {100% {transform:rotate(360deg);}}
+.fancybox-loading {animation:fancybox-rotate 1s linear infinite;background:transparent;border:2px solid var(--button_color_25);border-bottom-color:var(--button_color);border-radius:50%;-webkit-box-sizing:border-box;-khtml-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;height:calc(var(--master_spacing) * 2.5);left:50%;margin-left:calc(-1 * var(--master_spacing) * 1.25);margin-top:calc(-1 * var(--master_spacing) * 1.25);opacity:.7;padding:0;position:absolute;top:50%;width:calc(var(--master_spacing) * 2.5);z-index:999;}
+body {background:var(--white);color:var(--body_font_color);font-family:var(--body_font_fallback);font-size:var(--small);font-style:var(--body_font_style);font-weight:var(--body_font_weight);font-size:var(--small);line-height:calc(var(--small) * 1.25);font-family:var(--body_font);webkit-text-size-adjust:none;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
+p {font-size:var(--small);padding:0 0 calc(var(--small) * 1.25);}
+a {text-decoration:none;color:var(--body_font_color);}
+img {border: 0;display: block;height: auto;margin: 0 auto calc(var(--master_spacing) / 2);max-width: 100%;vertical-align: bottom;}
+img.lazywidth, img.lazyload, img.lazyloading {width: 100%;}
+header{background:var(--white);}
+.header-navigation-width {float:left;width:auto;}
+.header-navigation-width span {padding: 0 calc(var(--master_spacing) * 0.75)}
+.header-announcement,.header-customerbar {font-family:var(--body_font_fallback);font-size:var(--xx-small);line-height:calc(var(--xx-small) * 1.25);padding:calc(var(--master_spacing) / 2)}
+.header-announcement p, .header-customerbar p {font-size:var(--xx-small);padding:0;}
+.header-navigation .cartCountSelector {background:var(--white);display:inline-table;font-family: Arial;font-size:10px;height:12px;left:50%;line-height:12px;margin-top: 3px;position: absolute;text-align:center;top:50%;-webkit-transform:translate(-50%,-50%);-moz-transform: translate(-50%,-50%);-o-transform: translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);}
+.header-navigation .cartCountSelector.cart-icon {margin-left:2px;margin-top:-4px;}
+@media only screen and (max-width: 480px) {.header-navigation .cartCountSelector {height:8px;line-height:8px;margin-top: 1px;}.header-navigation .cartCountSelector.cart-icon {margin-left:1px;}}
+.table-center .one,.table-center .two,.table-center .two-half,.table-center .three,.table-center .four,.table-center .five,.table-center .six,.table-center .seven,.table-center .eight,.table-center .nine,.table-center .ten,.table-center .eleven,.table-center .twelve {display:inline-block;float:none;height:100%;vertical-align:middle;}
+</style>
+
+<link rel="stylesheet" href="{{ 'styles.min.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript><link href="{{ 'styles.min.css' | asset_url }}" rel="stylesheet" type="text/css" media="screen"></noscript>
+
+{%- if template == 'gift_card' -%}
+{{ 'vendor/qrcode.js' | shopify_asset_url | script_tag }}
+<meta name="description" content="{{ 'gift_cards.issued.subtext' | t: shop: shop.name }}">
+{%- endif -%}
+
+{%- assign og_title = page_title | escape -%}
+{%- assign og_url = canonical_url -%}
+{%- assign og_type = 'website' -%}
+{%- assign og_description = page_description | default: shop.description | default: shop.name | escape -%}
+{%- capture og_image_tags -%}
+<meta property="og:image" content="http:{{ page_image | img_url: '1200x1200' }}">
+<meta property="og:image:width" content="{{ page_image }}">
+<meta property="og:image:height" content="{{ page_image }}">
+{%- endcapture -%}
+{%- capture og_image_secure_url_tags -%}<meta property="og:image:secure_url" content="https:{{ page_image | img_url: '1200x1200' }}">{%- endcapture -%}
+
+{%- if template.name == 'product' -%}
+{%- assign og_title = product.title | strip_html -%}
+{%- assign og_type = 'product' -%}
+{%- if product.media.size > 0 -%}
+{%- capture og_image_tags -%}
+{%- for media in product.media limit:3 -%}
+<meta property="og:image" content="http:{{ media | img_url: '1200x1200' }}">
+<meta property="og:image:width" content="{{ media.width }}">
+<meta property="og:image:height" content="{{ media.height }}">
+{%- endfor -%}{%- endcapture -%}
+{%- capture og_image_secure_url_tags -%}{% for media in product.media limit:3 %}<meta property="og:image:secure_url" content="https:{{ media | img_url: '1200x1200' }}">{% endfor %}{%- endcapture -%}
+{%- endif -%}
+
+{%- elsif template.name == 'article' -%}
+{%- assign og_title = article.title | strip_html -%}
+{%- assign og_type = 'article' -%}
+{%- assign og_description = article.excerpt_or_content | strip_html -%}
+{%- if article.image -%}
+{%- capture og_image_tags -%}
+<meta property="og:image" content="http:{{ article.image | img_url: '1200x1200' }}">
+<meta property="og:image:width" content="{{ article.image.width }}">
+<meta property="og:image:height" content="{{ article.image.height }}">
+{%- endcapture -%}
+{%- capture og_image_secure_url_tags -%}<meta property="og:image:secure_url" content="https:{{ article.image | img_url: '1200x1200' }}">{%- endcapture -%}
+{%- endif -%}
+
+{%- elsif template.name == 'collection' -%}
+{%- assign og_title = collection.title | strip_html -%}
+{%- assign og_type = 'product.group' -%}
+{%- if collection.image -%}
+{%- capture og_image_tags -%}
+<meta property="og:image" content="http:{{ collection.image | img_url: '1200x1200' }}">
+<meta property="og:image:width" content="{{ collection.image.width }}">
+<meta property="og:image:height" content="{{ collection.image.height }}">
+{%- endcapture -%}
+{%- capture og_image_secure_url_tags -%}<meta property="og:image:secure_url" content="https:{{ collection.image | img_url: '1200x1200' }}">{%- endcapture -%}
+{%- endif -%}
+
+{%- elsif template.name == 'password' -%}
+{%- assign og_title = shop.name -%}
+{%- assign og_url = shop.url -%}
+{%- assign og_description = shop.description | default: shop.name -%}
+{%- endif -%}
+
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ og_url }}">
+<meta property="og:title" content="{{ og_title }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:description" content="{{ og_description }}">
+{%- if template.name == 'product' -%}
+<meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
+<meta property="og:price:currency" content="{{ cart.currency.iso_code }}">
+{%- endif -%}
+{{ og_image_tags }}
+{{ og_image_secure_url_tags }}
+
+{%- unless settings.social_twitter_link == blank -%}
+<meta name="twitter:site" content="{{ settings.social_twitter_link | split: 'twitter.com/' | last | prepend: '@' }}">
+{%- endunless -%}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ og_title }}">
+<meta name="twitter:description" content="{{ og_description }}">
+
+<noscript><style>body{margin-bottom:50px;}.container,.background-cover,.background-overlay,.featured-image{position:relative;}.header{opacity:1;filter:alpha(opacity=100);}.responsiveMenu li:hover > ul{left:0!important}.no-js-hide{display:none!important}.no-js.hidden{display:block!important}.no-js-bg{left:0;position:absolute;top:0;width:100%;}img.lazywidth{width:auto;}</style></noscript>
+
+{{ 'custom.scss.css' | asset_url | stylesheet_tag }}

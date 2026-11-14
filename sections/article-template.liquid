@@ -1,0 +1,336 @@
+{%- assign show_image = false -%}
+{%- if article.image and section.settings.include_image -%}{%- assign show_image = true -%}{%- endif -%}
+
+<div data-section-id="{{ section.id }}" data-section-type="blog-page" class="ts-article">
+  <header class="ts-article__header">
+    <div class="container">
+      <nav class="coll-banner__breadcrumbs" aria-label="{{ 'general.breadcrumbs.breadcrumbs' | t }}">
+        <ul class="breadcrumb">
+          <li><a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t }}</a></li>
+          <li><a href="{{ blog.url }}">{{ blog.title }}</a></li>
+          <li>{{ article.title }}</li>
+        </ul>
+      </nav>
+
+      <div class="ts-article__intro{% if show_image %} ts-article__intro--media{% endif %}">
+        <div class="ts-article__heading">
+          <a href="{{ blog.url }}" class="ts-eyebrow">{{ blog.title }}</a>
+          <h1 class="ts-article__title">{{ article.title }}</h1>
+          {%- if section.settings.include_author or section.settings.include_date or blog.comments_enabled? and article.comments.size > 0 -%}
+            <p class="ts-article__meta">
+              {%- if section.settings.include_author -%}<span>{{ article.author }}</span>{%- endif -%}
+              {%- if section.settings.include_date -%}
+                <span><time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%B %-d, %Y' }}</time></span>
+              {%- endif -%}
+              {%- if blog.comments_enabled? and article.comments.size > 0 -%}
+                <span><a href="#comments">{{ article.comments_count }} {{ article.comments_count | pluralize: 'comment', 'comments' }}</a></span>
+              {%- endif -%}
+            </p>
+          {%- endif -%}
+        </div>
+        {%- if show_image -%}
+          <div class="ts-article__image" style="--image-max: {{ article.image.width | at_most: 640 }}px">
+            {%- assign image_alt = article.image.alt | default: article.title -%}
+            {{ article.image | image_url: width: 1280 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '400, 640, 960, 1280', sizes: '(min-width: 1025px) 560px, 100vw', alt: image_alt }}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="ts-article__main">
+      <div class="ts-article__body ts-rte">
+        {{ article.content }}
+      </div>
+
+      {%- liquid
+        assign show_tags = false
+        if article.tags.size > 0 and section.settings.include_tags
+          assign show_tags = true
+        endif
+      -%}
+      {%- if show_tags or section.settings.include_social -%}
+        <div class="ts-article__footer">
+          {%- if show_tags -%}
+            <div class="ts-blog__tags">
+              <ul>
+                {%- for tag in article.tags -%}
+                  <li><a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a></li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.include_social -%}
+            <div class="ts-article__share">
+              {%- render 'social-share', share_title: article.title, share_permalink: article.url, share_image: article.image -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- assign current_found = false -%}
+      {%- assign done = false -%}
+      {%- for a in blog.articles -%}
+        {%- if current_found and done == false -%}
+          {%- assign next_article = a -%}
+          {%- assign done = true -%}
+        {%- endif -%}
+        {%- unless done -%}
+          {%- if a.id == article.id -%}
+            {%- assign current_found = true -%}
+          {%- else -%}
+            {%- assign prev_article = a -%}
+          {%- endif -%}
+        {%- endunless -%}
+      {%- endfor -%}
+      {%- if prev_article or next_article -%}
+        <nav class="ts-article__nav" aria-label="{{ blog.title | escape }}">
+          {%- if prev_article -%}
+            <a href="{{ prev_article.url }}" class="ts-article__nav-link ts-article__nav-link--prev">
+              <span class="ts-article__nav-label">&larr; {{ 'blogs.article.older_post' | t | remove: ':' | strip }}</span>
+              <span class="ts-article__nav-title">{{ prev_article.title }}</span>
+            </a>
+          {%- endif -%}
+          {%- if next_article -%}
+            <a href="{{ next_article.url }}" class="ts-article__nav-link ts-article__nav-link--next">
+              <span class="ts-article__nav-label">{{ 'blogs.article.newer_post' | t | remove: ':' | strip }} &rarr;</span>
+              <span class="ts-article__nav-title">{{ next_article.title }}</span>
+            </a>
+          {%- endif -%}
+        </nav>
+      {%- endif -%}
+
+      {%- if blog.comments_enabled? -%}
+        <div id="comments" class="ts-article__comments">
+          {%- if article.comments.size > 0 -%}
+            <h2 class="ts-heading">{{ 'blogs.comments.comments' | t }} ({{ article.comments_count }})</h2>
+            {%- paginate article.comments by 10 -%}
+              {%- for comment in article.comments -%}
+                <div class="ts-article__comment">
+                  <p class="ts-post__meta"><strong>{{ comment.author }}</strong> &middot; {{ comment.created_at | date: '%B %-d, %Y' }}</p>
+                  <div class="ts-rte">{{ comment.content }}</div>
+                </div>
+              {%- endfor -%}
+              {%- if paginate.pages > 1 -%}
+                <div class="pagination">{%- render 'pagination', paginate: paginate -%}</div>
+              {%- endif -%}
+            {%- endpaginate -%}
+          {%- endif -%}
+
+          <div class="ts-contact__form">
+            {%- form article, class: 'ts-form' -%}
+              {%- if form.errors -%}
+                <div class="ts-form__notice ts-form__notice--error" role="alert">
+                  <p>{{ settings.comments_error_message }}</p>
+                  {%- for field in form.errors -%}
+                    {%- if field == 'form' -%}
+                      <p>{{ form.errors.messages[field] }}</p>
+                    {%- else -%}
+                      <p>{{ form.errors.translated_fields[field] }} - {{ form.errors.messages[field] }}</p>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+              {%- if form.posted_successfully? -%}
+                <div class="ts-form__notice ts-form__notice--success" role="status">
+                  <p>{% if blog.moderated? %}{{ 'blogs.comments.success_moderated' | t }}{% else %}{{ 'blogs.comments.success' | t }}{% endif %}</p>
+                </div>
+              {%- endif -%}
+              <h2 class="ts-heading">{{ 'blogs.comments.title' | t }}</h2>
+              <div class="ts-form__row">
+                <div class="ts-form__field">
+                  <label for="CommentAuthor-{{ section.id }}">{{ 'blogs.comments.name' | t }}</label>
+                  <input required id="CommentAuthor-{{ section.id }}" type="text" name="comment[author]" autocomplete="name" value="{{ form.author }}"{% if form.errors contains 'author' %} aria-invalid="true"{% endif %}>
+                </div>
+                <div class="ts-form__field">
+                  <label for="CommentEmail-{{ section.id }}">{{ 'blogs.comments.email' | t }}</label>
+                  <input required id="CommentEmail-{{ section.id }}" type="email" name="comment[email]" autocomplete="email" value="{{ form.email }}"{% if form.errors contains 'email' %} aria-invalid="true"{% endif %}>
+                </div>
+              </div>
+              <div class="ts-form__field">
+                <label for="CommentBody-{{ section.id }}">{{ 'blogs.comments.message' | t }}</label>
+                <textarea required id="CommentBody-{{ section.id }}" name="comment[body]"{% if form.errors contains 'body' %} aria-invalid="true"{% endif %}>{{ form.body }}</textarea>
+              </div>
+              {%- if blog.moderated? -%}
+                <p class="ts-article__note">{{ 'blogs.comments.moderated' | t }}</p>
+              {%- endif -%}
+              <button type="submit" class="th-btn">{{ 'blogs.comments.post' | t }}</button>
+            {%- endform -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if section.settings.include_articles and blog.articles_count > 1 -%}
+    <div class="ts-article__related ts-section--tinted">
+      <div class="container">
+        <div class="title-block">
+          <h2>{{ 'blogs.sidebar.recent_articles' | t }}</h2>
+        </div>
+        <div class="ts-card-grid" style="--col: 3">
+          {%- assign counter = 0 -%}
+          {%- for related in blog.articles -%}
+            {%- if related.id == article.id -%}{%- continue -%}{%- endif -%}
+            <article class="ts-post">
+              {%- if related.image -%}
+                <div class="ts-post__media">
+                  {%- assign related_alt = related.image.alt | default: related.title -%}
+                  {{ related.image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '400, 600, 800', sizes: '(min-width: 1025px) 380px, (min-width: 768px) 50vw, 100vw', alt: related_alt }}
+                </div>
+              {%- elsif section.settings.fallback_image != blank -%}
+                <div class="ts-post__media ts-post__media--fallback">
+                  {{ section.settings.fallback_image | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}
+                </div>
+              {%- endif -%}
+              <div class="ts-post__body">
+                {%- if section.settings.include_date -%}
+                  <p class="ts-post__meta"><time datetime="{{ related.published_at | date: '%Y-%m-%d' }}">{{ related.published_at | date: '%B %-d, %Y' }}</time></p>
+                {%- endif -%}
+                <h3 class="ts-post__title"><a href="{{ related.url }}">{{ related.title }}</a></h3>
+                <span class="ts-post__link">{{ 'blogs.article.read_more' | t }}</span>
+              </div>
+            </article>
+            {%- assign counter = counter | plus: 1 -%}
+            {%- if counter >= section.settings.number_of_articles -%}{%- break -%}{%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.include_newsletter -%}
+    <div class="ts-article__newsletter">
+      <div class="container">
+        <h2 class="ts-heading">{{ 'blogs.sidebar.subscribe' | t }}</h2>
+        {%- render 'newsletter' -%}
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+<script type="application/ld+json">
+{
+ "@context": "http://schema.org",
+ "@graph": [
+  {
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": {{ shop.url | json }},
+        "name": {{ shop.name | json }}
+      }
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": {{ shop.url | append: blog.url | json }},
+        "name": {{ blog.title | json }}
+      }
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": {{ shop.url | append: article.url | json }},
+        "name": {{ article.title | json }}{% if article.image %},
+        "image": {%- assign image_size = article.image.width | append: 'x' -%}{{ article.image | img_url: image_size | prepend: 'https:' | json }}{% endif %}
+      }
+    }]
+  },
+  {
+    "@type": "Article",
+    "articleBody": {{ article.content | strip_html | json }},
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ shop.url | append: article.url | json }}
+    },
+    "headline": {{ article.title | json }},
+    {% if article.excerpt != blank %}"description": {{ article.excerpt | strip_html | json }},{% endif %}
+    {% if article.image %}"image": [{%- assign image_size = article.image.width | append: 'x' -%}{{ article | img_url: image_size | prepend: 'https:' | json }}],{% endif %}
+    "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "dateCreated": {{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "author": {
+      "@type": "Person",
+      "name": {{ article.author | json }}
+    },
+    "publisher": {
+    "@type": "Organization",
+    "name": {{ shop.name | json }}{% if settings.social_img %},
+    "logo": {
+      	"@type": "ImageObject",
+      	"url": {{ settings.social_img | img_url: master | prepend:'https:' | json }}
+    	}{% endif %}
+    }
+  }
+  ]
+}
+</script>
+
+{% schema %}
+  {
+    "name": "Blog posts",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "include_image",
+        "label": "Show image",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "include_author",
+        "label": "Show author",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "include_date",
+        "label": "Show date",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "include_newsletter",
+        "label": "Show newsletter",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "include_articles",
+        "label": "Show recent posts",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "number_of_articles",
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "label": "Recent posts",
+        "default": 3
+      },
+      {
+        "type": "image_picker",
+        "id": "fallback_image",
+        "label": "Image for recent posts without one",
+        "info": "Shown on a tinted background, e.g. the TAG® Safari badge"
+      },
+      {
+        "type": "checkbox",
+        "id": "include_tags",
+        "label": "Show tags",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "include_social",
+        "label": "Show social sharing buttons",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

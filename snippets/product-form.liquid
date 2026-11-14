@@ -1,0 +1,582 @@
+{%- assign hide_default_title = false -%}
+{% if product.variants.size == 1 %}
+  {%- assign hide_default_title = true -%}
+{% endif %}
+
+{%- capture form_id -%}add-item-form-{{ section.id }}{%- endcapture -%}
+{%- capture form_class -%}{% if section.settings.go_to_cart_enable or template == 'product.quick' and settings.go_to_cart_enable_quick %}go-to-cart-{{ section.id }} {% endif %}product-form-{{ section.id }} variants clearfix{%- endcapture -%}
+
+<div class="product-variants table-center clearfix">
+  {% form 'product', product, id: form_id, class: form_class %}
+    {%- assign variant = product.selected_or_first_available_variant -%}
+
+    {% if section.settings.product_availability_enable
+      or template == 'product.quick'
+      and settings.product_availability_enable_quick
+    %}
+      {% if template == 'product.quick' %}
+        {%- assign avail_total = settings.product_availability_total_quick -%}
+      {% else %}
+        {%- assign avail_total = section.settings.product_availability_total -%}
+      {% endif %}
+      <div class="twelve clearfix">
+        <span
+          id="inventory-{{ section.id }}"
+          class="variant-inventory bottompad{% unless variant.available %} is-sold-out{% endunless %}"
+          data-inv="{% if template == 'product.quick' %}{{ settings.product_availability_total_quick }}{% else %}{{ section.settings.product_availability_total }}{% endif %}"
+          role="status"
+        >
+          <h4>
+            {% if variant.available -%}
+              {%- if variant.inventory_management
+                and variant.inventory_policy != 'continue'
+                and variant.inventory_quantity > 0
+                and variant.inventory_quantity < avail_total
+              -%}
+                {{- 'products.general.inv_msg_1' | t }}
+                {{ variant.inventory_quantity }}
+                {{ 'products.general.inv_msg_2' | t -}}
+              {%- else -%}
+                {{- 'products.product.available' | t -}}
+              {%- endif -%}
+            {%- else -%}
+              {{- 'products.product.sold_out' | t -}}
+            {%- endif -%}
+            {%- if variant.available == false
+              or variant.available
+              and variant.inventory_policy != 'continue'
+              and variant.inventory_quantity > 0
+              and variant.inventory_quantity < avail_total
+            -%}
+              {%- if variant.incoming -%}
+                <br>
+                <span class="error-text"
+                  ><small
+                    ><span class="icon icon-bell"></span>
+                    {% if variant.incoming -%}
+                      {%- if variant.next_incoming_date != blank -%}
+                        {%- if variant.available -%}
+                          {{- 'products.product.stock_more' | t -}}
+                        {%- else -%}
+                          {{- 'products.product.stock_in' | t -}}
+                        {%- endif %}
+                        {{ variant.next_incoming_date | date: '%b %e' -}}
+                      {%- else -%}
+                        {{- 'products.product.stock_soon' | t -}}
+                      {%- endif -%}
+                    {%- endif -%}
+                  </small></span
+                >
+              {%- endif -%}
+            {%- endif %}
+          </h4>
+        </span>
+      </div>
+    {% endif %}
+
+    {%- assign option_index = 0 -%}
+    {% for option in product.options %}
+      {%- capture downcased_option -%}{{ option | downcase }}{%- endcapture -%}
+      {%- assign option_index = forloop.index0 -%}
+      {%- assign how_many_options = 0 -%}
+      {%- assign current_options = '' -%}
+      {% for variant in product.variants %}
+        {%- assign current_option = variant.options[option_index] -%}
+        {% unless current_options contains current_option %}
+          {% if how_many_options > 0 %}
+            {%- assign current_options = current_options | join: '|' | append: '|' -%}
+          {% endif %}
+          {%- assign current_options = current_options | append: current_option -%}
+          {%- assign current_options = current_options | split: '|' | sort -%}
+          {%- assign how_many_options = current_options | size -%}
+        {% endunless %}
+      {% endfor %}
+      {% if current_options.size > 1 %}
+        {%- capture count -%}{% increment count %}{%- endcapture -%}
+      {% endif %}
+    {% endfor %}
+    {%- assign count = count | plus: 1 -%}
+
+    {% if section.settings.layout %}
+      {%- capture block_width -%}{{ count }}{%- endcapture -%}
+
+      {% case block_width %}
+        {% when '0' %}
+          {%- assign block_width = 'six' -%}
+        {% when '1' %}
+          {%- assign block_width = 'four' -%}
+        {% when '2' %}
+          {%- assign block_width = 'three' -%}
+        {% when '3' %}
+          {%- assign block_width = 'two-half' -%}
+      {% endcase %}
+    {% else %}
+      {%- assign block_width = '  ' -%}
+    {% endif %}
+    {% comment %} {% render 'size_popup' %} {% endcomment %}
+
+    <div class="purchase-section{% if product.variants.size > 1 %} multiple{% endif %}{% if section.settings.layout %} banner{% endif %}">
+      {%- if settings.swatch_color != blank -%}
+        {%- assign var_color = settings.swatch_color | handleize -%}
+        {%- assign swatch_color = settings.swatch_color -%}
+      {%- else -%}
+        {%- assign var_color = 'products.general.color' | t | handleize -%}
+        {%- assign swatch_color = 'products.general.color' | t -%}
+      {%- endif -%}
+
+      {%- if settings.swatch_size != blank -%}
+        {%- assign var_size = settings.swatch_size | handleize -%}
+        {%- assign swatch_size = settings.swatch_size -%}
+      {%- else -%}
+        {%- assign var_size = 'products.general.size' | t | handleize -%}
+        {%- assign swatch_size = 'products.general.size' | t -%}
+      {%- endif -%}
+
+      {%- assign block = false -%}
+      {%- assign color_block = false -%}
+      {%- assign size_block = false -%}
+      {%- assign color_size_block = false -%}
+
+      {% if section.settings.variant_enable == 'block'
+        or template == 'product.quick'
+        and settings.variant_enable_quick == 'block'
+      %}
+        {%- assign block = true -%}
+      {% elsif section.settings.variant_enable == 'color-block'
+        or template == 'product.quick'
+        and settings.variant_enable_quick == 'color-block'
+      %}
+        {%- assign color_block = true -%}
+      {% elsif section.settings.variant_enable == 'size-block'
+        or template == 'product.quick'
+        and settings.variant_enable_quick == 'size-block'
+      %}
+        {%- assign size_block = true -%}
+      {% elsif section.settings.variant_enable == 'color-size-block'
+        or template == 'product.quick'
+        and settings.variant_enable_quick == 'color-size-block'
+      %}
+        {%- assign color_size_block = true -%}
+      {% endif %}
+
+      {% if template == 'product.quick' %}
+        {%- assign variant_color_enable = settings.variant_color_enable_quick -%}
+      {% else %}
+        {%- assign variant_color_enable = section.settings.variant_color_enable -%}
+      {% endif %}
+
+      {% if variant_color_enable == 'var-img-zoom-block' %}
+        {%- assign img_size = '140x' -%}
+      {% else %}
+        {%- assign img_size = '72x' -%}
+      {% endif %}
+
+      {% unless product.variants.size == 1
+        and section.settings.var_length_enable == false
+        or product.variants.size == 1
+        and template == 'product.quick'
+        and settings.var_length_enable_quick == false
+      %}
+        {% if block or color_size_block %}
+          {% render 'product-swatches'
+            for product.options as swatch,
+            var_color: var_color,
+            swatch_color: swatch_color,
+            var_size: var_size,
+            swatch_size: swatch_size,
+            block_width: block_width,
+            hide: true,
+            block: block,
+            color_size_block: color_size_block,
+            variant_color_enable: variant_color_enable,
+            img_size: img_size,
+            p_sect: p_sect
+          %}
+        {% elsif color_block %}
+          {% render 'product-swatches'
+            with swatch_color as swatch,
+            var_color: var_color,
+            swatch_color: swatch_color,
+            var_size: var_size,
+            swatch_size: swatch_size,
+            block_width: block_width,
+            hide: true,
+            color_block: color_block,
+            variant_color_enable: variant_color_enable,
+            img_size: img_size,
+            p_sect: p_sect
+          %}
+        {% elsif size_block %}
+          {% render 'product-swatches'
+            with swatch_size as swatch,
+            var_color: var_color,
+            swatch_color: swatch_color,
+            var_size: var_size,
+            swatch_size: swatch_size,
+            block_width: block_width,
+            hide: true,
+            size_block: size_block,
+            variant_color_enable: variant_color_enable,
+            img_size: img_size,
+            p_sect: p_sect
+          %}
+        {% endif %}
+      {% endunless %}
+
+      <select
+        id="product-select-{{ section.id }}"
+        class="{{ block_width }} center no-js hidden no-select product-select"
+        name="id"
+        data-cols="{{ block_width }}{% if block %} hidden{% endif %}"
+        data-color="{% if color_block or color_size_block %}{{ swatch_color }}{% endif %}"
+        data-size="{% if size_block or color_size_block %}{{ swatch_size }}{% endif %}"
+        data-length="{% if section.settings.var_length_enable or template == 'product.quick' and settings.var_length_enable_quick %}{% if product.has_only_default_variant %}1{% else %}0{% endif %}{% else %}1{% endif %}"
+        {% if hide_default_title %}
+          style="display:none" aria-hidden="true"
+        {% endif %}
+      >
+        {% for variant in product.variants %}
+          <option
+            {% if variant == product.selected_or_first_available_variant %}
+              selected="selected"
+            {% endif %}
+            value="{{ variant.id }}"
+            {% if variant.inventory_management and variant.inventory_policy != 'continue' %}
+              data-inv="{% if variant.inventory_quantity > 0 %}{{ variant.inventory_quantity }}{% else %}0{% endif %}"
+            {% endif %}
+            data-inc="{{ variant.incoming }}"
+            {% if variant.incoming %}
+              data-inc_date="{% if variant.incoming %}{% if variant.next_incoming_date != blank %}{% if variant.available %}{{ 'products.product.stock_more' | t }}{% else %}{{ 'products.product.stock_in' | t }}{% endif %} {{ variant.next_incoming_date | date: '%b %e' }}{% else %}{{ 'products.product.stock_soon' | t }}{% endif %}{% endif %}"
+            {% endif %}
+          >
+            {{ variant.title }} - {{ variant.price | money }}
+          </option>
+        {% endfor %}
+      </select>
+
+      <div class="cart-and-size-guide">
+        {% if product.tags contains 'Gift Cards' %}
+          {% comment %} {% render 'size_popup' %} {% endcomment %}
+        {% else %}
+          {% render 'size_popup' %}
+        {% endif %}
+        {% if section.settings.qty_enable or template == 'product.quick' and settings.qty_enable_quick %}
+          <div class="quantity-block">
+            <label>Quantity</label>
+            <span class="quantity form">
+              <button
+                type="button"
+                class="icon icon-minus btn qtybtn qtyminus_{{ section.id }} text-center"
+                field="updates_{{ section.id }}"
+                aria-label="{{ 'products.general.minus' | t }}"
+              ></button>
+              <input
+                name="quantity"
+                type="number"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                value="{% unless variant.available %}0{% else %}1{% endunless %}"
+                min="{% unless product.available %}0{% else %}1{% endunless %}"
+                class="ignore quantity item-qty text-center"
+                field="error_{{ section.id }}"
+                id="updates_{{ section.id }}"
+                {% if variant.inventory_management and variant.inventory_policy != 'continue' %}
+                  max="{{ variant.inventory_quantity }}"
+                {% endif %}
+              >
+              <button
+                type="button"
+                class="icon icon-plus btn qtybtn qtyplus_{{ section.id }} text-center"
+                field="updates_{{ section.id }}"
+                aria-label="{{ 'products.general.plus' | t }}"
+              ></button>
+              <label class="stock error hidden" id="error_{{ section.id }}"></label>
+            </span>
+          </div>
+        {% endif %}
+        <div class="cart-block">
+          {%- comment -%}
+            Always rendered so switching variants can enable/disable them; the script below keeps
+            Add to Cart, Buy It Now and the stock message in step with the selected variant.
+          {%- endcomment -%}
+            <div class="{% if section.settings.smart_enable or template == 'product.quick' and settings.smart_enable_quick %}-quarter{% else %}-half{% endif %}{% if block_width == 'six' %} six{% endif %}">
+              <button
+                type="submit"
+                id="add-to-cart-{{ section.id }}"
+                class="btn add-to-cart addtocart auto-full-width{% if section.settings.smart_enable or template == 'product.quick' and settings.smart_enable_quick %} smart-outline{% endif %}{% unless variant.available %} disabled{% endunless %}"
+                name="add"
+                value=""
+                {% unless variant.available %}disabled="disabled"{% endunless %}
+              >
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g>
+                </svg>
+                <span class="add-to-cart__label">{% if variant.available %}{{ 'products.product.add_to_cart' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
+              </button>
+              <div class="cart-animation hidden" aria-hidden="true"></div>
+            </div>
+            <div class="buy-now-block">
+              <button
+                type="button"
+                id="buy-now-{{ section.id }}"
+                class="btn buy-now buy-now-btn auto-full-width{% unless variant.available %} disabled{% endunless %}"
+                data-form="{{ form_id }}"
+                {% unless variant.available %}disabled="disabled"{% endunless %}
+              >
+                Buy It Now
+              </button>
+            </div>
+            {% if variant.available %}
+              {% if section.settings.smart_enable or template == 'product.quick' and settings.smart_enable_quick %}
+                {{ form | payment_button }}
+              {% endif %}
+            {% endif %}
+
+          <div class="availability-msg" id="availability-{{ section.id }}"{% unless variant.available %} hidden{% endunless %}>
+            <span class="fa fa-check"></span>
+            <span class="av-msg">In Stock -  Ships today if ordered by 3PM EST</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endform %}
+</div>
+
+{% unless product == empty %}
+  <script type="application/json" id="ProductJson-{{ section.id }}">
+    {{ product | json }}
+  </script>
+  <script type="application/json" id="ModelJson-{{ section.id }}">
+    {{ product.media | where: 'media_type', 'model' | json }}
+  </script>
+{% endunless %}
+
+<script>
+  //	Buy Now: add the selected variant/quantity to the cart, then go straight to checkout.
+  window.addEventListener('DOMContentLoaded', function() {
+    var buyNowBtn = document.getElementById('buy-now-{{ section.id }}');
+    if (!buyNowBtn) return;
+    buyNowBtn.addEventListener('click', function() {
+      var form = document.getElementById(buyNowBtn.getAttribute('data-form'));
+      if (!form) return;
+      buyNowBtn.classList.add('disabled');
+      buyNowBtn.setAttribute('disabled', 'disabled');
+      var formData = new FormData(form);
+      fetch('{{ routes.cart_add_url }}.js', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      }).then(function(response) {
+        if (!response.ok) throw new Error('Add to cart failed');
+        window.location.href = '{{ routes.cart_url }}/checkout';
+      }).catch(function() {
+        buyNowBtn.classList.remove('disabled');
+        buyNowBtn.removeAttribute('disabled');
+      });
+    });
+  });
+
+  //	Keep Add to Cart, Buy It Now and the stock message in step with the selected variant.
+  //	The theme's variant callback only sets the button's value, which a <button> does not display.
+  window.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('{{ form_id }}');
+    var select = document.getElementById('product-select-{{ section.id }}');
+    var productJson = document.getElementById('ProductJson-{{ section.id }}');
+    if (!form || !select || !productJson) return;
+    var variants = JSON.parse(productJson.textContent).variants;
+    var addBtn = document.getElementById('add-to-cart-{{ section.id }}');
+    var addLabel = addBtn && addBtn.querySelector('.add-to-cart__label');
+    var buyNowBtn = document.getElementById('buy-now-{{ section.id }}');
+    var stockMsg = document.getElementById('availability-{{ section.id }}');
+    var inventory = document.getElementById('inventory-{{ section.id }}');
+    var syncAvailability = function() {
+      // Match on the option selectors when present: the id select can lag on combinations that don't exist.
+      var optionSelects = [0, 1, 2].map(function(i) { return document.getElementById('product-select-{{ section.id }}-option-' + i); }).filter(Boolean);
+      var variant = variants.filter(function(v) {
+        return optionSelects.length
+          ? optionSelects.every(function(s, i) { return v.options[i] === s.value; })
+          : String(v.id) === select.value;
+      })[0];
+      var available = !!(variant && variant.available);
+      [addBtn, buyNowBtn].forEach(function(btn) {
+        if (!btn) return;
+        btn.disabled = !available;
+        btn.classList.toggle('disabled', !available);
+      });
+      if (addLabel) addLabel.textContent = available ? {{ 'products.product.add_to_cart' | t | json }} : (variant ? {{ 'products.product.sold_out' | t | json }} : {{ 'products.product.unavailable' | t | json }});
+      if (stockMsg) stockMsg.hidden = !available;
+      if (inventory) inventory.classList.toggle('is-sold-out', !available);
+    };
+    // Capture phase: the theme fires non-bubbling change events on its option selects.
+    form.addEventListener('change', function() { setTimeout(syncAvailability); }, true);
+    syncAvailability();
+  });
+
+  //	Removes non-existent variants | Based on https://gist.github.com/jonathanmoore/c0e0e503aa732bf1c05b7a7be4230c61
+  window.addEventListener('DOMContentLoaded', function() {
+    var Shopify = Shopify || {};
+    var sectionId = '{{ section.id }}';
+    Shopify.arrayIncludes = function(e, t) {
+      for (var n = 0; n < e.length; n++)
+        if (e[n] == t) return !0;
+      return !1
+    }, Shopify.uniq = function(e) {
+      for (var t = [], n = 0; n < e.length; n++) Shopify.arrayIncludes(t, e[n]) || t.push(e[n]);
+      return t
+    }
+    Shopify.optionsMap = {};
+    var selectors = {
+      sos0: '#product-select-' + sectionId + '-option-0',
+      sos1: '#product-select-' + sectionId + '-option-1',
+      sos2: '#product-select-' + sectionId + '-option-2'
+    };
+    Shopify.updateOptionsInSelector = function(selectorIndex) {
+      switch (selectorIndex) {
+        case 0:
+          var key = 'root';
+          var selector = document.querySelector(selectors.sos0);
+          break;
+        case 1:
+          var key = document.querySelector(selectors.sos0).value;
+          var selector = document.querySelector(selectors.sos1);
+          break;
+        case 2:
+          var key = document.querySelector(selectors.sos0).value;
+          key += ' / ' + document.querySelector(selectors.sos1).value;
+          var selector = document.querySelector(selectors.sos2);
+      }
+      var initialValue = selector.value;
+      selector.innerHTML = '';
+      var availableOptions = Shopify.optionsMap[key];
+      for (var i=0; i<availableOptions.length; i++) {
+        var option = availableOptions[i];
+        var newOption = document.createElement('option');
+        newOption.value = option;
+        newOption.text  = option;
+        selector.appendChild(newOption);
+      }
+      var swatchElements = document.querySelectorAll('#{{ form_id }} .swatch[data-option-index="' + selectorIndex + '"] .swatch-element');
+      swatchElements.forEach(function(swatchElement) {
+        var itemradio = swatchElement.querySelector('input');
+        itemradio.checked = false;
+        if (availableOptions.indexOf(swatchElement.getAttribute('data-value'), availableOptions) !== -1) {
+          swatchElement.style.display = '';
+          itemradio.disabled = false;
+        } else {
+          swatchElement.style.display = 'none';
+          itemradio.disabled = true;
+        }
+      });
+      if (availableOptions.indexOf(initialValue, availableOptions) !== -1) {
+        selector.value = initialValue;
+      }
+      selector.dispatchEvent(new Event('change'));
+    };
+    Shopify.linkOptionSelectors = function(product) {
+      for (var i=0; i<product.variants.length; i++) {
+        var variant = product.variants[i];
+        if (variant) {
+          Shopify.optionsMap['root'] = Shopify.optionsMap['root'] || [];
+          Shopify.optionsMap['root'].push(variant.option1);
+          Shopify.optionsMap['root'] = Shopify.uniq(Shopify.optionsMap['root']);
+          if (product.options.length > 1) {
+            var key = variant.option1;
+            Shopify.optionsMap[key] = Shopify.optionsMap[key] || [];
+            Shopify.optionsMap[key].push(variant.option2);
+            Shopify.optionsMap[key] = Shopify.uniq(Shopify.optionsMap[key]);
+          }
+          if (product.options.length === 3) {
+            var key = variant.option1 + ' / ' + variant.option2;
+            Shopify.optionsMap[key] = Shopify.optionsMap[key] || [];
+            Shopify.optionsMap[key].push(variant.option3);
+            Shopify.optionsMap[key] = Shopify.uniq(Shopify.optionsMap[key]);
+          }
+        }
+      }
+      Shopify.updateOptionsInSelector(0);
+      if (product.options.length > 1) Shopify.updateOptionsInSelector(1);
+      if (product.options.length === 3) Shopify.updateOptionsInSelector(2);
+      document.querySelector(selectors.sos0).addEventListener('change', function(){
+        if (product.options.length > 1) Shopify.updateOptionsInSelector(1);
+        if (product.options.length === 3) Shopify.updateOptionsInSelector(2);
+        return true;
+      });
+      if (product.options.length > 1) document.querySelector(selectors.sos1).addEventListener('change', function(){
+        if (product.options.length === 3) Shopify.updateOptionsInSelector(2);
+        return true;
+      });
+    };
+    {% if product.available and product.options_with_values.size > 0 and product.has_only_default_variant == false %}
+    // Build the option selectors from available variants only, so a colour (or a size within the chosen
+    // colour) with nothing in stock or nothing sellable in this market is removed rather than offered.
+    var sellableProduct = {{ product | json }};
+    sellableProduct.variants = sellableProduct.variants.filter(function(v) { return v.available; });
+    var addToCartForm = document.getElementById('{{ form_id }}');
+    var linkWhenReady = function() {
+      if (!document.querySelector(selectors.sos0)) return false;
+      Shopify.linkOptionSelectors(sellableProduct);
+      return true;
+    };
+    // The theme builds the option selects on DOM ready; wait for them if they are not there yet.
+    if (addToCartForm && !linkWhenReady() && window.MutationObserver) {
+      var observer = new MutationObserver(function() {
+        if (linkWhenReady()) observer.disconnect();
+      });
+      observer.observe(addToCartForm, { childList: true, subtree: true });
+    }
+    {% endif %}
+    {% if product.variants.size > 1 %}
+    var variantImages = {},
+        thumbnails,
+        variant,
+        variantImage,
+        opt_key,
+        opt_val,
+        loop_index;
+    {% for variant in product.variants %}
+    variant = {{ variant | json }};
+    if ( typeof variant.featured_image !== 'undefined' && variant.featured_image !== null ) {
+      variantImage =  variant.featured_image.src.split('?')[0].replace(/http(s)?:/,'');
+      variantImages[variantImage] = variantImages[variantImage] || {};
+      {% for option in product.options %}
+      {%- assign option_value = variant.options[forloop.index0] -%}
+      {%- assign option_key = 'option-' | append: forloop.index0 -%}
+      opt_key = {{ option_key | json }};
+      opt_val = {{ option_value | json }};
+      if (typeof variantImages[variantImage][opt_key] === 'undefined') {
+        variantImages[variantImage][opt_key] = opt_val;
+      }
+      else {
+        var oldValue = variantImages[variantImage][opt_key];
+        if ( oldValue !== null && oldValue !== opt_val )  {
+          variantImages[variantImage][opt_key] = null;
+        }
+      }
+      {% endfor %}
+    }
+    {% endfor %}
+    var thumbnails = document.querySelectorAll('#product-id-' + sectionId + ' img[src*="/products/"].list');
+    if (!thumbnails) return false;
+    thumbnails.forEach(function(thumbnail) {
+      thumbnail.addEventListener('click', function(){
+        var image = this.getAttribute('src').split('?')[0].replace(/(_1x)/,'');
+        if (typeof variantImages[image] !== 'undefined') {
+          {% for option in product.options %}
+          var swatches = document.querySelectorAll('#product-id-' + sectionId + ' .swatch-element');
+          swatches.forEach(function(swatch) {
+            swatch.classList.remove('var_hover');
+          });
+          loop_index = 'option-{{ forloop.index0 }}';
+          if (variantImages[image][loop_index] !== null) {
+            var index = '{{ forloop.index0 }}'
+            var sos = document.querySelector('#product-select-' + sectionId + '-option-' + index);
+            sos.value = variantImages[image][loop_index];
+            sos.dispatchEvent(new Event('change'));
+          }
+          {% endfor %}
+        }
+      });
+    });
+    {% endif %}
+  });
+</script>

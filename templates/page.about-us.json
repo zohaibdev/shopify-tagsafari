@@ -1,0 +1,126 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "ts-page-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/Home_Page_Banner_Main_Banner_Victoria_Falls_No_Text_1262_x_322.png",
+        "title": "About Us",
+        "content": "<p>Authentic African safari clothing and gear, made in Africa for safari, travel, and outdoor adventure.</p>",
+        "show_breadcrumbs": true,
+        "parent_label": "",
+        "parent_link": ""
+      }
+    },
+    "origins": {
+      "type": "ts-image-text",
+      "settings": {
+        "image": "shopify://shop_images/zimbabwe_road_map.png",
+        "image_position": "left",
+        "image_fit": "contain",
+        "eyebrow": "Our Origins",
+        "heading": "Born in Bulawayo, Zimbabwe",
+        "text": "<p>Our origins began in the late 80s in the vibrant city of Bulawayo, located on a plain in the south-west of Zimbabwe near the watershed between the Zambezi River and the Limpopo drainage basins.</p><p>Bulawayo is a central location on Zimbabwe’s road network. Since its formation in the late 1800s, it has been the industrial center of Zimbabwe. It is the country’s main producer of textiles, food products, electronics, and more.</p><p>Safari adventure travelers must pass through Bulawayo when traveling between Matobo Hills National Park and Victoria Falls, and Harare or Hwange National Park. It is the perfect spot to serve safari travelers with their needs.</p>",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "journey": {
+      "type": "ts-timeline",
+      "blocks": {
+        "late_80s": {
+          "type": "milestone",
+          "settings": {
+            "year": "Late 1980s",
+            "title": "Two enterprising immigrants",
+            "text": "<p>TAG Safari began in Bulawayo with just two enterprising immigrants and a focus on helping Africa through trade, not aid.</p>"
+          }
+        },
+        "year_2006": {
+          "type": "milestone",
+          "settings": {
+            "year": "2006",
+            "title": "Over a hundred local Zimbabweans",
+            "text": "<p>By 2006, we had employed over a hundred local Zimbabweans and supported all their families and communities.</p>"
+          }
+        },
+        "year_2011": {
+          "type": "milestone",
+          "settings": {
+            "year": "2011",
+            "title": "A new home in the USA",
+            "text": "<p>Due to war, economic upheaval and various restrictions and controls, we picked up and moved our operations to Houston, Texas, USA in 2011. Our pledge to all our employees in Zimbabwe, their families, and communities was to rebuild and continue to grow TAG Safari and help uplift more families.</p>"
+          }
+        },
+        "today": {
+          "type": "milestone",
+          "settings": {
+            "year": "Today",
+            "title": "Artisans around the world",
+            "text": "<p>We have reached out to communities in India and countries in South America &amp; Southeast Asia, as well as expanded our reach in Africa. Today, several hundred local Zimbabweans are employed by TAG Safari.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "late_80s",
+        "year_2006",
+        "year_2011",
+        "today"
+      ],
+      "settings": {
+        "heading": "Our Journey",
+        "text": "",
+        "layout": "horizontal",
+        "tinted": true
+      }
+    },
+    "craftsmanship": {
+      "type": "ts-image-text",
+      "settings": {
+        "image": "shopify://shop_images/TAG_Safari_Clothing_Gear_Style_Zimbabwe_Long_Staple_Cotton_Our_Mission_O.jpg",
+        "image_position": "right",
+        "image_fit": "cover",
+        "eyebrow": "Made in Zimbabwe",
+        "heading": "Locally grown, hand-picked cotton",
+        "text": "<p>The materials we use are locally grown and processed in Zimbabwe, including the cotton we use. It is among the finest in the world - long-staple cotton.</p><p>It’s hand-picked, spun into high-quality yarn, woven into durable wear and dyed in a range of natural colors for safari and outdoor wear.</p><p>Our packaging, labels, and boxes are also locally made in Zimbabwe from tree pulp, giving these items an authentic local stamp. Many of our products we make available to the world market are still handcrafted in Zimbabwe.</p>",
+        "button_label": "Shop Men",
+        "button_link": "shopify://collections/safari-clothing-for-men"
+      }
+    },
+    "mission": {
+      "type": "ts-mission",
+      "settings": {
+        "is_full_width": true,
+        "badge_image": "shopify://shop_images/badge.png",
+        "heading": "Helping Africa Through Trade, Not Aid",
+        "description": "Every product you buy creates jobs, supports families, and builds a stronger future for Africa.",
+        "button_label": "Our Mission",
+        "button_link": "shopify://pages/our-mission",
+        "side_image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg"
+      }
+    },
+    "reviews": {
+      "type": "ts-trustpilot",
+      "settings": {
+        "heading": "Excellent Reviews",
+        "iframe": "<!-- TrustBox widget - Carousel -->\n<div class=\"trustpilot-widget rmpb\" data-locale=\"en-US\" data-template-id=\"53aa8912dec7e10d38f59f36\" data-businessunit-id=\"5cc0a8d3ffc3c900014d9a23\" data-style-height=\"130px\" data-style-width=\"100%\" data-theme=\"light\" data-stars=\"1,2,3,4,5\" data-schema-type=\"Organization\">\n<a href=\"https://www.trustpilot.com/review/tagsafari.com\" target=\"_blank\" rel=\"noopener\">Trustpilot</a>\n</div>\n<!-- End TrustBox widget -->"
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "origins",
+    "journey",
+    "craftsmanship",
+    "reviews",
+    "mission"
+  ]
+}

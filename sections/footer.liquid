@@ -1,0 +1,354 @@
+{%- assign blocks = false -%}
+{% if section.settings.use_block_img %}
+  {%- assign blocks = true -%}
+{% else %}
+  {% for block in section.blocks %}
+    {% if section.blocks.size > 0 %}
+      {%- assign blocks = true -%}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% assign published_locales = false %}
+{% assign enabled_currencies = false %}
+{% if shop.published_locales.size > 1 and section.settings.enable_locales %}
+  {% for locale in shop.published_locales %}
+    {% if locale.name == request.locale.name %}
+      {% capture locale_name %}{{ locale.name }}{% endcapture %}
+    {% endif %}
+    {% if forloop.first %}
+      {% capture locale_size %}{{ locale.endonym_name | size }}{% endcapture %}
+    {% endif %}
+  {% endfor %}
+  {% assign published_locales = true %}
+{% endif %}
+{% if shop.enabled_currencies.size > 1 and section.settings.enable_multiple_currencies -%}
+  {%- assign enabled_currencies = true -%}
+{%- endif %}
+
+
+<div
+  data-section-id="{{ section.id }}"
+  data-section-type="footer-section"
+  data-multi="{% if enabled_currencies or published_locales and locale_name != blank %}true{% else %}false{% endif %}"
+  class="clearfix"
+>
+
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer__blocks">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'menu_block' -%}
+            <div class="footer__block">
+              {% if block.settings.menu_one != blank %}
+                <div class="footer__block-menu">
+                  <h3 class="footer__block-title">{{ block.settings.menu_one_title }}</h3>
+                  <ul class="footer__block-list" role="list">
+                    {% for link in linklists[block.settings.menu_one].links %}
+                      <li>
+                        <a href="{{ link.url }}" class="footer__block-link">{{ link.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+              {% if block.settings.menu_two != blank %}
+                <div class="footer__block-menu">
+                  <h3 class="footer__block-title">{{ block.settings.menu_two_title }}</h3>
+                  <ul class="footer__block-list" role="list">
+                    {% for link in linklists[block.settings.menu_two].links %}
+                      <li>
+                        <a href="{{ link.url }}" class="footer__block-link">{{ link.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+            </div>
+            {%- when 'contact_info' -%}
+            <div class="footer__block footer__block--contact">
+              <h3 class="footer__block-title">{{ block.settings.title }}</h3>
+              <div class="footer__block-content">{{ block.settings.content }}</div>
+            </div>
+          {%- endcase -%}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-footer{% if section.settings.horizontal_content_alignment %} text-center{% endif %}{% if section.settings.include_color != 'color-none' %} {% if section.settings.font_color %}white {% endif %}background-colored {{ section.settings.include_color }} colored-top-bottom{% else %} margins-bottom-section{% endif %}">
+    <div class="container clearfix">
+      <div class="currency-loop twelve{% if blocks == false and section.settings.include_color == 'color-none' %} toppad{% endif %}">
+        {% if published_locales or enabled_currencies %}
+          <div class="{% if section.settings.horizontal_content_alignment %} center{% endif %}">
+            {% form 'localization', id: 'localization_form-footer', class: 'currency-selector' %}
+              {% if published_locales and locale_name != blank %}
+                <h4 class="hidden bottompad-quarter">{{ 'general.language.locale' | t }}</h4>
+                <span class="form auto-width new-select currencies">
+                  <select class="hidden" name="locale_code" aria-hidden="true" tabindex="-1">
+                    {% if locale_name == blank %}
+                      <option value="" selected="true">{{ 'general.language.change' | t }}</option>
+                    {% endif %}
+                    {% for locale in form.available_locales %}
+                      <option
+                        value="{{ locale.iso_code }}"
+                        {% if locale.iso_code == form.current_locale.iso_code %}
+                          selected="true"
+                        {% endif %}
+                      >
+                        {{ locale.endonym_name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                  <span class="select">
+                    <a
+                      class="styledSelect currencies"
+                      role="button"
+                      tabindex="0"
+                      title="{{ 'general.language.locale' | t }}"
+                      data-multi="locale"
+                      ><small>
+                        {%- if locale_name == blank -%}
+                          {{- 'general.language.change' | t -}}
+                        {%- else -%}
+                          {{- locale_name -}}
+                        {%- endif -%}
+                      </small></a
+                    >
+                    <ul
+                      class="options locale-width unformatted"
+                      aria-hidden="true"
+                      aria-label="{{ 'layout.general.nav_sub' | t }}"
+                    >
+                      {% for locale in form.available_locales %}
+                        <li>
+                          <a
+                            role="button"
+                            tabindex="0"
+                            data-multi="locale"
+                            data-code="{{ locale.iso_code }}"
+                            data-footer_symbol="{{ locale.endonym_name }}"
+                            data-header_symbol="{{ locale.iso_code | upcase }}"
+                            title="{{ locale.endonym_name | escape }}"
+                            ><small>{{ locale.endonym_name }}</small></a
+                          >
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </span>
+                </span>
+              {% endif %}
+
+              {% if enabled_currencies %}
+                <h4 class="hidden bottompad-quarter">{{ 'general.language.currency' | t }}</h4>
+                <span class="form auto-width new-select currencies">
+                  <select class="hidden" name="currency_code" aria-hidden="true" tabindex="-1">
+                    {% for currency in form.available_currencies %}
+                      <option
+                        value="{{ currency.iso_code }}"
+                        {% if currency.iso_code == form.current_currency.iso_code %}
+                          selected="true"
+                        {% endif %}
+                      >
+                        {{ currency.iso_code }}
+                        {{ currency.symbol }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                  <span class="select">
+                    <a
+                      class="styledSelect currencies"
+                      role="button"
+                      tabindex="0"
+                      title="{{ 'general.language.currency' | t }}"
+                      data-multi="currency"
+                    >
+                      <small>
+                        {{- form.current_currency.iso_code }}
+                        {{ form.current_currency.symbol -}}
+                      </small>
+                    </a>
+                    <ul class="options unformatted" aria-hidden="true" aria-label="{{ 'layout.general.nav_sub' | t }}">
+                      {% for currency in form.available_currencies %}
+                        <li>
+                          <a
+                            role="button"
+                            tabindex="0"
+                            data-multi="currency"
+                            data-code="{{ currency.iso_code }}"
+                            data-footer_symbol="{{ currency.iso_code }} {{ currency.symbol }}"
+                            data-header_symbol="{{ currency.iso_code }} {{ currency.symbol }}"
+                            title="{{ currency.name | escape }}"
+                            ><small>
+                              {{- currency.iso_code }}
+                              {{ currency.symbol -}}
+                            </small></a
+                          >
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </span>
+                </span>
+              {% endif %}
+            {% endform %}
+          </div>
+        {% endif %}
+
+        <p>{{ shop.name }} &copy; {{ 'now' | date: '%Y' }}</p>
+        {% if section.settings.body -%}
+          <span class="small">{{ section.settings.body }}</span>
+        {%- endif %}
+
+        {% if section.settings.display_payments %}
+          {% unless shop.enabled_payment_types == empty %}
+            <ul class="inline-list payment-icons unformatted">
+              {% for type in shop.enabled_payment_types %}
+                <li>{{ type | payment_type_svg_tag: class: 'payment-icon' }}</li>
+              {% endfor %}
+            </ul>
+          {% endunless %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if shop.published_locales.size > 1 and section.settings.enable_locales %}
+  <style>
+    .options.locale-width {
+      width:{{ locale_size | times: 6.5 | plus:44 | round }}px;
+    }
+  </style>
+{% endif %}
+{% schema %}
+  {
+    "name": "Footer",
+    "tag": "section",
+    "class": "section-footer",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "block_img",
+        "label": "Logo image"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_block_img",
+        "label": "Show logo image",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "horizontal_content_alignment",
+        "label": "Horizontal centering",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Sub footer"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_locales",
+        "label": "Show language selector",
+        "default": true,
+        "info": "To add a language, go to your /admin/settings/languages."
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_multiple_currencies",
+        "label": "Show currency selector",
+        "default": true,
+        "info": "To add a currency, go to your /admin/settings/payments."
+      },
+      {
+        "type": "richtext",
+        "id": "body",
+        "label": "Sub footer text"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_payments",
+        "label": "Show payment icons",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "font_color",
+        "label": "Use white text",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "include_color",
+        "label": "Background color",
+        "default": "color-none",
+        "options": [
+          {
+            "value": "color-primary",
+            "label": "Primary"
+          },
+          {
+            "value": "color-secondary",
+            "label": "Secondary"
+          },
+          {
+            "value": "color-none",
+            "label": "None"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Menu Block",
+        "type": "menu_block",
+        "settings": [
+          {
+            "type": "text",
+            "id": "menu_one_title",
+            "label": "Menu One Title"
+          },
+          {
+            "type": "link_list",
+            "id": "menu_one",
+            "label": "Menu One"
+          },
+          {
+            "type": "text",
+            "id": "menu_two_title",
+            "label": "Menu Two Title"
+          },
+          {
+            "type": "link_list",
+            "id": "menu_two",
+            "label": "Menu Two"
+          }
+        ]
+      },
+      {
+        "name": "Contact Info",
+        "type": "contact_info",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Tag Fulfillment Warehouse"
+          },
+          {
+            "type": "richtext",
+            "id": "content",
+            "label": "Content"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Footer"
+      }
+    ]
+  }
+{% endschema %}

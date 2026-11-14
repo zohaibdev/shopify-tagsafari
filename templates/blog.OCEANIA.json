@@ -1,0 +1,40 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "ts-page-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg",
+        "title": "",
+        "content": "",
+        "show_breadcrumbs": true,
+        "parent_label": "Safari Blog",
+        "parent_link": "shopify://pages/safari-blog"
+      }
+    },
+    "main": {
+      "type": "ts-main-blog",
+      "settings": {
+        "articles_per_page": 9,
+        "columns": 3,
+        "show_tags": true,
+        "show_date": true,
+        "show_author": false,
+        "show_excerpt": true,
+        "fallback_image": "shopify://shop_images/badge.png"
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "main"
+  ]
+}

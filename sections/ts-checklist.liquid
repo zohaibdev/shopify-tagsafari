@@ -1,0 +1,129 @@
+{%- capture ungrouped_items -%}
+    {%- for block in section.blocks -%}
+        {%- if block.type == 'group' -%}{%- break -%}{%- endif -%}
+        {%- render 'ts-checklist-item', block: block -%}
+    {%- endfor -%}
+{%- endcapture -%}
+
+<div class="container">
+    {%- if section.settings.heading != blank or section.settings.text != blank -%}
+        <div class="title-block">
+            {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+            {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+        </div>
+    {%- endif -%}
+
+    <div class="ts-checklist-groups">
+        {%- if ungrouped_items != blank -%}
+            <div class="ts-checklist-group ts-checklist-group--plain">
+                <ul class="ts-checklist">{{ ungrouped_items }}</ul>
+            </div>
+        {%- endif -%}
+
+        {%- for group in section.blocks -%}
+            {%- if group.type == 'group' -%}
+                {%- assign group_index = forloop.index0 -%}
+                {%- assign in_group = false -%}
+                {%- assign item_count = 0 -%}
+                {%- capture group_items -%}
+                    {%- for block in section.blocks -%}
+                        {%- if block.type == 'group' -%}
+                            {%- if forloop.index0 == group_index -%}{%- assign in_group = true -%}{%- else -%}{%- assign in_group = false -%}{%- endif -%}
+                        {%- elsif in_group -%}
+                            {%- assign item_count = item_count | plus: 1 -%}
+                            {%- render 'ts-checklist-item', block: block -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                {%- endcapture -%}
+                <div class="ts-checklist-group" {{ group.shopify_attributes }}>
+                    <div class="ts-checklist-group__header">
+                        {%- if group.settings.image != blank -%}
+                            {{ group.settings.image | image_url: width: 600 | image_tag: class: 'ts-checklist-group__image', loading: 'lazy', widths: '300, 450, 600', sizes: '(min-width: 768px) 260px, 100vw', alt: group.settings.image.alt | default: group.settings.title }}
+                        {%- endif -%}
+                        <span class="ts-checklist-group__count">{{ item_count }} {{ item_count | pluralize: 'item', 'items' }}</span>
+                        <h3 class="ts-checklist-group__title">{{ group.settings.title }}</h3>
+                        {%- if group.settings.text != blank -%}
+                            <p class="ts-checklist-group__text">{{ group.settings.text }}</p>
+                        {%- endif -%}
+                    </div>
+                    <ul class="ts-checklist">{{ group_items }}</ul>
+                </div>
+            {%- endif -%}
+        {%- endfor -%}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Checklist",
+  "tag": "section",
+  "class": "ts-section",
+  "max_blocks": 50,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Checklist"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Intro text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "group",
+      "name": "Group heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Group",
+          "info": "Items below this block, up to the next group, belong to it"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Item",
+          "default": "Item"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Checklist",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="title-block">
+        <h2 class="title-block__heading">{{ section.settings.heading }}</h2>
+    </div>
+    <div class="shop-by-category__items">
+        {% for block in section.blocks %}
+            <div class="shop-by-category__item">
+                {% if block.settings.image %}
+                    {%- comment -%} The heading below links to the same place, so the image is decorative. {%- endcomment -%}
+                    <a href="{{ block.settings.link }}" tabindex="-1" aria-hidden="true">
+                        <img
+                            src="{{ block.settings.image | image_url: width: 400 }}"
+                            srcset="{{ block.settings.image | image_url: width: 200 }} 200w,
+                                    {{ block.settings.image | image_url: width: 400 }} 400w,
+                                    {{ block.settings.image | image_url: width: 600 }} 600w"
+                            sizes="(max-width: 1024px) 160px, 200px"
+                            alt="{{ block.settings.title }}"
+                            loading="lazy"
+                            width="{{ block.settings.image.width }}"
+                            height="{{ block.settings.image.height }}"
+                        >
+                    </a>
+                {% endif %}
+                <a href="{{ block.settings.link }}">
+                    <h3>{{ block.settings.title }}</h3>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Shop by Category",
+  "tag": "section",
+  "class": "shop-by-category",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by Category"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Shirts"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by Category",
+      "blocks": [
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

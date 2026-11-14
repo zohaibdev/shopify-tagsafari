@@ -1,0 +1,70 @@
+{%- if section.blocks.size > 0 -%}
+  <div class="feature-row">
+    {%- for block in section.blocks -%}
+      <div class="feature-row__item" {{ block.shopify_attributes }}>
+        {%- if block.settings.icon -%}
+          <img
+            class="feature-row__icon"
+            src="{{ block.settings.icon | img_url: '96x' }}"
+            alt=""
+            loading="lazy"
+            width="40"
+            height="40"
+          >
+        {%- endif -%}
+        <div class="feature-row__text">
+          <h3 class="feature-row__title">{{ block.settings.title }}</h3>
+          {%- if block.settings.subtitle != blank -%}
+            <p class="feature-row__subtitle">{{ block.settings.subtitle }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product Feature Row",
+  "tag": "section",
+  "class": "feature-row-section",
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Lightweight Cotton"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Breathable & cool"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Feature Row",
+      "blocks": [
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" }
+      ]
+    }
+  ]
+}
+{% endschema %}

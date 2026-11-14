@@ -1,0 +1,647 @@
+
+
+{%- assign full_width = section.settings.full_width -%}
+
+{% if section.settings.background_img != blank %} 
+{%- assign img_src = section.settings.background_img -%}
+{%- capture image_data -%}{%- render 'image-background-src', img_src: img_src -%}{%- endcapture -%}
+{%- assign img_size = '1x' -%}
+{% endif %}
+
+<div data-section-id="{{ section.id }}" data-section-type="page-contact" class="page bottompad-section clearfix">
+
+  <div class="{% if full_width %}{% if section.settings.include_color != 'color-none' %}background-colored {{ section.settings.include_color }} {% endif %}background-cover lazyload {% endif %}relative-{{ section.id }} clearfix"
+       {% if full_width and section.settings.background_img != blank %} 
+       data-bgset="{{ image_data | strip }}"
+       data-sizes="auto"
+       style="background:url({{ img_src | img_url: img_size }}) center center no-repeat;"
+       {% endif %}>
+    {% if full_width and section.settings.background_img != blank %}
+    <noscript>
+      <div class="no-js-bg background-cover content-height-{{ section.id }} relative-{{ section.id }}" style="background:url({{ img_src | img_url: '1900x' }}) center center no-repeat;"></div>
+    </noscript>
+    {% endif %}
+
+    <div{% if full_width and section.settings.background_img != blank %} class="relative-{{ section.id }} background-overlay-{{ section.id }}"{% endif %}>
+      <div class="container text-center clearfix">
+        <div{% if full_width == false and section.settings.include_color != 'color-none' or section.settings.background_img != blank %} class="twelve"{% endif %}>
+          <div class="{% if full_width == false %}{% if section.settings.include_color != 'color-none' %}background-colored {{ section.settings.include_color }} {% endif %}background-cover lazyload relative-{{ section.id }} {% endif %}{% if section.settings.font_color and section.settings.include_color != 'color-none' or section.settings.background_img != blank %}white {% endif %}clearfix"
+               {% if full_width == false and section.settings.background_img != blank %} 
+               data-bgset="{{ image_data | strip }}"
+               data-sizes="auto"
+               style="background:url({{ img_src | img_url: img_size }}) center center no-repeat;"
+               {% endif %}>
+            {% if full_width == false and section.settings.background_img != blank %}
+            <noscript>
+              <div class="no-js-bg background-cover content-height-{{ section.id }} relative-{{ section.id }}" style="background:url({{ img_src | img_url: '1200x' }}) center center no-repeat;"></div>
+            </noscript>
+            {% endif %}
+
+            <div class="{% if full_width == false and section.settings.background_img != blank %}relative-{{ section.id }} background-overlay-{{ section.id }}{% endif %}">
+              <div class="container {% if section.settings.include_color != 'color-none' or section.settings.background_img != blank %}{% if full_width %}remove-pad {% else %}no-pad {% endif %}{% else %}remove-pad {% endif %}clearfix">
+                <div class="table {% if section.settings.background_img != blank %}content-height-{{ section.id }} {% endif %}{% if full_width == false %}{% if section.settings.include_color != 'color-none' or section.settings.background_img != blank %}twelve{% endif %}{% endif %}">
+                  <div class="table-cell">
+                    <div class="twelve text-center">
+                      {%- assign heading_tag = section.settings.heading_tag | default: 'h1' -%}<{{ heading_tag }}>{{ page.title }}</{{ heading_tag }}>
+                      {% if section.settings.sub_title != blank %}<h3>{{ section.settings.sub_title | escape }}</h3>{% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>  
+
+  <div class="container clearfix contact_container">
+    <div{% if full_width == false and section.settings.include_color != 'color-none' or section.settings.background_img != blank %} class="twelve"{% endif %}>
+      <div{% if full_width == false and section.settings.include_color != 'color-none' or section.settings.background_img != blank %} class="twelve"{% endif %}>
+        <div{% if section.settings.include_color != 'color-none' or section.settings.background_img != blank %} class="twelve"{% endif %}>
+          <div class="{% if section.settings.include_color != 'color-none' or section.settings.background_img != blank %}background-white {% endif %}clearfix">
+            <div class="{% if section.settings.include_color != 'color-none' or section.settings.background_img != blank %}twelve {% endif %}clearfix">
+
+              {% comment %}
+              {% form 'contact' %}
+
+              {% if form.posted_successfully? %}
+              <div class="twelve">
+                <div class="success successForm feedback">
+                  <p>{{ 'contact.form.post_success' | t }}</p>
+                </div>
+              </div>
+              {% endif %}
+
+              {% if form.errors %}
+              <div class="twelve">
+                <div class="errors errorForm feedback">
+                  <p>{{ 'contact.form.post_error' | t }} {{ 'contact.form.post_error_msg1' | t }} {{ form.errors | size | pluralize: 'error', 'errors' }} {{ 'contact.form.post_error_msg2' | t }}</p>
+                  <ul class="unformatted">
+                    {% for field in form.errors %}
+                    {% if field == 'form' %}
+                    <li>{{ form.errors.messages[field] }}</li>
+                    {% else %}
+                    <li>{{ form.errors.translated_fields[field] }} - {{ form.errors.messages[field] }}</li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+              {% endif %}
+
+              {% if page.content != blank %}
+              <div class="three toppad">
+                {{ page.content }}
+              </div>
+              {% endif %}
+
+              <p class="txxrt">Wholesale Buyers looking to purchase Tag Safari Products in Bulk Quantities for Resale can submit their requests using this form. Please only use thiis form to submit Bonafide Wholesale Inquiries.</p>
+              <p class="txxrt">Companies Looking to purchase Uniforms: Minimum Quantity 12 Required Per Color or 24 Per Color with embroidery in Different Sizes - For Smaller quantities please Buy Online</p>
+              <div id="contactFormWrapper" class="{% if page.content != blank %}eight right{% else %}twelve{% endif %} negative-left negative-right">
+
+                <table class="table---">
+                  <thead>
+                    <th colspan="3">BUSINESS INFORMATION </th>
+
+                    <th>FED.TAX ID#</th>
+                  </thead>
+
+                  <tbody>
+                    <tr>  		  	
+                      <td colspan="3"><input id="ContactFormBUSINESS_NAME" name="contact[BUSINESS_NAME]" type="text" placeholder="BUSINESS NAME:"/></td>
+
+                      <td><input  type="text" id="ContactFormtax_id" name="contact[tax_id]" placeholder="tax_id:"/></td>
+                    </tr>
+                    <tr>  	  	
+
+                      <td colspan="3"><input type="text" id="ContactFormADDRESS" name="contact[ADDRESS]" placeholder="ADDRESS: "/></td>
+
+                      <td><input type="text" id="ContactFormPERMIT_NUMBER" name="contact[PERMIT_NUMBER]" placeholder="SALES TAX PERMIT NUMBER :"/></td>
+                    </tr>
+                    <tr>  	  	 	
+
+                      <td colspan="2"><input type="text" id="ContactFormCITY" name="contact[CITY]" placeholder="CITY:"/></td>
+                      <td><input type="text" id="ContactFormSTATE" name="contact[STATE]" placeholder="STATE:"/></td>
+                      <td><input type="text" id="ContactFormZIP" name="contact[ZIP]" placeholder="ZIP: "/></td>
+                    </tr>
+                    <tr>  	  	 	
+                      <td colspan="2"><input type="text" id="ContactFormTEL" name="contact[TEL]" placeholder="TEL #: "/></td>
+                      <td><input type="text" id="ContactFormFAX" name="contact[FAX]" placeholder="FAX #"/></td>
+                      <td><input type="text" id="ContactFormCELL" name="contact[CELL]" placeholder="CELL # "/></td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="4"><input type="text" id="ContactFormCONTACT_NAME" name="contact[CONTACT_NAME]" placeholder="CONTACT NAME: "/></td>
+
+
+
+                    </tr>
+                    <tr>	 <td colspan="4">
+                      <input
+                             type="email"
+                             id="{{ formId }}-email"
+                             name="contact[email]"
+                             placeholder="EMAIL"
+                             autocorrect="off"
+                             autocapitalize="off"
+                             value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                             aria-required="true"
+                             {%- if form.errors contains 'email' -%}
+                             class="input--error"
+                             aria-invalid="true"
+                             aria-describedby="{{ formId }}-email-error"
+                             {%- endif -%}
+                             >
+                      {%- if form.errors contains 'email' -%}
+                      <span id="{{ formId}}-email-error" class="input-error-message">
+                        <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                        {% include 'icon-error' %}
+                        <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                      </span>
+                      {%- endif -%}</td>	</tr>
+                    <tr>	 <td colspan="4"><input type="text" id="ContactFormBUSINESS_WEBSITE" name="contact[BUSINESS_WEBSITE]" placeholder="BUSINESS WEBSITE:"/></td>	</tr>
+                    <tr><td colspan="4"  style="text-align:center;">PLEASE TELL US ABOUT YOUR BUSINESS - SELECT ALL THAT APPLY</td></tr>
+
+
+                    <tr> <td colspan="4"><label for="" id="ContactFormBUSINESS_type"><input type="checkbox" id="ContactFormBUSINESS_type" name="contact[BUSINESS_type]" value="I HAVE A BRICK & MORTAR STORE"/>I HAVE A BRICK & MORTAR STORE</label></td></tr>
+                    <tr> <td colspan="4"><label for="" id="ContactFormBUSINESS_type"><input  type="checkbox" id="ContactFormBUSINESS_type1" name="contact[BUSINESS_type1]" value="I HAVE A WEBSITE BUSINESS SELLING CLOTHING, OUTDOOR GEAR OR SPORTING GOODS"/>I HAVE A WEBSITE BUSINESS SELLING CLOTHING, OUTDOOR GEAR OR SPORTING GOODS</label></td></tr>
+                    <tr> <td colspan="4"><label for="" id="ContactFormBUSINESS_type2"><input type="checkbox" id="ContactFormBUSINESS_type2" name="contact[BUSINESS_type2]" value="I HAVE AN AMAZON STORE"/>I HAVE AN AMAZON STORE</label></td></tr>
+                    <tr> <td colspan="4"><label for="" id="ContactFormBUSINESS_type3"><input type="checkbox" id="ContactFormBUSINESS_type3" name="contact[BUSINESS_type3]" value="I HAVE AN EBAY STORE"/>I HAVE AN EBAY STORE</label></td></tr>
+                    <tr> <td colspan="2"><label for=""><label for="" id="ContactFormBUSINESS_type3"><input type="checkbox" id="ContactFormBUSINESS_type4" name="contact[BUSINESS_type4]" value="I AM A MEMBER OF ASI"/>I AM A MEMBER OF ASI</label></td>
+                      <td>PLEASE PROVIDE</td>
+                      <td><input type="text" id="ContactFormASI" name="contact[ASI]" placeholder="*  ASI # ______	"/></td>
+                    </tr>
+                    <tr> <td colspan="2"><label for="" id="ContactFormMEMBER"><input id="ContactFormMEMBER" name="contact[MEMBER]" type="checkbox"/>I AM A MEMBER OF SAGE</label></td>
+                      <td>PLEASE PROVIDE</td>
+                      <td><input type="text" id="ContactFormSAGE" name="contact[SAGE]" placeholder="* SAGE #________ "/></td>
+                    </tr>
+                    <tr> <td colspan="2"><label for="" id="ContactFormPPAI"><input type="checkbox" id="ContactFormPPAI" name="contact[PPAI]"/>I AM A MEMBER OF PPAI</label></td>
+                      <td>PLEASE PROVIDE</td>
+                      <td><input type="text" id="ContactFormPPI" name="contact[PPI]" placeholder="* PPI # _______	 "/></td>
+                    </tr>
+                    <tr> <td colspan="4"><label for="" id="ContactFormEMBROIDERER"><input type="checkbox" id="ContactFormEMBROIDERER" name="contact[EMBROIDERER]" value="I AM AN EMBROIDERER OR SCREEN PRINTING BUSINESS"/>I AM AN EMBROIDERER OR SCREEN PRINTING BUSINESS</label></td></tr>
+                    <tr> <td colspan="4"><label for="" id="ContactFormUNIFORMS"><input type="checkbox" id="ContactFormUNIFORMS" name="contact[UNIFORMS]" value ="I NEED COMPANY UNIFORMS FOR MY BUSINESS"/>I NEED COMPANY UNIFORMS FOR MY BUSINESS</label></td></tr>
+                    <tr> <td colspan="4"><label for="" id="ContactFormSAFARI_CLUB"><input type="checkbox" id="ContactFormSAFARI_CLUB" name="contact[SAFARI_CLUB]" value="I NEED UNIFORMS FOR A SAFARI CLUB CHAPTER"/>I NEED UNIFORMS FOR A SAFARI CLUB CHAPTER</label></td></tr>
+                    <tr> <td colspan="4"><label for="" id="ContactFormCUSTOM_EMBROIDERER"><input type="checkbox" id="ContactFormCUSTOM_EMBROIDERER" name="contact[CUSTOM_EMBROIDERER]" value="I REQUIRE CUSTOM EMBROIDERY ON THE PRODUCTS I WISH TO PURCHASE"/>I REQUIRE CUSTOM EMBROIDERY ON THE PRODUCTS I WISH TO PURCHASE</label></td></tr>
+
+                    <tr><td>
+                      ITEM</td><td>	COLOR</td><td>	SIZE</td><td>	QUANTITY
+                      </td></tr>     
+                    <tr>
+                      <td><input type="text" id="ContactFormitem1" name="contact[item1]"/></td>
+                      <td><input type="text" id="ContactFormColor1" name="contact[Color1]"/></td>
+                      <td><input type="text" id="ContactFormSize1" name="contact[Size1]"/></td>
+                      <td><input type="text" id="ContactFormQuantity1" name="contact[Quantity1]"/></td>
+                    </tr>
+                    <tr>
+                      <td><input type="text" id="ContactFormitem2" name="contact[item2]"/></td>
+                      <td><input type="text" id="ContactFormColor2" name="contact[Color2]"/></td>
+                      <td><input type="text" id="ContactFormSize2" name="contact[Size2]"/></td>
+                      <td><input type="text" id="ContactFormQuantity2" name="contact[Quantity2]"/></td>
+                    </tr>
+                    <tr>
+                      <td><input type="text" id="ContactFormitem3" name="contact[item3]"/></td>
+                      <td><input type="text" id="ContactFormColor3" name="contact[Color3]"/></td>
+                      <td><input type="text" id="ContactFormSize3" name="contact[Size3]"/></td>
+                      <td><input type="text" id="ContactFormQuantity4" name="contact[Quantity4]"/></td>
+                    </tr>
+                    <tr><td colspan="4" style="text-align:center;">TELL US MORE ABOUT YOUR REQUIREMENTS			</td></tr>
+                    <tr><td colspan="4" style="text-align:center;">
+                      <textarea placeholder="MESSAGE:"
+                                id="ContactFormmessage" name="contact[message]" ></textarea>
+                      </td></tr>
+
+                  </tbody>
+
+
+                </table>
+                <div class="contact-info twelve">
+                  <span id="honeypot"></span>
+                  <noscript><span class="btn standard-width" id="contactFormSubmit">Enable Javascript</span></noscript>
+                </div>
+              </div>
+
+              {% endform %}
+
+
+              {% endcomment %}
+
+              <form id="ContactForm" action="https://thefabcode.org/tagsafari/index.php" method="POST">
+                <div class="grid grid--half-gutters">
+                  <div class="grid__item medium-up--one-half">
+
+
+                  </div>
+                  <div class="grid__item medium-up--one-half">
+
+                  </div>
+                </div>
+                <table class="table---">
+                  <thead>
+                    <th colspan="4"><h3>Business Information</h3> </th>
+
+                  </thead>
+
+                  <tbody>
+                    <tr>  		  	
+                      <td colspan="3"><label for="ContactFormBUSINESS_NAME">Business Name:</label><input id="ContactFormBUSINESS_NAME" data-type="0" name="contact[BUSINESS_NAME]" type="text" required/></td>
+
+                      <td><label for="ContactFormtax_id">Fed.tax Id#</label><input type="text" id="ContactFormtax_id" data-type="0" name="contact[tax_id]" /></td>
+                    </tr>
+                    <tr>  	  	
+
+                      <td colspan="3"><label for="ContactFormADDRESS">Address:</label><input type="text" id="ContactFormADDRESS" data-type="0" name="contact[ADDRESS]"/></td>
+
+                      <td><label for="ContactFormPERMIT_NUMBER">Sales Tax Permit Number :</label><input type="text" id="ContactFormPERMIT_NUMBER" data-type="0" name="contact[PERMIT_NUMBER]"/></td>
+                    </tr>
+                    <tr>  	  	 	
+
+                      <td colspan="2"><label for="ContactFormCITY">City:</label><input type="text" id="ContactFormCITY" data-type="0" name="contact[CITY]"/></td>
+                      <td><label for="ContactFormSTATE">State:</label><input type="text" id="ContactFormSTATE" data-type="0" name="contact[STATE]"/>
+                      
+                        
+                      </td>
+                      <td><label for="ContactFormZIP">Zip: </label><input type="text" id="ContactFormZIP" data-type="0" name="contact[ZIP]"/></td>
+                    </tr>
+                    <tr>  	  	 	
+                      <td colspan="2"><label for="ContactFormTEL">Tel #: </label><input type="text" id="ContactFormTEL" data-type="0" name="contact[TEL]"/></td>
+                      <td><label for="ContactFormFAX">Fax #</label><input type="text" id="ContactFormFAX" data-type="0" name="contact[FAX]"/></td>
+                      <td><label for="ContactFormCELL">Cell # </label><input type="text" id="ContactFormCELL" data-type="0" name="contact[CELL]" required/></td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="4"><label for="ContactFormCONTACT_NAME">Contact Name:</label><input type="text" data-type="0" id="ContactFormCONTACT_NAME" name="contact[CONTACT_NAME]" required/></td>
+
+
+
+                    </tr>
+                    <tr>	 <td colspan="4">
+                      <label for="email">Email:</label><input
+                             type="email"
+                             id="email"
+                             name="contact[email]"
+                             autocorrect="off"
+                             autocapitalize="off"
+                             value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                             aria-required="true"
+                             {%- if form.errors contains 'email' -%}
+                             class="input--error"
+                             aria-invalid="true"
+                             aria-describedby="{{ formId }}-email-error"
+                             {%- endif -%}
+                             required >
+                      {%- if form.errors contains 'email' -%}
+                      <span id="{{ formId}}-email-error" class="input-error-message">
+                        <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                        {% include 'icon-error' %}
+                        <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                      </span>
+                      {%- endif -%}</td>	</tr>
+                    <tr>	 <td colspan="4"><label for="ContactFormBUSINESS_WEBSITE">Business Website:</label><input type="text" id="ContactFormBUSINESS_WEBSITE" data-type="0" name="contact[BUSINESS_WEBSITE]" /></td>	</tr>
+                    <tr><td colspan="4"  style="text-align:center;"><h3>Please Tell Us About Your Business - Select All That Apply</h3></td></tr>
+
+
+                    <tr> <td colspan="4"><label for="ContactFormBUSINESS_type"><input type="checkbox" data-type="0" class="checking_vcheck" id="ContactFormBUSINESS_type" name="contact[BUSINESS_type]" value="I Have A Brick & Mortar Store"/>I Have A Brick & Mortar Store</label></td></tr>
+                    <tr> <td colspan="4"><label for="ContactFormBUSINESS_type1"><input  type="checkbox" data-type="0" class="checking_vcheck" id="ContactFormBUSINESS_type1" name="contact[BUSINESS_type1]" value="I have a website business selling clothing, outdoor gear or sporting goods"/>I have a website business selling clothing, outdoor gear or sporting goods</label></td></tr>
+                    <tr> <td colspan="4"><label for="ContactFormBUSINESS_type2"><input type="checkbox" data-type="0" class="checking_vcheck" id="ContactFormBUSINESS_type2" name="contact[BUSINESS_type2]" value="I have an amazon store"/>I have an Amazon store</label></td></tr>
+                    <tr> <td colspan="4"><label for="ContactFormBUSINESS_type3"><input type="checkbox" data-type="0" class="checking_vcheck" id="ContactFormBUSINESS_type3" name="contact[BUSINESS_type3]" value="I have an ebay store"/>I have an Ebay store</label></td></tr>
+                    <tr> <td colspan="2"><label for="ContactFormBUSINESS_type4"><input type="checkbox" class="checking_vcheck" data-type="xyz" id="ContactFormBUSINESS_type4" name="contact[BUSINESS_type4]" value="I am a member of asi"/>I am a member of ASI</label></td>
+                      <td>Please Provide ASI#</td>
+                      <td><div class="flex_tbl"><label for="ContactFormASI">* ASI #</label><input type="text" data-type="0" id="ContactFormASI" name="contact[ASI]" /></div></td>
+                    </tr>
+                    <tr> <td colspan="2"><label for="ContactFormMEMBER"><input id="ContactFormMEMBER" name="contact[MEMBER]" class="checking_vcheck" type="checkbox" data-type="bce"/>I am a member of SAGE</label></td>
+                      <td>Please Provide ASI#</td>
+                      <td><div class="flex_tbl"><label for="ContactFormSAGE">* SAGE #</label><input type="text" id="ContactFormSAGE" data-type="0" name="contact[SAGE]" /></div></td>
+                    </tr>
+                    <tr> <td colspan="2"><label for="ContactFormPPAI"><input type="checkbox" id="ContactFormPPAI" class="checking_vcheck" name="contact[PPAI]" data-type="abc"/>I am a member of PPAI</label></td>
+                      <td>Please Provide ASI#</td>
+                      <td><div class="flex_tbl"><label for="ContactFormPPI">* PPI #</label><input type="text" id="ContactFormPPI" data-type="0" name="contact[PPI]" /></div></td>
+                    </tr>
+                    <tr> <td colspan="4"><label for="ContactFormEMBROIDERER"><input type="checkbox" data-type="0" class="checking_vcheck" id="ContactFormEMBROIDERER" name="contact[EMBROIDERER]" value="I am an embroiderer or screen printing business"/>I am an embroiderer or screen printing business</label></td></tr>
+                    <tr> <td colspan="4"><label for="ContactFormUNIFORMS"><input type="checkbox" data-type="0" class="checking_vcheck" id="ContactFormUNIFORMS" name="contact[UNIFORMS]" value ="I need company uniforms for my business"/>I need company uniforms for my business</label></td></tr>
+                    <tr> <td colspan="4"><label for="ContactFormSAFARI_CLUB"><input type="checkbox" data-type="0" class="checking_vcheck" id="ContactFormSAFARI_CLUB" name="contact[SAFARI_CLUB]" value="I need uniforms for a safari club chapter"/>I need uniforms for a safari club chapter</label></td></tr>
+                    <tr> <td colspan="4"><label for="ContactFormCUSTOM_EMBROIDERER"><input type="checkbox" data-type="0" class="checking_vcheck" id="ContactFormCUSTOM_EMBROIDERER" name="contact[CUSTOM_EMBROIDERER]" value="I require custom embroidery on the products I wish to purchase"/>I require custom embroidery on the products I wish to purchase</label></td></tr>
+
+                    <tr>
+                      <td class="width_50">Item</td>
+                      <td>Color</td>
+                      <td>Size</td>
+                      <td>Quantity</td>
+                    </tr>     
+                    <tr>
+                      <td class="width_50"><input type="text" id="ContactFormitem1" data-type="0" name="contact[item1]" required/></td>
+                      <td><input type="text" id="ContactFormColor1" data-type="0" name="contact[Color1]" required/></td>
+                      <td><input type="text" id="ContactFormSize1" data-type="0" name="contact[Size1]" required/></td>
+                      <td><input type="text" id="ContactFormQuantity1" data-type="0" name="contact[Quantity1]" required/></td>
+                    </tr>
+                    <tr>
+                      <td class="width_50"><input type="text" id="ContactFormitem2" data-type="0" name="contact[item2]"/></td>
+                      <td><input type="text" id="ContactFormColor2" data-type="0" name="contact[Color2]"/></td>
+                      <td><input type="text" id="ContactFormSize2" data-type="0" name="contact[Size2]"/></td>
+                      <td><input type="text" id="ContactFormQuantity2" data-type="0" name="contact[Quantity2]"/></td>
+                    </tr>
+                    <tr>
+                      <td class="width_50"><input type="text" id="ContactFormitem3" data-type="0" name="contact[item3]"/></td>
+                      <td><input type="text" id="ContactFormColor3" data-type="0" name="contact[Color3]"/></td>
+                      <td><input type="text" id="ContactFormSize3" data-type="0" name="contact[Size3]"/></td>
+                      <td><input type="text" id="ContactFormQuantity4" data-type="0" name="contact[Quantity4]"/></td>
+                    </tr>
+                    <tr><td colspan="4" style="text-align:center;"><h3>Tell us more about your requirements</h3></td></tr>
+                    <tr><td colspan="4" style="text-align:center;">
+                      <label for="ContactFormmessage">Message:</label><textarea
+                                id="ContactFormmessage" data-type="0" name="contact[message]" ></textarea>
+                      </td></tr>
+
+                  </tbody>
+
+
+                </table>
+                <input type="submit" class="btn" value="submit">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .content-height-{{ section.id }} {
+    height:100%;
+    {% if section.settings.background_img != blank %}height:{{ section.settings.padding | times: 0.75 }}vh;min-height:{{ section.settings.padding | times: 0.75 }}vh{% else %}height:5vh;min-height:5vh;{% endif %}
+  }
+  .relative-{{ section.id }}{
+    {% if section.settings.background_img != blank %}margin-bottom:-{{ section.settings.padding | divided_by: 4 }}vh;padding-bottom:{{ section.settings.padding | divided_by: 4 }}vh;{% else %}margin-bottom:-5vh;padding-bottom:5vh;{% endif %}
+  }
+  {% if section.settings.background_img_overlay != blank %}{%- assign alpha = section.settings.background_img_overlay_opacity | times: 0.01 -%}.background-overlay-{{ section.id }}{background:{{ section.settings.background_img_overlay |  color_modify: 'alpha', alpha }};}{% endif %}
+</style>
+
+
+<script>
+  //      $("#contact_form").submit(function(e){
+  //        e.preventDefault();
+  //        alert('hfytuhbjuk');
+  //        
+
+  //      });
+  $( "#ContactForm" ).submit(function( event ) { 
+
+    if($('#ContactFormCONTACT_NAME').val()){
+      if($('#email').val()){
+        if($('#ContactFormTEL').val()){
+          if($('#ContactFormitem1').val()){
+            if($('#ContactFormColor1').val()){
+              if($('#ContactFormSize1').val()){
+                if($('#ContactFormQuantity1').val()){
+                  if($('.checking_vcheck:checkbox:checked').length > 0){
+                    var favorite = [];
+                    $.each($(".checking_vcheck:checkbox:checked"), function(){
+                      var titl = $(this).attr('data-type');
+
+                      if(titl == "xyz"){
+                        if($('#ContactFormASI').val()){
+
+                          $('#ContactForm').submit();
+                        }else{
+                          alert('Please fill ASI');
+                        }
+                      }else if(titl == "bce"){
+                        if($('#ContactFormSAGE').val()){
+                          $('#ContactForm').submit();
+                        }else{
+                          alert('Please fill SAGE');
+                        }
+                      }else if(titl == "abc"){
+                        if($('#ContactFormPPI').val()){
+                          $('#ContactForm').submit();
+                        }else{
+                          alert('Please fill PPI');
+                        }
+                      } else {
+
+                        $('#ContactForm').trigger('submit');
+                      }
+
+                    });
+
+                  }else{
+                    alert('Please Tell about your Business')
+                    return false;
+                  }
+                }else{
+                  alert('Please enter Quantity');
+                }
+              }else{
+                alert('Please enter Size');
+              }
+            }else{
+              alert('Please enter Color');
+            }
+          }else{
+            alert('Please enter Item');
+          }
+        }else{
+          alert('Please enter Telephone Number');
+        }
+      }else{
+        alert('Please enter email');
+      }
+    }else{
+      alert('Please enter Contact name');
+    }
+    event.preventDefault();
+  });
+</script>
+
+<script>
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+
+/*An array containing all the country names in the world:*/
+var countries = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming>" ];
+
+/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+autocomplete(document.getElementById("ContactFormSTATE"), countries);
+</script>
+
+{% schema %}
+{
+"name": "Contact page",
+"settings": [
+{
+"type": "select",
+"id": "heading_tag",
+"label": "Page title heading level",
+"info": "Use H2 when another section on the page already has the H1",
+"options": [{"value": "h1", "label": "H1"}, {"value": "h2", "label": "H2"}],
+"default": "h1"
+},
+{
+"type": "text",
+"id": "sub_title",
+"label": "Subheading"
+},
+{
+"type": "image_picker",
+"id": "background_img",
+"label": "Image",
+"info": "1900px recommended"
+}, 
+{
+"type": "checkbox",
+"id": "font_color",
+"label": "White text",
+"default": false
+}, 
+{
+"type": "checkbox",
+"id": "full_width",
+"label": "Full width banner",
+"default": true
+},
+{
+"type": "range",
+"id": "padding",
+"min": 0,
+"max": 100,
+"step": 5,
+"unit": "%",
+"label": "Height",
+"default": 25
+}, 
+{
+"type": "color",
+"id": "background_img_overlay",
+"label": "Overlay"
+},
+{
+"type": "range",
+"id": "background_img_overlay_opacity",
+"min": 0,
+"max": 100,
+"step": 5,
+"unit": "%",
+"label": "Opacity",
+"default": 0
+},
+{
+"type": "select",
+"id": "include_color",
+"label": "Background color",
+"default": "color-primary",
+"options": [
+{
+"value": "color-primary",
+"label": "Primary"
+},
+{
+"value": "color-secondary",
+"label": "Secondary"
+},
+{
+"value": "color-none",
+"label": "None"
+}
+]
+}
+]
+}
+{% endschema %}

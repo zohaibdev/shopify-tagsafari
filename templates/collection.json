@@ -1,0 +1,169 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ts_usp_icons_row_bmiNxg": {
+      "type": "ts-usp-icons-row",
+      "blocks": {
+        "usp_item_t3nTGk": {
+          "type": "usp_item",
+          "settings": {
+            "icon": "shopify://shop_images/shipping-truck-svgrepo-com.png",
+            "title": "Free Shipping",
+            "subtitle": "Contiguous USA only"
+          }
+        },
+        "usp_item_hgP9af": {
+          "type": "usp_item",
+          "settings": {
+            "icon": "shopify://shop_images/clock-three-svgrepo-com.png",
+            "title": "Ships Same Day by 3PM EST",
+            "subtitle": "On in-stock orders"
+          }
+        },
+        "usp_item_yjryRY": {
+          "type": "usp_item",
+          "settings": {
+            "title": "Free 2-Day Shipping",
+            "subtitle": "Contiguous USA only"
+          }
+        },
+        "usp_item_pd63b8": {
+          "type": "usp_item",
+          "settings": {
+            "icon": "shopify://shop_images/star-sharp-svgrepo-com.png",
+            "title": "Excellent Reviews",
+            "subtitle": "See what our customers say"
+          }
+        },
+        "usp_item_biCbfM": {
+          "type": "usp_item",
+          "settings": {
+            "icon": "shopify://shop_images/africa-svgrepo-com.png",
+            "title": "Made in Africa Since 1990",
+            "subtitle": "Quality you can rely on"
+          }
+        }
+      },
+      "block_order": [
+        "usp_item_t3nTGk",
+        "usp_item_hgP9af",
+        "usp_item_yjryRY",
+        "usp_item_pd63b8",
+        "usp_item_biCbfM"
+      ],
+      "name": "USP Icons Row",
+      "settings": {
+        "heading": "Why Shop With Us"
+      }
+    },
+    "ts_collection_banner_qnAaA6": {
+      "type": "ts-collection-banner",
+      "name": "Collection Banner",
+      "settings": {
+        "background_image": "{{ collection.image }}",
+        "title": "",
+        "content": ""
+      }
+    },
+    "main": {
+      "type": "collection-template-boost-pfs-filter",
+      "settings": {
+        "show_collection_image": false,
+        "collection_image_text_color": "",
+        "products_per_page": 30,
+        "products_per_row": 4,
+        "products_per_row_mobile": 2,
+        "text_alignment": "left",
+        "show_vendor": false,
+        "show_price": true,
+        "active_image_swap": true,
+        "show_sorting": true,
+        "show_product_review": true,
+        "show_sold_out_label": true,
+        "soldout_label": "Sold out",
+        "show_sale_label": true,
+        "sale_label": "Sale",
+        "from": "from",
+        "show_lable_by_tag": false,
+        "display_item_swatch": true,
+        "swatch_color_display_type": "swatch_color_display_type_image_product",
+        "swatch_color_event_change_image": "hover",
+        "swatches_color_shape": "circle",
+        "equal_height": "1:1",
+        "ratio_width_height_other": "",
+        "equal_height_crop_image_position": "center"
+      }
+    },
+    "ts_gears_ippgjM": {
+      "type": "ts-gears",
+      "blocks": {
+        "tile_cn9Ygk": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/Tag_Safari_Product_Mockups_-18.jpg",
+            "title": "Gaiters",
+            "description": "Keep stickers, stones and sand out.",
+            "button_label": "Shop Gaiters",
+            "button_link": "shopify://collections/gaiters"
+          }
+        },
+        "tile_FqgYwj": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/Tag_Safari_Product_Mockups_-7.jpg",
+            "title": "Leather Belts",
+            "description": "Genuine leather belts. Built to last.",
+            "button_label": "Shop Belts",
+            "button_link": "shopify://collections/belts"
+          }
+        }
+      },
+      "block_order": [
+        "tile_cn9Ygk",
+        "tile_FqgYwj"
+      ],
+      "name": "Essential Gear Tiles",
+      "settings": {
+        "heading": "",
+        "columns": 2
+      }
+    },
+    "ts_trustpilot_WyVDDd": {
+      "type": "ts-trustpilot",
+      "name": "Trustpilot Reviews",
+      "settings": {
+        "heading": "",
+        "iframe": "<!-- TrustBox widget - Carousel -->\n<div class=\"trustpilot-widget rmpb\" data-locale=\"en-US\" data-template-id=\"53aa8912dec7e10d38f59f36\" data-businessunit-id=\"5cc0a8d3ffc3c900014d9a23\" data-style-height=\"130px\" data-style-width=\"100%\" data-theme=\"light\" data-stars=\"1,2,3,4,5\" data-schema-type=\"Organization\">\n<a href=\"https://www.trustpilot.com/review/tagsafari.com\" target=\"_blank\" rel=\"noopener\">Trustpilot</a>\n</div>\n<!-- End TrustBox widget -->"
+      }
+    },
+    "ts_mission_aVr6TW": {
+      "type": "ts-mission",
+      "name": "Mission Banner",
+      "settings": {
+        "is_full_width": true,
+        "badge_image": "shopify://shop_images/badge.png",
+        "heading": "Helping Africa Through Trade, Not Aid",
+        "description": "Every product you buy creates jobs, supports families, and builds a stronger future for Africa.",
+        "button_label": "Our Mission",
+        "button_link": "shopify://pages/our-mission",
+        "side_image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg"
+      }
+    }
+  },
+  "order": [
+    "ts_usp_icons_row_bmiNxg",
+    "ts_collection_banner_qnAaA6",
+    "main",
+    "ts_gears_ippgjM",
+    "ts_trustpilot_WyVDDd",
+    "ts_mission_aVr6TW"
+  ]
+}

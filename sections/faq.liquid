@@ -1,0 +1,114 @@
+<div class="faaq">
+  {% for block in section.blocks %} 
+  <div class="faaaq_cnt">
+    
+    
+      <div class="tabs_popup">
+   
+          <ul class="tabs_pop">
+            <li >
+              <h4>{{ block.settings.heading }}</h4>
+              <ul>
+              <li>{{ block.settings.description }}</li>            
+              </ul>
+            </li>   
+         
+          </ul>
+        </div>
+  
+  </div>
+
+{% endfor %}
+</div>
+
+<style>
+  *{
+  margin:0;
+  padding:0;  
+}
+ul{
+  list-style-type:none;
+}
+ul.tabs_pop li h4 {
+	position: relative;
+	padding: 15px 10px;
+	margin-bottom: 0;
+	border-bottom: 1px solid #dcdcdc;
+}
+
+ul.tabs_pop li h4::before {
+	content: "\f067";
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transform: translate(0, -50%);
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transition: 0.5s;
+}
+
+ul.tabs_pop li ul {
+	display: none;
+	border-bottom: 1px solid #dcdcdc;
+	padding: 17.5px 10px;
+}
+
+ul.tabs_pop li:first-child h4 {
+	border-top: 1px solid #dcdcdc;
+}
+li.active_tab h4::before {
+    transform: rotate(45deg) translate(-7px, -50%) !important;
+    transition: 0.5s;
+}
+.tabs_popup{
+  max-width:500px;
+    margin:50px auto;
+}
+.tabs_popup h2{
+  margin-bottom:20px;
+}
+ </style> 
+
+
+{% schema %}
+  {
+    "name": "faq",
+    "settings": [
+],
+"blocks": [
+    {
+      "type": "select",
+      "name": "Add faq",
+      "settings": [
+        {
+          "id": "heading",
+          "type": "text",
+       		"label": "faqs"
+        },
+        {
+          "id": "description",
+          "type": "textarea",
+          "label": "description"
+        }
+      ]
+    }
+  ],
+"presets": [
+    {
+      "name": "faqs",
+      "category": "button"
+     
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

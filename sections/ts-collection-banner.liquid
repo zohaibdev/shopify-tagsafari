@@ -1,0 +1,86 @@
+{% assign is_child_collection = false %}
+{% if collection.metafields.custom.parent_collection %}
+    {% assign is_child_collection = true %}
+    {% assign parent_collection = collection.metafields.custom.parent_collection.value %}
+    {% assign parent_collection_url = '/collections/' | append: parent_collection.handle %}
+    {% assign collection_short_title = parent_collection.metafields.custom.collection_short_name.value %}
+    {% assign other_child_collections = parent_collection.metafields.custom.child_collections.value %}
+{%- else -%}
+    {% assign other_child_collections = collection.metafields.custom.child_collections.value %}
+{% endif %}
+
+{%- assign banner_image = section.settings.background_image | default: collection.image -%}
+{%- assign banner_title = section.settings.title | default: collection.title -%}
+{%- assign banner_content = section.settings.content | default: collection.description -%}
+
+<div class="coll-banner__wrapper"{% if banner_image != blank %} style="background-image: url('{{ banner_image | img_url: '2048x2048' }}');"{% endif %}>
+    <div class="container">
+        <div class="coll-banner__breadcrumbs">
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                {% if is_child_collection %}
+                   <li><a href="{{ parent_collection_url }}">{{ collection_short_title }}</a></li>
+                {% endif %}
+                <li>{{ collection.title }}</li>
+            </ul>
+        </div>
+
+        <div class="coll-banner__content">
+            <h1 class="coll-banner__title">{{ banner_title }}</h1>
+            <div class="coll-banner__description">{{ banner_content }}</div>
+        </div>
+
+        {%- if other_child_collections -%}
+        <div class="coll-banner__child-collections">
+            <ul>
+                {% for child_collection in other_child_collections %}
+                    {% assign child_coll = child_collection %}
+                    {% assign short_title = child_coll.metafields.custom.collection_short_name.value %}
+                    {% assign is_active = false %}
+                    {% if child_coll.handle == collection.handle %}
+                        {% assign is_active = true %}
+                    {% endif %}
+                    <li><a href="{{ child_coll.url }}" class="{% if is_active %}active{% endif %}"{% if is_active %} aria-current="page"{% endif %}>{{ short_title | default: child_coll.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {%- endif -%}
+    </div>
+</div>
+
+
+{% schema %}
+  {
+  "name": "Collection Banner",
+  "class": "coll-banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Banner"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

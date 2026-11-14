@@ -1,0 +1,411 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "ts-page-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/31565030124_bd3e18faad_k.jpg",
+        "title": "Africa Hunting Forum Members",
+        "content": "<p>Shop authentic African safari clothing. Our quality safari clothing and accessories are available for Africa Hunting Forum members.</p>",
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/all",
+        "show_breadcrumbs": true,
+        "parent_label": "",
+        "parent_link": ""
+      }
+    },
+    "featured": {
+      "type": "ts-blog-hub",
+      "blocks": {
+        "link_1": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://collections/shooting-and-hunting-shirts-for-men",
+            "eyebrow": "",
+            "title": "Shop Men’s Hunting Shirts",
+            "description": "",
+            "image": "shopify://shop_images/image-1.jpg",
+            "link_label": "Shop now"
+          }
+        },
+        "link_2": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://collections/safari-shorts-for-men",
+            "eyebrow": "",
+            "title": "Shop Men’s Hunting & Hiking Shorts",
+            "description": "",
+            "image": "shopify://shop_images/image-3.jpg",
+            "link_label": "Shop now"
+          }
+        },
+        "link_3": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://products/tag-safari-clay-bird-shirt-for-men-l-sleeve",
+            "eyebrow": "",
+            "title": "Shop Men’s Clay Bird Shirts",
+            "description": "",
+            "image": "shopify://shop_images/image-2.jpg",
+            "link_label": "Shop now"
+          }
+        }
+      },
+      "block_order": [
+        "link_1",
+        "link_2",
+        "link_3"
+      ],
+      "settings": {
+        "heading": "Shop for the Hunt",
+        "text": "",
+        "columns": 3,
+        "show_latest": false,
+        "fallback_image": "shopify://shop_images/badge.png"
+      }
+    },
+    "sponsor": {
+      "type": "ts-image-text",
+      "settings": {
+        "image_position": "right",
+        "image_fit": "contain",
+        "eyebrow": "Sponsor member",
+        "heading": "TAG Safari, Sponsor Member of Africa Hunting",
+        "text": "<p>Sign up for exclusive member deals and discounts.</p>",
+        "button_label": "Sign Up for Member Deals",
+        "button_link": "/pages/africa-hunting#newsletter",
+        "image": "shopify://shop_images/Africa_Hunting_Logo.png"
+      }
+    },
+    "more": {
+      "type": "ts-blog-hub",
+      "blocks": {
+        "link_1": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://collections/safari-pants-for-men",
+            "eyebrow": "",
+            "title": "Shop Men’s Hunting & Hiking Pants",
+            "description": "",
+            "image": "shopify://shop_images/image-4.jpg",
+            "link_label": "Shop now"
+          }
+        },
+        "link_2": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://collections/safari-shirts-for-women",
+            "eyebrow": "",
+            "title": "Shop Women’s Safari & Hunting Shirts",
+            "description": "",
+            "image": "shopify://shop_images/image-5.jpg",
+            "link_label": "Shop now"
+          }
+        },
+        "link_3": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://collections/safari-vests-for-women",
+            "eyebrow": "",
+            "title": "Shop Women’s Safari & Travel Vests",
+            "description": "",
+            "image": "shopify://shop_images/image-6.png",
+            "link_label": "Shop now"
+          }
+        },
+        "link_4": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://collections/safari-jackets-for-women",
+            "eyebrow": "",
+            "title": "Shop Women’s Safari Jackets",
+            "description": "",
+            "image": "shopify://shop_images/image-7.png",
+            "link_label": "Shop now"
+          }
+        },
+        "link_5": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://collections/safari-shorts-for-women",
+            "eyebrow": "",
+            "title": "Shop Women’s Hunting & Hiking Shorts",
+            "description": "",
+            "image": "shopify://shop_images/image-8.png",
+            "link_label": "Shop now"
+          }
+        },
+        "link_6": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://collections/kids-safari-shirts",
+            "eyebrow": "",
+            "title": "Shop Kid’s Safari Shirts",
+            "description": "",
+            "image": "shopify://shop_images/image-9.png",
+            "link_label": "Shop now"
+          }
+        },
+        "link_7": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://collections/gaiters",
+            "eyebrow": "",
+            "title": "Shop Game Skin Gaiters",
+            "description": "",
+            "image": "shopify://shop_images/image-10.png",
+            "link_label": "Shop now"
+          }
+        },
+        "link_8": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://collections/gaiters",
+            "eyebrow": "",
+            "title": "Shop Canvas Gaiters",
+            "description": "",
+            "image": "shopify://shop_images/image-11.png",
+            "link_label": "Shop now"
+          }
+        },
+        "link_9": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://collections/belts",
+            "eyebrow": "",
+            "title": "Shop Game Skin Belts",
+            "description": "",
+            "image": "shopify://shop_images/image-12.png",
+            "link_label": "Shop now"
+          }
+        },
+        "link_10": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://collections/safari-luggage",
+            "eyebrow": "",
+            "title": "Shop Game Skin Luggage",
+            "description": "",
+            "image": "shopify://shop_images/image-13.png",
+            "link_label": "Shop now"
+          }
+        },
+        "link_11": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://collections/waxed-canvas-bags",
+            "eyebrow": "",
+            "title": "Shop Waxed Canvas Luggage",
+            "description": "",
+            "image": "shopify://shop_images/image-14.png",
+            "link_label": "Shop now"
+          }
+        }
+      },
+      "block_order": [
+        "link_1",
+        "link_2",
+        "link_3",
+        "link_4",
+        "link_5",
+        "link_6",
+        "link_7",
+        "link_8",
+        "link_9",
+        "link_10",
+        "link_11"
+      ],
+      "settings": {
+        "heading": "Shop the Collection",
+        "text": "",
+        "columns": 3,
+        "show_latest": false,
+        "fallback_image": "shopify://shop_images/badge.png"
+      }
+    },
+    "newsletter": {
+      "type": "ts-newsletter",
+      "settings": {
+        "eyebrow": "Newsletter",
+        "heading": "Join the adventure",
+        "text": "<p>Safari stories, travel tips and new arrivals, straight to your inbox.</p>",
+        "button_label": "Subscribe",
+        "success_message": "Thanks for subscribing! Look out for our next email.",
+        "disclaimer": "",
+        "layout": "split",
+        "background": "none",
+        "image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg",
+        "image_style": "overlay",
+        "overlay_opacity": 55,
+        "link_label": "Read our safari blog",
+        "link_url": "shopify://pages/safari-blog"
+      },
+      "blocks": {
+        "stories": {
+          "type": "feature",
+          "settings": {
+            "icon": "compass",
+            "text": "Safari stories"
+          }
+        },
+        "tips": {
+          "type": "feature",
+          "settings": {
+            "icon": "globe",
+            "text": "Travel tips"
+          }
+        },
+        "arrivals": {
+          "type": "feature",
+          "settings": {
+            "icon": "tag",
+            "text": "New arrivals"
+          }
+        }
+      },
+      "block_order": [
+        "stories",
+        "tips",
+        "arrivals"
+      ]
+    },
+    "logos": {
+      "type": "ts-logos",
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/houston_safari_club_logo.png",
+            "name": "Houston Safari Club",
+            "link": ""
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wild_sheep_foundation_logo.png",
+            "name": "Wild Sheep Foundation",
+            "link": ""
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/age_africa_logo.png",
+            "name": "Advancing Girls Education In Africa",
+            "link": ""
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/dallas_safari_club_logo.png",
+            "name": "Dallas Safari Club",
+            "link": ""
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Texas_Parks_Wildlife_logo.png",
+            "name": "Texas Parks & Wildlife",
+            "link": ""
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sethule_orphans_trust_logo.png",
+            "name": "Sethule Orphans Trust",
+            "link": ""
+          }
+        },
+        "logo_7": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/safari_club_international_logo.png",
+            "name": "Safari Club International",
+            "link": ""
+          }
+        },
+        "logo_8": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/texas_wildlife_association_logo.png",
+            "name": "Texas Wildlife Association",
+            "link": ""
+          }
+        },
+        "logo_9": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wildlife_conservation_society_logo.png",
+            "name": "Wildlife Conservation Society",
+            "link": ""
+          }
+        },
+        "logo_10": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/WWF_world_wildlife_fund.png",
+            "name": "World Wildlife Fund",
+            "link": ""
+          }
+        },
+        "logo_11": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wateraid_logo.png",
+            "name": "WaterAid America",
+            "link": ""
+          }
+        },
+        "logo_12": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sierra_club_logo.png",
+            "name": "Sierra Club",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6",
+        "logo_7",
+        "logo_8",
+        "logo_9",
+        "logo_10",
+        "logo_11",
+        "logo_12"
+      ],
+      "settings": {
+        "heading": "Member & Supporter of These Fine Organizations",
+        "text": "",
+        "duration": 40,
+        "grayscale": true,
+        "tinted": false
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "featured",
+    "sponsor",
+    "more",
+    "newsletter",
+    "logos"
+  ]
+}

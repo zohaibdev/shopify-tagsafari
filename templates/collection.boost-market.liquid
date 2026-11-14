@@ -1,0 +1,9 @@
+{% layout none %}
+{%- comment -%}
+  IDs of the products in this collection that are available in the visitor's current market.
+  Liquid renders in the storefront's market context, while the Boost filter index does not, so
+  assets/boost-pfs-filter.js uses this view to drop Boost results that would link to a 404.
+{%- endcomment -%}
+{%- paginate collection.products by 50 -%}
+{"pages":{{ paginate.pages | json }},"ids":[{%- for product in collection.products -%}{{ product.id }}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]}
+{%- endpaginate -%}

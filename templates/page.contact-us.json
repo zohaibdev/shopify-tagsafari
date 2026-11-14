@@ -1,0 +1,58 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "ts-page-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/Tag_Safari_Product_Mockups_-7.jpg",
+        "title": "Contact Us",
+        "content": "<p>Every effort will be made to reply to your message quickly during business hours.</p>",
+        "show_breadcrumbs": true,
+        "parent_label": "",
+        "parent_link": ""
+      }
+    },
+    "contact": {
+      "type": "ts-contact",
+      "blocks": {
+        "phone": {
+          "type": "info",
+          "settings": {
+            "title": "Call Us",
+            "text": "<p>Toll Free <a href=\"tel:+18008242703\">1-800-824-2703</a><br/>USA <a href=\"tel:+15173478733\">1-517-347-8733</a></p><p>M-F 8 AM - 4.00 PM EST<br/>SAT 10 AM - 2.00 PM EST</p>"
+          }
+        },
+        "warehouse": {
+          "type": "info",
+          "settings": {
+            "title": "Tag Fulfillment Warehouse",
+            "text": "<p>1800 West Grand River Road<br/>Meridian Charter Township<br/>Michigan 48864, USA</p>"
+          }
+        }
+      },
+      "block_order": [
+        "phone",
+        "warehouse"
+      ],
+      "settings": {
+        "heading": "Send us a message",
+        "text": "",
+        "show_page_content": false,
+        "reason_label": "Reason for Contacting TAG Safari",
+        "reason_options": "Customer Service Inquiry\nExchange or Return an Order\nWholesale Reseller Orders\nVendor Inquiry"
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "contact"
+  ]
+}

@@ -1,0 +1,360 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ts_usp_icons_row_rAgKbj": {
+      "type": "ts-usp-icons-row",
+      "blocks": {
+        "usp_item_9xpdeT": {
+          "type": "usp_item",
+          "settings": {
+            "icon": "shopify://shop_images/shipping-truck-svgrepo-com.png",
+            "title": "Free Shipping",
+            "subtitle": "Contiguous USA only"
+          }
+        },
+        "usp_item_36LX4f": {
+          "type": "usp_item",
+          "settings": {
+            "icon": "shopify://shop_images/clock-three-svgrepo-com.png",
+            "title": "Ships Same Day by 3PM EST",
+            "subtitle": "On in-stock orders"
+          }
+        },
+        "usp_item_JfhhY4": {
+          "type": "usp_item",
+          "settings": {
+            "icon": "shopify://shop_images/star-sharp-svgrepo-com.png",
+            "title": "Excellent Reviews",
+            "subtitle": "See what our customers say"
+          }
+        },
+        "usp_item_gtmbqC": {
+          "type": "usp_item",
+          "settings": {
+            "icon": "shopify://shop_images/africa-svgrepo-com.png",
+            "title": "Made in Africa Since 1990",
+            "subtitle": "Quality you can rely on"
+          }
+        }
+      },
+      "block_order": [
+        "usp_item_9xpdeT",
+        "usp_item_36LX4f",
+        "usp_item_JfhhY4",
+        "usp_item_gtmbqC"
+      ],
+      "name": "USP Icons Row",
+      "settings": {
+        "heading": "Why Shop With Us"
+      }
+    },
+    "main": {
+      "type": "product-template",
+      "blocks": {
+        "icon_wtjYj8": {
+          "type": "icon",
+          "settings": {
+            "icon": "gear",
+            "block_img": "shopify://shop_images/1.avif",
+            "icon_color": "",
+            "text": "<p><strong>LIGHTWEIGHT & BREATHABLE</strong><br/>Stay cool in the heat</p>"
+          }
+        },
+        "icon_QPidNT": {
+          "type": "icon",
+          "settings": {
+            "icon": "shield",
+            "block_img": "shopify://shop_images/storage-box-svgrepo-com.png",
+            "icon_color": "",
+            "text": "<p><strong>MULTIPLE POCKETS<br/></strong>Convenient pocket spac</p>"
+          }
+        },
+        "icon_3wWfnm": {
+          "type": "icon",
+          "settings": {
+            "icon": "shield",
+            "block_img": "shopify://shop_images/hands-solid-svgrepo-com.png",
+            "icon_color": "",
+            "text": "<p><strong>DURABLE & RELIABLE<br/></strong>Built for the outdoors</p>"
+          }
+        },
+        "icon_jN6xqF": {
+          "type": "icon",
+          "settings": {
+            "icon": "shield",
+            "block_img": "shopify://shop_images/africa-svgrepo-com.png",
+            "icon_color": "",
+            "text": "<p><strong>MADE IN AFRICA<br/></strong>Since 1990</p>"
+          }
+        }
+      },
+      "block_order": [
+        "icon_wtjYj8",
+        "icon_QPidNT",
+        "icon_3wWfnm",
+        "icon_jN6xqF"
+      ],
+      "settings": {
+        "font_color": false,
+        "full_width": true,
+        "padding": 30,
+        "background_img_overlay": "",
+        "background_img_overlay_opacity": 0,
+        "include_color": "color-primary",
+        "zoom_enable": true,
+        "loop_enable": false,
+        "layout": false,
+        "include_breadcrumbs": true,
+        "sku_enable": true,
+        "vendor_enable": false,
+        "reviews_enable": true,
+        "product_availability_enable": true,
+        "product_availability_total": 15,
+        "var_length_enable": false,
+        "variant_enable": "color-size-block",
+        "variant_color_enable": "var-img-block",
+        "qty_enable": true,
+        "go_to_cart_enable": true,
+        "smart_enable": false,
+        "include_social": false,
+        "show_product_relations": true,
+        "product_relations_heading": "Related to the",
+        "product_relations_heading_include": true
+      }
+    },
+    "ts_frequently_bought_together": {
+      "type": "ts-frequently-bought-together",
+      "blocks": {
+        "companion_rza8QQ": {
+          "type": "companion",
+          "settings": {
+            "product": "gaiters-canvas",
+            "checked_by_default": true
+          }
+        },
+        "companion_Lf4jHF": {
+          "type": "companion",
+          "settings": {
+            "product": "tag-safari-six-pocket-congo-pants-for-women",
+            "checked_by_default": true
+          }
+        },
+        "companion_xaAzY6": {
+          "type": "companion",
+          "settings": {
+            "product": "safari-adventure-hat",
+            "checked_by_default": true
+          }
+        },
+        "companion_EtX8Yg": {
+          "type": "companion",
+          "settings": {
+            "product": "bush-shirt-for-men-l-sleeve",
+            "checked_by_default": true
+          }
+        }
+      },
+      "block_order": [
+        "companion_rza8QQ",
+        "companion_Lf4jHF",
+        "companion_xaAzY6",
+        "companion_EtX8Yg"
+      ],
+      "settings": {
+        "heading": "Frequently Bought Together",
+        "discount_percentage": 10,
+        "discount_code": "BUNDLE10",
+        "badge_text": "SAVE 10% ON THIS BUNDLE",
+        "total_label": "Bundle Total",
+        "savings_label": "You save",
+        "button_label": "Add Bundle to Cart",
+        "secondary_link_label": "Add items individually"
+      }
+    },
+    "ts_product_feature_row": {
+      "type": "ts-product-feature-row",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/1.avif",
+            "title": "Lightweight Cotton",
+            "subtitle": "Breathable & cool"
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/storage-box-svgrepo-com.png",
+            "title": "Utility Design",
+            "subtitle": "7 functional pockets"
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/hands-solid-svgrepo-com.png",
+            "title": "Safari & Travel Ready",
+            "subtitle": "Perfect for any adventure"
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/star-sharp-svgrepo-com.png",
+            "title": "Built to Last",
+            "subtitle": "Strong stitching & durable"
+          }
+        },
+        "feature_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/africa-svgrepo-com.png",
+            "title": "Made in Africa",
+            "subtitle": "Helping Africa through trade"
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5"
+      ],
+      "settings": {}
+    },
+    "ts_product_info_columns": {
+      "type": "ts-product-info-columns",
+      "blocks": {
+        "bullet_1": {
+          "type": "bullet",
+          "settings": {
+            "text": "Lightweight 100% cotton keeps you cool"
+          }
+        },
+        "bullet_2": {
+          "type": "bullet",
+          "settings": {
+            "text": "Seven pockets for all your essentials"
+          }
+        },
+        "bullet_3": {
+          "type": "bullet",
+          "settings": {
+            "text": "Adjustable belt for a custom fit"
+          }
+        },
+        "bullet_4": {
+          "type": "bullet",
+          "settings": {
+            "text": "Roll-up sleeves with button tabs"
+          }
+        },
+        "bullet_5": {
+          "type": "bullet",
+          "settings": {
+            "text": "Versatile for safari, travel & everyday wear"
+          }
+        },
+        "bullet_6": {
+          "type": "bullet",
+          "settings": {
+            "text": "Timeless design built to last"
+          }
+        },
+        "accordion_1": {
+          "type": "accordion",
+          "settings": {
+            "title": "Product Details",
+            "use_product_description": true,
+            "content": ""
+          }
+        },
+        "accordion_2": {
+          "type": "accordion",
+          "settings": {
+            "title": "Fabric & Care",
+            "use_product_description": false,
+            "content": "<p>We use handpicked long staple cotton from Africa. Characteristics include high tensile strength with natural slubs. The pigment-dyed and pre-washed made to fade process ensures uniqueness and no two products will have exactly the same color. Our game skins with their natural tick marks and scratches add character and are sourced from conservation programs, game farms and licensed hunts. We support the efforts of the CAMPFIRE Program in Zimbabwe. </p>"
+          }
+        },
+        "accordion_3": {
+          "type": "accordion",
+          "settings": {
+            "title": "Fit & Sizing",
+            "use_product_description": false,
+            "content": "<p>All measurements are in inches. It may be hard to know your fit because sizes vary by brand and manufacturer and can vary dramatically by Brand and Manufacturer. Our Customer Service Team are experts available to help you . Simply chat, email, or call 800-824-2703 for the actual garment measurements of any Tag Safari clothing item .</p>"
+          }
+        },
+        "accordion_4": {
+          "type": "accordion",
+          "settings": {
+            "title": "Shipping & Returns",
+            "use_product_description": false,
+            "content": "<p>We do not want you to have any products you are not satisfied with. If you are not fully satisfied with your purchase, please request a Return Merchandise Authorization (RMA) by logging on to your account at www.tagsafari.com and using your e-mail and password you selected when making the purchase or simply call us and we will issue the RMA. We will refund the purchase price of the items you return, after they are received in our warehouse. Clothing must be unused, unworn, have original tags and packaging to receive a refund. COST OF SHIPPING IS NON-REFUNDABLE. A 10% re-stocking fee may apply for all orders returned after 30 days.</p>"
+          }
+        },
+        "accordion_5": {
+          "type": "accordion",
+          "settings": {
+            "title": "FAQ",
+            "use_product_description": false,
+            "content": "<p>Add frequently asked questions here.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "bullet_1",
+        "bullet_2",
+        "bullet_3",
+        "bullet_4",
+        "bullet_5",
+        "bullet_6",
+        "accordion_1",
+        "accordion_2",
+        "accordion_3",
+        "accordion_4",
+        "accordion_5"
+      ],
+      "settings": {
+        "benefits_heading": "Why You'll Love It",
+        "brand_heading": "Helping Africa Through Trade, Not Aid",
+        "brand_text": "<p>Every TAG Safari product is <strong>made in Africa</strong>.</p><p>By choosing TAG Safari, you're supporting skilled jobs, local communities, and a sustainable future across the continent.</p>",
+        "brand_image": "shopify://shop_images/africa-svgrepo-com.png",
+        "brand_button_label": "Learn More",
+        "brand_button_link": "shopify://pages/our-mission"
+      }
+    },
+    "ts_product_recommendations_row": {
+      "type": "ts-product-recommendations-row",
+      "settings": {
+        "heading": "Complete Your Safari Kit",
+        "intent": "related",
+        "products_to_show": 8
+      }
+    },
+    "ts_product_review_YrUfUJ": {
+      "type": "ts-product-review",
+      "name": "Product Reviews",
+      "settings": {}
+    }
+  },
+  "order": [
+    "ts_usp_icons_row_rAgKbj",
+    "main",
+    "ts_frequently_bought_together",
+    "ts_product_feature_row",
+    "ts_product_info_columns",
+    "ts_product_recommendations_row",
+    "ts_product_review_YrUfUJ"
+  ]
+}

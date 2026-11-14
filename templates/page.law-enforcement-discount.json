@@ -1,0 +1,296 @@
+{
+  "sections": {
+    "banner": {
+      "type": "ts-page-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg",
+        "title": "Law Enforcement Discount",
+        "content": "<p>5% off your entire purchase</p>",
+        "button_label": "",
+        "button_link": "",
+        "show_breadcrumbs": true,
+        "parent_label": "",
+        "parent_link": ""
+      }
+    },
+    "offer": {
+      "type": "ts-offer",
+      "blocks": {
+        "code_1": {
+          "type": "code",
+          "settings": {
+            "label": "Your discount code",
+            "code": "Military5"
+          }
+        },
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "icon": "shirt",
+            "title": "Shop",
+            "text": "Add your favourite safari clothing and gear to your cart."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "icon": "tag",
+            "title": "Enter your code",
+            "text": "Paste the code into the discount field at checkout."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "icon": "percent",
+            "title": "Save 5%",
+            "text": "The discount applies to your entire purchase."
+          }
+        }
+      },
+      "block_order": [
+        "code_1",
+        "step_1",
+        "step_2",
+        "step_3"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/ele_177bb459-d715-4e63-ba55-b2389b1c465e.png",
+        "eyebrow": "Exclusive offer",
+        "heading": "Law Enforcement Discount",
+        "text": "<p>We value your service. Please accept a 5% discount on your entire purchase.</p>",
+        "value": "5% OFF",
+        "validity": "<p>Valid on your entire purchase.</p>",
+        "button_label": "Start Shopping",
+        "button_link": "shopify://collections/all",
+        "steps_heading": "How to redeem",
+        "tinted": true
+      }
+    },
+    "more": {
+      "type": "ts-text-columns",
+      "blocks": {
+        "card_1": {
+          "type": "column",
+          "settings": {
+            "title": "Military Discount",
+            "text": "<p>5% off your entire purchase. <a href=\"shopify://pages/military-discount\">See details</a></p>",
+            "svg_icon": "award"
+          }
+        },
+        "card_2": {
+          "type": "column",
+          "settings": {
+            "title": "Students and Teachers Discount",
+            "text": "<p>5% off your entire purchase. <a href=\"shopify://pages/students-and-teachers-discount\">See details</a></p>",
+            "svg_icon": "briefcase"
+          }
+        },
+        "card_3": {
+          "type": "column",
+          "settings": {
+            "title": "Safari Club Discount",
+            "text": "<p>5% off your entire purchase. <a href=\"shopify://pages/safari-club-discount\">See details</a></p>",
+            "svg_icon": "compass"
+          }
+        },
+        "card_4": {
+          "type": "column",
+          "settings": {
+            "title": "Travel Club Discount",
+            "text": "<p>5% off your entire purchase. <a href=\"shopify://pages/travel-club-discount\">See details</a></p>",
+            "svg_icon": "globe"
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3",
+        "card_4"
+      ],
+      "settings": {
+        "heading": "More Ways to Save",
+        "text": "",
+        "style": "cards",
+        "columns": 4,
+        "tinted": false
+      }
+    },
+    "newsletter": {
+      "type": "ts-newsletter",
+      "settings": {
+        "eyebrow": "Newsletter",
+        "heading": "Join the adventure",
+        "text": "<p>Safari stories, travel tips and new arrivals, straight to your inbox.</p>",
+        "button_label": "Subscribe",
+        "success_message": "Thanks for subscribing! Look out for our next email.",
+        "disclaimer": "",
+        "layout": "split",
+        "background": "none",
+        "image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg",
+        "image_style": "overlay",
+        "overlay_opacity": 55,
+        "link_label": "Read our safari blog",
+        "link_url": "shopify://pages/safari-blog"
+      },
+      "blocks": {
+        "stories": {
+          "type": "feature",
+          "settings": {
+            "icon": "compass",
+            "text": "Safari stories"
+          }
+        },
+        "tips": {
+          "type": "feature",
+          "settings": {
+            "icon": "globe",
+            "text": "Travel tips"
+          }
+        },
+        "arrivals": {
+          "type": "feature",
+          "settings": {
+            "icon": "tag",
+            "text": "New arrivals"
+          }
+        }
+      },
+      "block_order": [
+        "stories",
+        "tips",
+        "arrivals"
+      ]
+    },
+    "logos": {
+      "type": "ts-logos",
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/houston_safari_club_logo.png",
+            "name": "Houston Safari Club",
+            "link": ""
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wild_sheep_foundation_logo.png",
+            "name": "Wild Sheep Foundation",
+            "link": ""
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/age_africa_logo.png",
+            "name": "Advancing Girls Education In Africa",
+            "link": ""
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/dallas_safari_club_logo.png",
+            "name": "Dallas Safari Club",
+            "link": ""
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Texas_Parks_Wildlife_logo.png",
+            "name": "Texas Parks & Wildlife",
+            "link": ""
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sethule_orphans_trust_logo.png",
+            "name": "Sethule Orphans Trust",
+            "link": ""
+          }
+        },
+        "logo_7": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/safari_club_international_logo.png",
+            "name": "Safari Club International",
+            "link": ""
+          }
+        },
+        "logo_8": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/texas_wildlife_association_logo.png",
+            "name": "Texas Wildlife Association",
+            "link": ""
+          }
+        },
+        "logo_9": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wildlife_conservation_society_logo.png",
+            "name": "Wildlife Conservation Society",
+            "link": ""
+          }
+        },
+        "logo_10": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/WWF_world_wildlife_fund.png",
+            "name": "World Wildlife Fund",
+            "link": ""
+          }
+        },
+        "logo_11": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wateraid_logo.png",
+            "name": "WaterAid America",
+            "link": ""
+          }
+        },
+        "logo_12": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sierra_club_logo.png",
+            "name": "Sierra Club",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6",
+        "logo_7",
+        "logo_8",
+        "logo_9",
+        "logo_10",
+        "logo_11",
+        "logo_12"
+      ],
+      "settings": {
+        "heading": "Member & Supporter of These Fine Organizations",
+        "text": "",
+        "duration": 40,
+        "grayscale": true,
+        "tinted": false
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "offer",
+    "more",
+    "newsletter",
+    "logos"
+  ]
+}

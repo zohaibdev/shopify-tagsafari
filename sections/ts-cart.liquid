@@ -1,0 +1,187 @@
+{%- comment -%}
+  Cart page. A normal Shopify cart form (updates[], note, checkout) so it works without JavaScript;
+  assets/ts-cart.js adds live quantity/remove updates by re-rendering this section (sections=ts-cart).
+{%- endcomment -%}
+<div class="ts-cart" data-cart-page>
+    <div class="container">
+        <header class="ts-cart__header">
+            <h1 class="ts-cart__title">{{ section.settings.title }}</h1>
+            {%- if cart.item_count > 0 -%}
+                <p class="ts-cart__count">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }}</p>
+            {%- endif -%}
+        </header>
+
+        {%- if cart.item_count > 0 -%}
+            <form action="{{ routes.cart_url }}" method="post" class="ts-cart__layout" id="CartPageForm" data-cart-form>
+                <div class="ts-cart__items">
+                    <p class="ts-cart__status" role="status" aria-live="polite" data-cart-status></p>
+                    <ul class="ts-cart__list" role="list">
+                        {%- for item in cart.items -%}
+                            {%- render 'ts-cart-line', item: item, line: forloop.index, context: 'page' -%}
+                        {%- endfor -%}
+                    </ul>
+                    <div class="ts-cart__secondary">
+                        <a href="{{ routes.all_products_collection_url }}" class="ts-cart__continue">&larr; Continue shopping</a>
+                        {%- comment -%} Without JavaScript, quantity changes are saved with this button. {%- endcomment -%}
+                        <noscript><button type="submit" name="update" class="ts-btn ts-btn--outline">Update cart</button></noscript>
+                    </div>
+                </div>
+
+                <aside class="ts-cart__summary" aria-labelledby="CartSummaryTitle">
+                    <div class="ts-summary">
+                        <h2 class="ts-summary__title" id="CartSummaryTitle">Order summary</h2>
+                        <p class="ts-summary__row"><span>Subtotal</span><span>{{ cart.items_subtotal_price | money }}</span></p>
+                        {%- for discount in cart.cart_level_discount_applications -%}
+                            <p class="ts-summary__row ts-summary__row--discount"><span>{{ discount.title }}</span><span>-{{ discount.total_allocated_amount | money }}</span></p>
+                        {%- endfor -%}
+                        <p class="ts-summary__row ts-summary__row--total"><span>Total</span><span>{{ cart.total_price | money_with_currency }}</span></p>
+                        {%- if section.settings.shipping_text != blank -%}
+                            <p class="ts-summary__note">{%- render 'ts-icon', icon: 'truck' -%}<span>{{ section.settings.shipping_text }}</span></p>
+                        {%- endif -%}
+
+                        {%- if section.settings.show_discount -%}
+                            <div class="ts-summary__field">
+                                <label for="CartDiscount">Discount code</label>
+                                <input type="text" id="CartDiscount" autocomplete="off" placeholder="Enter code" data-cart-discount>
+                                <p class="ts-summary__hint">Applied at checkout.</p>
+                            </div>
+                        {%- endif -%}
+
+                        {%- if section.settings.show_note -%}
+                            <div class="ts-summary__field">
+                                <label for="CartNote">Order note</label>
+                                <textarea id="CartNote" name="note" rows="3" placeholder="Special instructions for your order" data-cart-note>{{ cart.note }}</textarea>
+                            </div>
+                        {%- endif -%}
+
+                        <button type="submit" name="checkout" class="ts-btn ts-btn--primary ts-summary__checkout" data-cart-checkout>
+                            <svg class="ts-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                            Secure checkout
+                        </button>
+                        {%- if additional_checkout_buttons and section.settings.show_express -%}
+                            <div class="ts-summary__express">{{ content_for_additional_checkout_buttons }}</div>
+                        {%- endif -%}
+                    </div>
+                </aside>
+            </form>
+        {%- else -%}
+            <div class="ts-cart__empty">
+                <span class="ts-cart__empty-icon">
+                    <svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 14h6l6 30h26l6-20H20"/><circle cx="26" cy="52" r="3"/><circle cx="46" cy="52" r="3"/><path d="M30 28l8 0M34 24v8"/></svg>
+                </span>
+                <h2 class="ts-cart__empty-title">{{ section.settings.empty_title }}</h2>
+                {%- if section.settings.empty_text != blank -%}<p class="ts-cart__empty-text">{{ section.settings.empty_text }}</p>{%- endif -%}
+                <a href="{{ section.settings.empty_link | default: routes.all_products_collection_url }}" class="ts-btn ts-btn--primary">{{ section.settings.empty_button }}</a>
+
+                {%- comment -%} Suggested collections: the chosen ones, or the store's first collections. {%- endcomment -%}
+                {%- if section.settings.collections != blank -%}
+                    {%- assign suggested = section.settings.collections -%}
+                {%- else -%}
+                    {%- assign suggested = collections -%}
+                {%- endif -%}
+                <div class="ts-cart__suggest">
+                    <h3 class="ts-cart__suggest-title">{{ section.settings.suggest_title }}</h3>
+                    <ul class="ts-collection-grid" role="list">
+                        {%- assign shown = 0 -%}
+                        {%- for collection in suggested -%}
+                            {%- if shown >= 4 -%}{%- break -%}{%- endif -%}
+                            {%- if collection.handle == 'frontpage' or collection.products_count == 0 -%}{%- continue -%}{%- endif -%}
+                            {%- assign shown = shown | plus: 1 -%}
+                            <li>
+                                <a href="{{ collection.url }}" class="ts-collection-card">
+                                    <span class="ts-collection-card__media">
+                                        {%- assign c_image = collection.featured_image | default: collection.products.first.featured_image -%}
+                                        {%- if c_image -%}
+                                            {{ c_image | image_url: width: 500 | image_tag: loading: 'lazy', widths: '250, 400, 500', sizes: '(min-width: 768px) 25vw, 50vw', alt: '' }}
+                                        {%- else -%}
+                                            {%- render 'ts-icon', icon: 'compass' -%}
+                                        {%- endif -%}
+                                    </span>
+                                    <span class="ts-collection-card__title">{{ collection.title }}</span>
+                                </a>
+                            </li>
+                        {%- endfor -%}
+                    </ul>
+                </div>
+            </div>
+        {%- endif -%}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Your cart"
+    },
+    {
+      "type": "text",
+      "id": "shipping_text",
+      "label": "Shipping and tax message",
+      "default": "Taxes and shipping calculated at checkout."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_note",
+      "label": "Show order note",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_discount",
+      "label": "Show discount code field",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_express",
+      "label": "Show express checkout buttons",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Empty cart"
+    },
+    {
+      "type": "text",
+      "id": "empty_title",
+      "label": "Heading",
+      "default": "Your cart is empty"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Text",
+      "default": "Looks like you haven't added anything yet. Explore our authentic safari clothing and gear."
+    },
+    {
+      "type": "text",
+      "id": "empty_button",
+      "label": "Button label",
+      "default": "Start shopping"
+    },
+    {
+      "type": "url",
+      "id": "empty_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "suggest_title",
+      "label": "Suggested collections heading",
+      "default": "Popular collections"
+    },
+    {
+      "type": "collection_list",
+      "id": "collections",
+      "label": "Suggested collections",
+      "limit": 4,
+      "info": "Leave empty to show the store's first collections"
+    }
+  ]
+}
+{% endschema %}

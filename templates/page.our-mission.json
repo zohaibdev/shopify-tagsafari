@@ -1,0 +1,250 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "ts-page-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/31565030124_bd3e18faad_k.jpg",
+        "title": "Our Mission",
+        "content": "<p>“Helping Africa Through Trade, Not Aid” — this was our focus when TAG Safari first came to life.</p>",
+        "show_breadcrumbs": true,
+        "parent_label": "",
+        "parent_link": ""
+      }
+    },
+    "statement": {
+      "type": "ts-rich-text",
+      "settings": {
+        "alignment": "center",
+        "style": "quote",
+        "tinted": false,
+        "eyebrow": "Our Focus",
+        "heading": "Helping Africa Through Trade, Not Aid",
+        "text": "<p>Trade is the key to long-term, sustainable economic growth and development in Africa. Trade is also crucial to communities across the world.</p>",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "trade_stats": {
+      "type": "ts-stats",
+      "blocks": {
+        "share_today": {
+          "type": "stat",
+          "settings": {
+            "value": "2%",
+            "label": "Africa’s current share of all world trade"
+          }
+        },
+        "share_1970": {
+          "type": "stat",
+          "settings": {
+            "value": "3.5%",
+            "label": "Africa’s share of world trade in 1970"
+          }
+        },
+        "income": {
+          "type": "stat",
+          "settings": {
+            "value": "$70B",
+            "label": "Additional income every year from a one percent increase in world trade"
+          }
+        },
+        "aid": {
+          "type": "stat",
+          "settings": {
+            "value": "3×",
+            "label": "The total aid assistance Africa gets from the entire world"
+          }
+        }
+      },
+      "block_order": [
+        "share_today",
+        "share_1970",
+        "income",
+        "aid"
+      ],
+      "settings": {
+        "heading": "Why Trade Matters",
+        "text": "If Africa was able to increase its share of world trade from 2% back to 3%, that one percent increase would generate about $70 billion of additional income annually for Africa, or about three times the total aid assistance Africa gets from the entire world."
+      }
+    },
+    "communities": {
+      "type": "ts-image-text",
+      "settings": {
+        "image": "shopify://shop_images/smiling_sisters_africa.jpg",
+        "image_position": "left",
+        "image_fit": "cover",
+        "eyebrow": "Our Communities",
+        "heading": "Supporting families in Zimbabwe",
+        "text": "<p>We started with just two enterprising immigrants, but by 2006, we had employed over a hundred local Zimbabweans and supported all their families and communities.</p><p>Many of our products we make available to the world market are still handcrafted in Zimbabwe. Today, several hundred local Zimbabweans are employed by TAG Safari.</p>",
+        "button_label": "Read Our Story",
+        "button_link": "/pages/about-us"
+      }
+    },
+    "worldwide": {
+      "type": "ts-image-text",
+      "settings": {
+        "image": "shopify://shop_images/TAG_Safari_Clothing_Gear_Style_Zimbabwe_Children_Our_Mission_O.jpg",
+        "image_position": "right",
+        "image_fit": "cover",
+        "eyebrow": "A Growing Mission",
+        "heading": "Artisans all across the world",
+        "text": "<p>As we worked to establish our operations in the US, it became apparent that there are so many more communities of artisans in the world that we could be helping by introducing their creations into the world market.</p><p>We were so inspired by the artisans we met in the US that our mission for TAG Safari has expanded to encompass communities all across the world. In the past few years, we have been able to reach out to communities in India and countries in South America &amp; Southeast Asia, as well as expand our reach in Africa. This also includes talented creators and artisans in our new home - USA.</p><p>By sourcing handcrafted artisanal products that support local economies, we have been able to change the lives of many families around the globe. We look forward to welcoming those from countries all over the world to be part of our growing network.</p>",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "thank_you": {
+      "type": "ts-rich-text",
+      "settings": {
+        "alignment": "center",
+        "style": "quote",
+        "tinted": true,
+        "eyebrow": "Our New Mission",
+        "heading": "Helping & Empowering Communities Worldwide Through Trade",
+        "text": "<p>On behalf of all the men, women and children who are part of the TAG Safari family, we give you a heartfelt THANK YOU for your support to fulfill our new mission.</p>",
+        "button_label": "Shop Safari Clothing",
+        "button_link": "shopify://collections/safari-clothing-for-men"
+      }
+    },
+    "partners": {
+      "type": "ts-logos",
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/houston_safari_club_logo.png",
+            "name": "Houston Safari Club",
+            "link": ""
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wild_sheep_foundation_logo.png",
+            "name": "Wild Sheep Foundation",
+            "link": ""
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/age_africa_logo.png",
+            "name": "Advancing Girls Education In Africa",
+            "link": ""
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/dallas_safari_club_logo.png",
+            "name": "Dallas Safari Club",
+            "link": ""
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Texas_Parks_Wildlife_logo.png",
+            "name": "Texas Parks & Wildlife",
+            "link": ""
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sethule_orphans_trust_logo.png",
+            "name": "Sethule Orphans Trust",
+            "link": ""
+          }
+        },
+        "logo_7": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/safari_club_international_logo.png",
+            "name": "Safari Club International",
+            "link": ""
+          }
+        },
+        "logo_8": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/texas_wildlife_association_logo.png",
+            "name": "Texas Wildlife Association",
+            "link": ""
+          }
+        },
+        "logo_9": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wildlife_conservation_society_logo.png",
+            "name": "Wildlife Conservation Society",
+            "link": ""
+          }
+        },
+        "logo_10": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/WWF_world_wildlife_fund.png",
+            "name": "World Wildlife Fund",
+            "link": ""
+          }
+        },
+        "logo_11": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wateraid_logo.png",
+            "name": "WaterAid America",
+            "link": ""
+          }
+        },
+        "logo_12": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sierra_club_logo.png",
+            "name": "Sierra Club",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6",
+        "logo_7",
+        "logo_8",
+        "logo_9",
+        "logo_10",
+        "logo_11",
+        "logo_12"
+      ],
+      "settings": {
+        "heading": "Member & Supporter of These Fine Organizations",
+        "text": "",
+        "duration": 40,
+        "grayscale": true,
+        "tinted": false
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "statement",
+    "trade_stats",
+    "communities",
+    "worldwide",
+    "thank_you",
+    "partners"
+  ]
+}

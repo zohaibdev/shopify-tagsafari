@@ -1,0 +1,380 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_xfKRMN": {
+      "type": "ts-hero",
+      "name": "Hero Banner",
+      "settings": {
+        "background_image": "shopify://shop_images/3200-800_15_jpg.jpg",
+        "heading": "Authentic African Safari Clothing & Gear",
+        "subheading": "Made in Africa for safari, travel, and outdoor adventure.",
+        "button_1_label": "Shop Men",
+        "button_1_link": "shopify://collections/safari-clothing-for-men",
+        "button_2_label": "Shop Women",
+        "button_2_link": "shopify://collections/safari-clothing-for-women",
+        "button_3_label": "Explore Safari Gear",
+        "button_3_link": "shopify://collections/safari-hats",
+        "overlay_opacity": 25
+      }
+    },
+    "usp_icons_row_TJxrD8": {
+      "type": "ts-usp-icons-row",
+      "blocks": {
+        "usp_item_7Y94gT": {
+          "type": "usp_item",
+          "settings": {
+            "icon": "shopify://shop_images/shipping-truck-svgrepo-com.png",
+            "title": "Free Shipping",
+            "subtitle": "Contiguous USA only"
+          }
+        },
+        "usp_item_WDhWm9": {
+          "type": "usp_item",
+          "settings": {
+            "icon": "shopify://shop_images/clock-three-svgrepo-com.png",
+            "title": "Ships Same Day by 3PM EST",
+            "subtitle": "On in-stock orders"
+          }
+        },
+        "usp_item_ejnFd3": {
+          "type": "usp_item",
+          "settings": {
+            "icon": "shopify://shop_images/star-sharp-svgrepo-com.png",
+            "title": "Excellent Reviews",
+            "subtitle": "See what our customers say"
+          }
+        },
+        "usp_item_33pz7H": {
+          "type": "usp_item",
+          "settings": {
+            "icon": "shopify://shop_images/africa-svgrepo-com.png",
+            "title": "Made in Africa Since 1990",
+            "subtitle": "Quality you can rely on"
+          }
+        }
+      },
+      "block_order": [
+        "usp_item_7Y94gT",
+        "usp_item_WDhWm9",
+        "usp_item_ejnFd3",
+        "usp_item_33pz7H"
+      ],
+      "name": "USP Icons Row",
+      "settings": {
+        "heading": "Why Shop With Us"
+      }
+    },
+    "ts_shop_by_category_yCVDdL": {
+      "type": "ts-shop-by-category",
+      "blocks": {
+        "category_JhJWFR": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Safari_Bush_Shirt_for_Men_Short-Sleeve_Khaki_MS-188-SS-K_Front.jpg",
+            "title": "Shirts",
+            "link": "shopify://collections/safari-shirts-for-men"
+          }
+        },
+        "category_xRBzfL": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Safari_Jacket_for_Women_Olive_LJ-083-O_Front.jpg",
+            "title": "Jackets",
+            "link": "shopify://collections/safari-jacket-for-men"
+          }
+        },
+        "category_pQDaER": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Safari_Vented_Livingstone_Vest_for_Women_Khaki_LV-076-K_Side.jpg",
+            "title": "Vests",
+            "link": "shopify://collections/safari-vests-for-men"
+          }
+        },
+        "category_7dWXXd": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/LS-074-S_2_Back_2025_f7535764-7bde-4e07-a4d0-aa966d46dc43.jpg",
+            "title": "Shorts",
+            "link": "shopify://collections/safari-shorts-for-men"
+          }
+        },
+        "category_K3rffQ": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Safari_Six-Pocket_Congo_Pants_for_Women_Forest_LSX-103-F_Front.jpg",
+            "title": "Pants",
+            "link": "shopify://collections/safari-pants-for-men"
+          }
+        },
+        "category_NBtaLk": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/h-015-p867-k_master_front.jpg",
+            "title": "Hats",
+            "link": "shopify://collections/safari-hats"
+          }
+        },
+        "category_RXgYRB": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Safari_Buffalo_Leather_Gaiters_Black_GH-011-BUFF-BLK_Side.jpg",
+            "title": "Gaiters",
+            "link": "shopify://collections/gaiters"
+          }
+        },
+        "category_UnXkdk": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Safari_Zebra_Leather_Belt_Tan-Brown_GB-032-ZEBRA-TAN-BRN_Front.jpg",
+            "title": "Belts",
+            "link": "shopify://collections/game-skin-belts"
+          }
+        },
+        "category_gFj9wK": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/9c68bdf880fe3050f8412c4e3c791ac61b475b72396c0bf323c37d2f28ec322a_360x_a5221dc1-4196-42b9-ae9b-ee88fa348743.webp",
+            "title": "Backpacks",
+            "link": "shopify://collections/leather-backpacks"
+          }
+        },
+        "category_Fafe4Q": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Safari_Buffalo_Leather_Duffle_Brown_GL-014-BUFF-BRN_Rotated_Left.jpg",
+            "title": "Bags",
+            "link": "shopify://collections/waxed-canvas-bags"
+          }
+        }
+      },
+      "block_order": [
+        "category_JhJWFR",
+        "category_xRBzfL",
+        "category_pQDaER",
+        "category_7dWXXd",
+        "category_K3rffQ",
+        "category_NBtaLk",
+        "category_RXgYRB",
+        "category_UnXkdk",
+        "category_gFj9wK",
+        "category_Fafe4Q"
+      ],
+      "name": "Shop by Category",
+      "settings": {
+        "heading": "Shop by Category"
+      }
+    },
+    "ts_showcase_VCiiXC": {
+      "type": "ts-showcase",
+      "blocks": {
+        "left_collection_h8n483": {
+          "type": "left_collection",
+          "settings": {
+            "title": "Safari Shirt",
+            "link": "shopify://collections/safari-shirts-for-men"
+          }
+        },
+        "left_collection_JB7QjY": {
+          "type": "left_collection",
+          "settings": {
+            "title": "Safari Jackets",
+            "link": "shopify://collections/safari-jacket-for-men"
+          }
+        },
+        "left_collection_JcXYEK": {
+          "type": "left_collection",
+          "settings": {
+            "title": "Safari Pants",
+            "link": "shopify://collections/safari-pants-for-men"
+          }
+        },
+        "left_collection_YmETxn": {
+          "type": "left_collection",
+          "settings": {
+            "title": "Safari Shorts",
+            "link": "shopify://collections/safari-shorts-for-men"
+          }
+        },
+        "right_collection_rPkgd6": {
+          "type": "right_collection",
+          "settings": {
+            "title": "Safari Shirts",
+            "link": "shopify://collections/safari-shirts-for-women"
+          }
+        },
+        "right_collection_7pqPXj": {
+          "type": "right_collection",
+          "settings": {
+            "title": "Safari Jackets",
+            "link": "shopify://collections/safari-jackets-for-women"
+          }
+        },
+        "right_collection_YrxHfh": {
+          "type": "right_collection",
+          "settings": {
+            "title": "Safari Pants",
+            "link": "shopify://collections/safari-pants-for-men"
+          }
+        },
+        "right_collection_ca4bAh": {
+          "type": "right_collection",
+          "settings": {
+            "title": "Safari Shorts",
+            "link": "shopify://collections/safari-shorts-for-women"
+          }
+        }
+      },
+      "block_order": [
+        "left_collection_h8n483",
+        "left_collection_JB7QjY",
+        "left_collection_JcXYEK",
+        "left_collection_YmETxn",
+        "right_collection_rPkgd6",
+        "right_collection_7pqPXj",
+        "right_collection_YrxHfh",
+        "right_collection_ca4bAh"
+      ],
+      "name": "Split Collection Showcase",
+      "settings": {
+        "left_title": "Men's<br> Safari Clothing",
+        "left_subtitle": "Built for comfort. Made for adventure.",
+        "left_image": "shopify://shop_images/Men.png",
+        "left_view_all_label": "View All Men's",
+        "left_button_label": "Shop Men's Collection",
+        "left_button_link": "shopify://collections/safari-clothing-for-men",
+        "right_title": "Women's<br> Safari Clothing",
+        "right_subtitle": "Designed for the wild. Styled for everywhere.",
+        "right_image": "shopify://shop_images/Women.png",
+        "right_view_all_label": "View All Women's",
+        "right_button_label": "Shop Women's Collection",
+        "right_button_link": "shopify://collections/safari-clothing-for-women"
+      }
+    },
+    "ts_mission_QUTMXe": {
+      "type": "ts-mission",
+      "name": "Mission Banner",
+      "settings": {
+        "is_full_width": false,
+        "badge_image": "shopify://shop_images/badge.png",
+        "heading": "Helping Africa Through Trade, Not Aid",
+        "description": "Every product you buy creates jobs, supports families, and builds a stronger future for Africa.",
+        "button_label": "Our Mission",
+        "button_link": "shopify://pages/our-mission",
+        "side_image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg"
+      }
+    },
+    "ts_trustpilot_DnzYeg": {
+      "type": "ts-trustpilot",
+      "name": "Trustpilot Reviews",
+      "settings": {
+        "heading": "Trusted by Customers",
+        "iframe": "<!-- TrustBox widget - Carousel -->\n<div class=\"trustpilot-widget\" data-locale=\"en-US\" data-template-id=\"53aa8912dec7e10d38f59f36\" data-businessunit-id=\"5cc0a8d3ffc3c900014d9a23\" data-style-height=\"130px\" data-style-width=\"100%\" data-theme=\"light\" data-stars=\"1,2,3,4,5\" data-schema-type=\"Organization\">\n<a href=\"https://www.trustpilot.com/review/tagsafari.com\" target=\"_blank\" rel=\"noopener\">Trustpilot</a>\n</div>\n<!-- End TrustBox widget -->"
+      }
+    },
+    "ts_gears_GUVcPy": {
+      "type": "ts-gears",
+      "blocks": {
+        "tile_G3cMdB": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/Tag_Safari_Product_Mockups_-18.jpg",
+            "title": "Gaiters",
+            "description": "Keep Stickers off your socks and Stones out of your Hiking boots.",
+            "button_label": "Shop Gaiters",
+            "button_link": "shopify://collections/gaiters"
+          }
+        },
+        "tile_i477Dw": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/Tag_Safari_Product_Mockups_-7.jpg",
+            "title": "Leather Belts",
+            "description": "Genuine leather belts. Built to last.",
+            "button_label": "Shop Belts",
+            "button_link": "shopify://collections/belts"
+          }
+        },
+        "tile_QRPdQG": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/Tag_Safari_Product_Mockups_-6.jpg",
+            "title": "Travel Bags",
+            "description": "Leather and waxed canvas built for the journey.",
+            "button_label": "Shop Bags",
+            "button_link": "shopify://collections/waxed-canvas-bags"
+          }
+        }
+      },
+      "block_order": [
+        "tile_G3cMdB",
+        "tile_i477Dw",
+        "tile_QRPdQG"
+      ],
+      "name": "Essential Gear Tiles",
+      "settings": {
+        "heading": "Essential Gear for Every Adventure",
+        "columns": 3
+      }
+    },
+    "179164194285265f4c": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "1791642249d1ad9bcf": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "1791642290a6e8c88e": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "179164370838fbca5b": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_aaaa5dc_P48PBL": {
+          "type": "ai_gen_block_aaaa5dc",
+          "disabled": true,
+          "settings": {
+            "desktop_width_percent": 100,
+            "cream": "#F5F0E6",
+            "sand": "#E6D9C5",
+            "text_color": "#40392F",
+            "olive": "#343B2B",
+            "brown": "#665442",
+            "rule_color": "#B9AA95",
+            "closing_text": "#F5F0E6",
+            "heading_font": "merriweather_n4",
+            "body_font": "poppins_n4"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_aaaa5dc_P48PBL"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero_xfKRMN",
+    "usp_icons_row_TJxrD8",
+    "ts_shop_by_category_yCVDdL",
+    "ts_showcase_VCiiXC",
+    "ts_mission_QUTMXe",
+    "ts_trustpilot_DnzYeg",
+    "ts_gears_GUVcPy",
+    "179164194285265f4c",
+    "1791642249d1ad9bcf",
+    "1791642290a6e8c88e",
+    "179164370838fbca5b"
+  ]
+}

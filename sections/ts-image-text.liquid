@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="ts-media-text{% if section.settings.image_position == 'right' %} ts-media-text--image-right{% endif %}">
+        <div class="ts-media-text__media{% if section.settings.image_fit == 'contain' %} ts-media-text__media--contain{% endif %}">
+            {%- if section.settings.image != blank -%}
+                {%- assign image_alt = section.settings.image.alt | default: section.settings.heading -%}
+                {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '400, 600, 800, 1000, 1200', sizes: '(min-width: 768px) 50vw, 100vw', alt: image_alt }}
+            {%- endif -%}
+        </div>
+        <div class="ts-media-text__body">
+            {%- if section.settings.eyebrow != blank -%}
+                <span class="ts-eyebrow">{{ section.settings.eyebrow }}</span>
+            {%- endif -%}
+            {%- if section.settings.heading != blank -%}
+                <h2 class="ts-heading">{{ section.settings.heading }}</h2>
+            {%- endif -%}
+            {%- if section.settings.text != blank -%}
+                <div class="ts-rte">{{ section.settings.text }}</div>
+            {%- endif -%}
+            {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+                <a href="{{ section.settings.button_link }}" class="th-btn">{{ section.settings.button_label }}</a>
+            {%- endif -%}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image With Text",
+  "tag": "section",
+  "class": "ts-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "default": "cover",
+      "info": "Use \"Fit\" for maps and graphics that must not be cropped",
+      "options": [
+        { "value": "cover", "label": "Fill" },
+        { "value": "contain", "label": "Fit" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Image with text"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Pair text with an image to tell your story.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image With Text"
+    }
+  ]
+}
+{% endschema %}

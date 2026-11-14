@@ -1,0 +1,232 @@
+{%- comment -%}
+  "Complete Your Safari Kit" - a horizontally scrolling row of recommended
+  products with per-card add to cart.
+
+  Same two-pass render as the bundle section: the page renders the shell, then
+  the shell fetches its own markup back from the recommendations endpoint.
+{%- endcomment -%}
+
+{%- if recommendations.performed -%}
+  <div data-reco-track>
+    {%- for reco in recommendations.products -%}
+      {%- assign reco_variant = reco.selected_or_first_available_variant -%}
+      <div class="reco-card" data-reco-card>
+        <a class="reco-card__media" href="{{ reco.url }}">
+          {%- if reco.featured_image -%}
+            <img
+              src="{{ reco.featured_image | img_url: '400x' }}"
+              alt="{{ reco.featured_image.alt | escape }}"
+              loading="lazy"
+              width="200"
+              height="200"
+            >
+          {%- endif -%}
+        </a>
+        <div class="reco-card__info">
+          <a class="reco-card__title" href="{{ reco.url }}">{{ reco.title }}</a>
+          {%- unless reco_variant.title contains 'Default' -%}
+            <span class="reco-card__variant">{{ reco_variant.title }}</span>
+          {%- endunless -%}
+          <span class="reco-card__price">
+            {%- if reco.compare_at_price > reco.price -%}
+              <s>{{ reco.compare_at_price | money }}</s>
+            {%- endif -%}
+            {{ reco.price | money }}
+          </span>
+          {%- if reco.available -%}
+            <button
+              type="button"
+              class="reco-card__button"
+              data-reco-add
+              data-variant-id="{{ reco_variant.id }}"
+            >
+              {{ 'products.product.add_to_cart' | t }}
+            </button>
+          {%- else -%}
+            <button type="button" class="reco-card__button" disabled>
+              {{ 'products.product.sold_out' | t }}
+            </button>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+
+{%- else -%}
+  <reco-row
+    class="reco-row"
+    hidden
+    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&intent={{ section.settings.intent }}&limit={{ section.settings.products_to_show }}"
+  >
+    {%- if section.settings.heading != blank -%}
+      <h2 class="reco-row__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="reco-row__viewport">
+      <button
+        type="button"
+        class="reco-row__arrow reco-row__arrow--prev"
+        data-reco-prev
+        aria-label="{{ 'products.general.previous' | t }}"
+      >
+        <span class="icon icon-chevron-left" aria-hidden="true"></span>
+      </button>
+
+      <div class="reco-row__track" data-reco-track></div>
+
+      <button
+        type="button"
+        class="reco-row__arrow reco-row__arrow--next"
+        data-reco-next
+        aria-label="{{ 'products.general.next' | t }}"
+      >
+        <span class="icon icon-chevron-right" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <p class="reco-row__error" data-reco-error hidden role="alert"></p>
+  </reco-row>
+
+  <script>
+    if (!customElements.get('reco-row')) {
+      customElements.define(
+        'reco-row',
+        class RecoRow extends HTMLElement {
+          connectedCallback() {
+            this.track = this.querySelector('[data-reco-track]');
+            this.load();
+          }
+
+          async load() {
+            try {
+              const response = await fetch(this.dataset.url);
+              if (!response.ok) throw new Error(response.status);
+              const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+              const fresh = doc.querySelector('[data-reco-track]');
+              if (!fresh || !fresh.querySelector('[data-reco-card]')) return this.remove();
+              this.track.innerHTML = fresh.innerHTML;
+              this.ready();
+            } catch (e) {
+              this.remove();
+            }
+          }
+
+          ready() {
+            this.hidden = false;
+            this.querySelector('[data-reco-prev]').addEventListener('click', () => this.scrollByCard(-1));
+            this.querySelector('[data-reco-next]').addEventListener('click', () => this.scrollByCard(1));
+            this.track.addEventListener('scroll', () => this.updateArrows(), { passive: true });
+            this.addEventListener('click', (event) => {
+              const button = event.target.closest('[data-reco-add]');
+              if (button) this.addToCart(button);
+            });
+            this.updateArrows();
+          }
+
+          scrollByCard(direction) {
+            const card = this.track.querySelector('[data-reco-card]');
+            if (!card) return;
+            const step = card.offsetWidth + 20;
+            this.track.scrollBy({ left: step * direction, behavior: 'smooth' });
+          }
+
+          updateArrows() {
+            const max = this.track.scrollWidth - this.track.clientWidth;
+            // 2px of slack so sub-pixel scroll positions still count as "at the end".
+            this.querySelector('[data-reco-prev]').disabled = this.track.scrollLeft <= 2;
+            this.querySelector('[data-reco-next]').disabled = this.track.scrollLeft >= max - 2;
+          }
+
+          async addToCart(button) {
+            const error = this.querySelector('[data-reco-error]');
+            const original = button.textContent;
+            button.disabled = true;
+            error.hidden = true;
+
+            try {
+              const response = await fetch('/cart/add.js', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ items: [{ id: button.dataset.variantId, quantity: 1 }] }),
+              });
+              const data = await response.json();
+              if (!response.ok) throw new Error(data.description || data.message);
+
+              button.textContent = 'Added';
+              button.classList.add('is-added');
+              setTimeout(() => {
+                button.textContent = original;
+                button.classList.remove('is-added');
+                button.disabled = false;
+              }, 2000);
+              this.refreshCartCount();
+            } catch (e) {
+              error.textContent = e.message || 'Something went wrong. Please try again.';
+              error.hidden = false;
+              button.disabled = false;
+            }
+          }
+
+          // Mirrors how the theme's own quick-add updates the header counters.
+          refreshCartCount() {
+            fetch('/cart.js')
+              .then((response) => response.json())
+              .then((cart) => {
+                document.querySelectorAll('.cartCountSelector').forEach((node) => {
+                  node.innerHTML = (node.innerHTML || '0').replace(/[0-9]+/, cart.item_count);
+                  node.classList.remove('hidden');
+                });
+                if (window.Shopify && typeof Shopify.formatMoney === 'function' && window.theme) {
+                  document.querySelectorAll('.cartTotalSelector').forEach((node) => {
+                    node.innerHTML = Shopify.formatMoney(cart.total_price, theme.moneyFormat).replace(/((,00)|(\.00))$/g, '');
+                  });
+                }
+              })
+              .catch(() => {});
+          }
+        }
+      );
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product Recommend",
+  "tag": "section",
+  "class": "reco-row-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Complete Your Safari Kit"
+    },
+    {
+      "type": "select",
+      "id": "intent",
+      "label": "Recommendation type",
+      "options": [
+        { "value": "related", "label": "Related products" },
+        { "value": "complementary", "label": "Complementary products" }
+      ],
+      "default": "related",
+      "info": "Complementary products are set per product in Shopify admin via the Search & Discovery app. Related products are chosen automatically."
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Recommend"
+    }
+  ]
+}
+{% endschema %}

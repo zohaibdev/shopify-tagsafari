@@ -1,0 +1,71 @@
+{%- comment -%}
+  Shows the page's own body text (edited in Admin > Online Store > Pages) in the redesigned typography.
+  Used for long policy, sizing and legal pages where the content is maintained as page text.
+{%- endcomment -%}
+<div class="{% if section.settings.tinted %}ts-section--tinted{% endif %}">
+<div class="container">
+    <div class="ts-page-content ts-page-content--{{ section.settings.width }}">
+        {%- if section.settings.heading != blank -%}
+            <h2 class="ts-heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.custom_html != blank -%}
+            <div class="ts-rte ts-page-content__body">{{ section.settings.custom_html }}</div>
+        {%- elsif page.content != blank -%}
+            <div class="ts-rte ts-page-content__body">{{ page.content }}</div>
+        {%- elsif section.settings.fallback_text != blank -%}
+            <div class="ts-rte ts-page-content__body">{{ section.settings.fallback_text }}</div>
+        {%- endif -%}
+    </div>
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "Page Content",
+  "tag": "section",
+  "class": "ts-section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows the HTML below, or the text written on the page in Admin > Online Store > Pages when it is empty."
+    },
+    {
+      "type": "html",
+      "id": "custom_html",
+      "label": "Content (HTML)",
+      "info": "For content rich text cannot hold, such as size tables"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "narrow",
+      "options": [
+        { "value": "narrow", "label": "Narrow (text)" },
+        { "value": "wide", "label": "Wide (tables and images)" }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "fallback_text",
+      "label": "Text when the page is empty"
+    },
+    {
+      "type": "checkbox",
+      "id": "tinted",
+      "label": "Tinted background",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page Content"
+    }
+  ]
+}
+{% endschema %}

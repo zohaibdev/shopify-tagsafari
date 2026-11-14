@@ -1,0 +1,437 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "ts-page-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/3200-800_15_jpg.jpg",
+        "title": "Safari Travel & Planning Tips",
+        "content": "<p>Travel Guide: Your First African Safari</p>",
+        "show_breadcrumbs": true,
+        "parent_label": "Safari Blog",
+        "parent_link": "shopify://pages/safari-blog"
+      }
+    },
+    "intro": {
+      "type": "ts-image-text",
+      "settings": {
+        "image": "shopify://shop_images/Tag_Safari_Product_Mockups_-6.jpg",
+        "image_position": "right",
+        "image_fit": "cover",
+        "eyebrow": "Travel Guide",
+        "heading": "Your First African Safari",
+        "text": "<p>We are often asked about what one should pack when going on an African Safari. The keywords here are \"Travel Light.\" There is no need to take your whole house with you, as you will simply be spending more time packing and unpacking and your bags will probably not fit into the truck that meets you at the airport, because the safari Operator needs to pick up supplies for your Safari and the Camp while he is in town.</p><p>Most safari operators will ask that you pack only one suitcase, one overnight duffle bag, and one day pack. This will ensure that you can carry all the necessary items while leaving enough room in your bag for gift items you may buy over there; and, believe me, there are lots of fascinating sculpture and art you will want to bring back with you.</p><p>Most safari lodges will hand wash and sun dry your clothing every day, and iron it using a coal or electric iron. Our tag products are made to withstand this type of treatment, so do not pack any items made from delicate fabrics. They will get ruined.</p>",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "general_pointers": {
+      "type": "ts-text-columns",
+      "blocks": {
+        "pointer_1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Men.png",
+            "title": "Colors From Your Operator",
+            "text": "<p>Clothing colors preferred by your safari operator will be sent to you in their packet. Usually Khaki, Olive and Forest Green.</p>"
+          }
+        },
+        "pointer_2": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/image-1.jpg",
+            "title": "Khaki for Most Countries",
+            "text": "<p>As a general rule, Tag recommends Khaki for most countries including Zimbabwe, Botswana and South Africa, and forest for Zambia and Tanzania. Namibia would recommend khaki or green depending on the season.</p>"
+          }
+        },
+        "pointer_3": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/image-2.jpg",
+            "title": "Olive for Your Field Jacket",
+            "text": "<p>Olive is recommended for our field jacket, since it will not show dirt and grease picked up from the safari vehicle when you get too hot and toss it in the back.</p>"
+          }
+        },
+        "pointer_4": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/image-7.png",
+            "title": "A Light Shirt for Dinner",
+            "text": "<p>One light color shirt, stone should be carried for your semi formal safari dinners, since the lighter colors do not attract mosquitos as much as the darker colors do.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "pointer_1",
+        "pointer_2",
+        "pointer_3",
+        "pointer_4"
+      ],
+      "settings": {
+        "heading": "General Pointers",
+        "text": "",
+        "style": "image_cards",
+        "columns": 4,
+        "tinted": true
+      }
+    },
+    "what_to_bring": {
+      "type": "ts-checklist",
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "name": "3 Shirts or Tops in Long Sleeves",
+            "description": "MS-039 Trail Shirt with epaulettes is practicle. If you plan to hunt, MS-041 is the Shooter Shirt you will need. Its got the recoil patch on the right shoulder, quilted and padded to absorb your guns \"kick\". With Long Sleeved shirts, You can always roll up the sleeves and secure with the \"swiss\" tab."
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "name": "3 Shirts or Tops in Short Sleeves",
+            "description": "MS-118 Safari Shirt - Use darker colors Olive, Forest and Moss during the day, and Lighter colrs such as Khaki and Stone at night when sitting around the campfire. Bugs come out at night and they love dark colors!! Days are usually hot and nights are usually cool."
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "name": "2 Pairs Long Cargo Pants",
+            "description": "TRS-113 Tag Safari Hunter Pants Lightweight pants are better than heavy fabrics. The brush can tear up your skin in shorts."
+          }
+        },
+        "item_4": {
+          "type": "item",
+          "settings": {
+            "name": "1 Pair Convertible Pants",
+            "description": "TRS-072 Convertibles work as pants and shorts. You will get hot in the daytime."
+          }
+        },
+        "item_5": {
+          "type": "item",
+          "settings": {
+            "name": "1 Pair of Shorts",
+            "description": "M-074 Pro Hunter \"PH\" Shorter shorts are very popular and you may need them depending on time of year. June and July are cold months in Southern Africa."
+          }
+        },
+        "item_6": {
+          "type": "item",
+          "settings": {
+            "name": "1 Durable Leather Belt",
+            "description": "Brown is the most practical color. It will match with most safari wear."
+          }
+        },
+        "item_7": {
+          "type": "item",
+          "settings": {
+            "name": "1 Vest to carry all your valuables",
+            "description": "MJ-048 We recommend this Travel Vest for men and LJ-011 Hunting Vest for women, because these provide the most cargo pockets to keep your valuables safe during travel and while in the field. Your passport and tickets stow safely in the Inside Zippered pockets that are large enough so you don't have to fold your important papers. The Zippered pockets keep everything from falling out!!"
+          }
+        },
+        "item_8": {
+          "type": "item",
+          "settings": {
+            "name": "1 Field Jacket to keep you warm at night",
+            "description": "MJ-037 Field Jacket - Its Light and insulated - Nights cool down fast with little cloud cover in winter. Sitting in a leopard blind gets cold. You will love this Jacket."
+          }
+        },
+        "item_9": {
+          "type": "item",
+          "settings": {
+            "name": "2 Cotton Undershirts",
+            "description": "Layering up is better than heavy clothing-peel off when it gets warm."
+          }
+        },
+        "item_10": {
+          "type": "item",
+          "settings": {
+            "name": "4 Pairs Cotton Underwear",
+            "description": "Avoid synthetic fabrics, they will make you hot, and will get ruined in the wash."
+          }
+        },
+        "item_11": {
+          "type": "item",
+          "settings": {
+            "name": "4 Pairs Wool Socks",
+            "description": "Thicker socks will keep your feet feeling better all day long, while the wool will wick moisture."
+          }
+        },
+        "item_12": {
+          "type": "item",
+          "settings": {
+            "name": "1 Pair Sturdy Walking Shoes",
+            "description": "You will walk a lot."
+          }
+        },
+        "item_13": {
+          "type": "item",
+          "settings": {
+            "name": "1 Pair Indoor Slippers",
+            "description": "Keep your feet warm on the cold floors in camp. Usually no carpeting or AC available."
+          }
+        },
+        "item_14": {
+          "type": "item",
+          "settings": {
+            "name": "1 Hat with a wide brim",
+            "description": "UV Rays can be harmful and cause skin problems."
+          }
+        },
+        "item_15": {
+          "type": "item",
+          "settings": {
+            "name": "1 Bath Towel",
+            "description": "Take a darker color, to avoid dulling your white towel."
+          }
+        },
+        "item_16": {
+          "type": "item",
+          "settings": {
+            "name": "1 Face Cloth",
+            "description": "For wiping away the sweat. Keep it with you always."
+          }
+        },
+        "item_17": {
+          "type": "item",
+          "settings": {
+            "name": "1 Backpack for your daily needs",
+            "description": "See our Kilimanjaro Backpack made of Warthog Hide."
+          }
+        },
+        "item_18": {
+          "type": "item",
+          "settings": {
+            "name": "1 Pair Binoculars",
+            "description": "For game viewing or spotting game while hunting."
+          }
+        },
+        "item_19": {
+          "type": "item",
+          "settings": {
+            "name": "1 Camera",
+            "description": "If you plan to take pictures of game, be sure to have a very good zoom."
+          }
+        },
+        "item_20": {
+          "type": "item",
+          "settings": {
+            "name": "1 Flashlight",
+            "description": "Keep it handy always. Some camps and tented camps work off generators that are shut down during the night."
+          }
+        },
+        "item_21": {
+          "type": "item",
+          "settings": {
+            "name": "1 Soft Gun Case for each gun",
+            "description": "Sturdy cases are fine for air travel. Soft cases make transporting your guns easier. See our Buffalo Hide Rifle Bags."
+          }
+        },
+        "item_22": {
+          "type": "item",
+          "settings": {
+            "name": "Bug Repellent",
+            "description": "We sell a \"Non Deet\" Natural Geranoil Product, Wrist Band, Spray and Towellettes."
+          }
+        },
+        "item_23": {
+          "type": "item",
+          "settings": {
+            "name": "Sunscreen Lotion",
+            "description": "Chose one with a high UV protection rating."
+          }
+        },
+        "item_24": {
+          "type": "item",
+          "settings": {
+            "name": "Sunglasses",
+            "description": ""
+          }
+        },
+        "item_25": {
+          "type": "item",
+          "settings": {
+            "name": "Mousturizing lotion",
+            "description": "Try to take unscented lotion, to avoid attracting bugs. It is always better not to wear perfume in the bush."
+          }
+        },
+        "item_26": {
+          "type": "item",
+          "settings": {
+            "name": "Sanitary supplies",
+            "description": "Local brands, while quite good, may not be the same as what you are used to."
+          }
+        },
+        "item_27": {
+          "type": "item",
+          "settings": {
+            "name": "Prescription medications",
+            "description": "If you have conditions that require regular medications, carry enough for your whole trip."
+          }
+        },
+        "item_28": {
+          "type": "item",
+          "settings": {
+            "name": "Pain and fever control medications",
+            "description": "Headaches from being out in the sun should not spoil your stay."
+          }
+        },
+        "item_29": {
+          "type": "item",
+          "settings": {
+            "name": "Spair pair of spectacles",
+            "description": "Do not forget your case."
+          }
+        },
+        "item_30": {
+          "type": "item",
+          "settings": {
+            "name": "Contact lens cleaning fluid",
+            "description": ""
+          }
+        },
+        "item_31": {
+          "type": "item",
+          "settings": {
+            "name": "Shampoo",
+            "description": "Normally provided at all camps. The water hardness is different and your shampoo may not lather as well as theirs."
+          }
+        },
+        "group_clothing": {
+          "type": "group",
+          "settings": {
+            "title": "Clothing",
+            "text": ""
+          }
+        },
+        "group_gear": {
+          "type": "group",
+          "settings": {
+            "title": "Gear & Essentials",
+            "text": ""
+          }
+        },
+        "group_health": {
+          "type": "group",
+          "settings": {
+            "title": "Health & Toiletries",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "group_clothing",
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4",
+        "item_5",
+        "item_6",
+        "item_7",
+        "item_8",
+        "item_9",
+        "item_10",
+        "item_11",
+        "item_12",
+        "item_13",
+        "item_14",
+        "group_gear",
+        "item_15",
+        "item_16",
+        "item_17",
+        "item_18",
+        "item_19",
+        "item_20",
+        "item_21",
+        "group_health",
+        "item_22",
+        "item_23",
+        "item_24",
+        "item_25",
+        "item_26",
+        "item_27",
+        "item_28",
+        "item_29",
+        "item_30",
+        "item_31"
+      ],
+      "settings": {
+        "heading": "What To Bring",
+        "text": "Here are some suggestions as to what we recommend you take."
+      }
+    },
+    "good_to_know": {
+      "type": "ts-text-columns",
+      "blocks": {
+        "comfort": {
+          "type": "column",
+          "settings": {
+            "title": "For Your Comfort",
+            "text": "<ul><li>Chewing Gum - Take enough to share with your PH and the Guides. They love it.</li><li>Hard Candy - Some good brands are available there too.</li><li>Cigarettes: Local equivalents of American and European brands are usually available and often cost less.</li></ul>"
+          }
+        },
+        "gifting": {
+          "type": "column",
+          "settings": {
+            "title": "Gifting",
+            "text": "<ul><li>\"What is the best Gift to take for the Guides?\"</li><li>We are often asked this question. A good set or two of skinning knives, while relatively inexpensive here, would be appreciated more than anything else. A decent pair of inexpensive binoculars would also be a good gift.</li><li>American and European Brand Cigarettes for your guide are a good \"Currency\".</li></ul>"
+          }
+        },
+        "inoculations": {
+          "type": "column",
+          "settings": {
+            "title": "Innoculations",
+            "text": "<ul><li>See your travel clinic at least one month before you leave, so that you can get all the shots you need.</li><li>Every country has its own requirements as to which shots you need before you can enter that Country.</li><li>Ask your doctor about Anti-Malarial medicine which should usually be taken well before you leave home, while you are there and when you get back.</li><li>Cholera, Tetanus, Yellow Fever, Jabs will be required depending on the Country you visit. Ask you travel clinic, as some vaccinations need to be taken a month or more before departure.</li></ul>"
+          }
+        },
+        "bring_back": {
+          "type": "column",
+          "settings": {
+            "title": "What to bring back",
+            "text": "<ul><li>Local wines in South Africa and Zimbabwe are very good items to bring back home.</li><li>Good Brandy is available too.</li><li>Amarula cream Liqueur is my favorite drink from Africa.</li><li>Zambezi Larger and Castle Larger Beer from Zimbabwe.</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "comfort",
+        "gifting",
+        "inoculations",
+        "bring_back"
+      ],
+      "settings": {
+        "heading": "Good To Know",
+        "text": "",
+        "columns": 2,
+        "tinted": false,
+        "style": "brand"
+      }
+    },
+    "disclaimer": {
+      "type": "ts-rich-text",
+      "settings": {
+        "alignment": "center",
+        "style": "default",
+        "tinted": false,
+        "eyebrow": "",
+        "heading": "",
+        "text": "<p><em>We have tried to give you an idea of some of the items you will need. These are our opinions, and we urge you to speak to your medical professional before taking any medications of inoculations. We are providing general guidelines only. You will get more information from your Safari Guide.</em></p>",
+        "button_label": "",
+        "button_link": ""
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "intro",
+    "general_pointers",
+    "what_to_bring",
+    "good_to_know",
+    "disclaimer"
+  ]
+}

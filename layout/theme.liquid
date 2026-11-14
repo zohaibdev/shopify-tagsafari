@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="{{ shop.locale }}" class="fonts-loading">
+  <head>
+    {%- render 'head' -%}
+    {{ content_for_header }}
+
+    <!-- begin-boost-pfs-filter-css -->
+    {% include 'boost-pfs-style' %}
+    <!-- end-boost-pfs-filter-css -->
+
+    <script>
+      (function(h,o,t,j,a,r){
+          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+          h._hjSettings={hjid:1623046,hjsv:6};
+          a=o.getElementsByTagName('head')[0];
+          r=o.createElement('script');r.async=1;
+          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+          a.appendChild(r);
+      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+
+    <!-- BEGIN PRIVY ASYNCHRONOUS WIDGET CODE -->
+    <script type="text/javascript">
+      var _d_site = _d_site || '7ED6B5B53BF3F159937510FE';
+      (function(p, r, i, v, y) {
+        p[i] = p[i] || function() { (p[i].q = p[i].q || []).push(arguments) };
+        v = r.createElement('script'); v.async = 1; v.src = 'https://widget.privy.com/assets/widget.js';
+        y = r.getElementsByTagName('script')[0]; y.parentNode.insertBefore(v, y);
+      })(window, document, 'Privy');
+    </script>
+    <!-- END PRIVY ASYNCHRONOUS WIDGET CODE -->
+
+    {% include 'booster-common' %}
+
+    {{ 'cs-style.css' | asset_url | stylesheet_tag }}
+    {{ 'ts-forms.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'ts-forms.js' | asset_url }}" defer></script>
+  </head>
+
+  <body data-section-type="main-body" class="template-{{ template.name }}">
+    <div
+      id="ajaxBusy"
+      style="background:#fff;content:'';height:100%;margin:0px;padding:0px;position:fixed;right:0;top:0;width:100%;z-index: 999999;"
+    >
+      <div class="fancybox-loading"></div>
+    </div>
+    <a href="#content" class="hidden btn outline skip-to">{{ 'layout.general.skipto' | t }}</a>
+    {%- render 'no-script' -%}
+    {% section 'header' %}
+    {% section 'header-announcement' %}
+    <div
+      id="content"
+      class="content {% if request.page_type != blank %}{{ request.page_type | split: '/' | first | replace: '404', 'error' }}{% else %}default{% endif %}-page{% if template.suffix != blank %} {{ template.suffix }}{% endif %}{% if template == 'gift_card' %} wrap{% endif %}"
+      role="main"
+    >
+      {{ content_for_layout }}
+    </div>
+    {% section 'footer-brands' %}
+    <footer>
+      {% section 'footer' %}
+    </footer>
+    {%- render 'javascript' -%}
+
+    <!-- begin-boost-pfs-js -->
+    {% include 'boost-pfs' %}
+    <!-- end-boost-pfs-js -->
+    <!-- TrustBox script -->
+    <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+    <!-- End TrustBox script -->
+    <script
+      async
+      type="text/javascript"
+      data-api-key=""
+      id="stamped-script-widget"
+      src="https://cdn-stamped-io.azureedge.net/files/widget.min.js"
+    ></script>
+    <script src="//code.tidio.co/jyzrmvu8f0z0xmwnk715looos89vglzi.js" async></script>
+
+    {% include 'booster-message' %}
+
+    <!-- **BEGIN** Hextom FSB Integration // Main Include - DO NOT MODIFY -->
+    {% render 'hextom_fsb_main', product: product, customer: customer %}
+    <!-- **END** Hextom FSB Integration // Main Include - DO NOT MODIFY -->
+      {%- comment -%} Cart drawer: opens after add to cart (assets/ts-cart.js). {%- endcomment -%}
+    {% section 'ts-cart-drawer' %}
+    <script src="{{ 'ts-cart.js' | asset_url }}" defer></script>
+  </body>
+</html>

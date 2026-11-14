@@ -1,0 +1,30 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "article-template",
+      "settings": {
+        "include_image": true,
+        "include_author": true,
+        "include_date": true,
+        "include_newsletter": false,
+        "include_articles": true,
+        "number_of_articles": 3,
+        "fallback_image": "shopify://shop_images/badge.png",
+        "include_tags": false,
+        "include_social": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,86 @@
+<div class="{% if section.settings.tinted %}ts-section--tinted{% endif %}">
+<div class="container">
+    <div class="ts-richtext ts-richtext--{{ section.settings.alignment }}{% if section.settings.style == 'quote' %} ts-richtext--quote{% elsif section.settings.style == 'code' %} ts-richtext--code{% endif %}">
+        {%- if section.settings.eyebrow != blank -%}
+            <span class="ts-eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+            <h2 class="ts-heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+            <div class="ts-rte">{{ section.settings.text }}</div>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+            <a href="{{ section.settings.button_link }}" class="th-btn">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+    </div>
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "Rich Text",
+  "tag": "section",
+  "class": "ts-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "default": "center",
+      "options": [
+        { "value": "center", "label": "Center" },
+        { "value": "left", "label": "Left" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Heading style",
+      "default": "default",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "quote", "label": "Statement" },
+        { "value": "code", "label": "Discount code" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "tinted",
+      "label": "Tinted background",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich Text"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,12 @@
+{%- comment -%}
+  One point of the ts-checklist section.
+  Accepts: block (checklist item block)
+{%- endcomment -%}
+<li class="ts-checklist__item" {{ block.shopify_attributes }}>
+    <div>
+        <span class="ts-checklist__name">{{ block.settings.name }}</span>
+        {%- if block.settings.description != blank -%}
+            <span class="ts-checklist__description">{{ block.settings.description }}</span>
+        {%- endif -%}
+    </div>
+</li>

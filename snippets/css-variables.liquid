@@ -1,0 +1,243 @@
+<style>
+  	
+  {{ settings.header_type | font_face: font_display: 'swap' }}
+  {{ settings.base_type | font_face: font_display: 'swap' }}
+    
+  @font-face {
+    font-family: 'Red_Plug_Design_v4';
+    src:  
+      url({{ 'Red_Plug_Design_v4.woff2' | asset_url }}) format('woff2'),
+      url({{ 'Red_Plug_Design_v4.woff' | asset_url }}) format('woff');
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  :root {
+    
+    /* DEFAULT COLORS */
+
+	--white:#fff;
+    --black:#000;
+    --body_font_color:{{ settings.body_font_color }};
+    --body_font_color_05:{{ settings.body_font_color | color_modify: 'alpha', 0.05 }};
+    --body_font_color_25:{{ settings.body_font_color | color_modify: 'alpha', 0.25 }};
+    --body_font_color_50:{{ settings.body_font_color | color_modify: 'alpha', 0.50 }};
+    --body_font_color_lighten_15:{{ settings.body_font_color | color_lighten: 15 }};
+    --body_font_color_darken_10:{{ settings.body_font_color | color_darken: 10 }};
+    --body_font_hover_color:{{ settings.hover_font_color }};
+    --headline_font_color:{{ settings.headline_font_color }};
+    --headline_font_color_00:{{ settings.headline_font_color | color_modify: 'alpha', 0.00 }};
+    --headline_font_color_05:{{ settings.headline_font_color | color_modify: 'alpha', 0.05 }};
+    --headline_font_color_08:{{ settings.headline_font_color | color_modify: 'alpha', 0.08 }};
+    --button_color:{{ settings.button_color }};
+    --button_color_25:{{ settings.button_color | color_modify: 'alpha', 0.25 }};
+    --button_color_lighten_30:{{ settings.button_color | color_lighten: 30 }};
+    --button_color_darken_15:{{ settings.button_color | color_darken: 15 }};
+    --hover_button_color:{{ settings.hover_button_color }};
+    --line_color:{{ settings.line_color }};
+    --line_color_05:{{ settings.line_color | color_modify: 'alpha', 0.05 }};
+    --line_color_darken_10:{{ settings.line_color | color_darken: 10 }};
+    --success_color:{{ settings.success_color }};
+    --error_color:{{ settings.error_color }};
+    --error_color_00:{{ settings.error_color | color_modify: 'alpha', 0.00 }};
+    --error_color_75:{{ settings.error_color | color_modify: 'alpha', 0.75 }};
+    --section_color_primary:{{ settings.section_color_primary }};
+    --section_color_secondary:{{ settings.section_color_secondary }};
+    --badge_color:{{ settings.badge_color }};
+    --badge_background_color:{{ settings.badge_background_color }};
+    --a11ygrey:#767676;
+    
+    /* DEFAULT FONTS */
+
+    --headline_font:{{ settings.header_type.family }}, {{ settings.header_type.fallback_families }};
+    --headline_font_fallback:{{ settings.header_type.fallback_families }};
+    --headline_font_weight:{{ settings.header_type.weight }};
+  	--headline_font_weight_bold:700;
+  	--headline_font_weight_medium:500;
+  	--headline_font_style:{{ settings.header_type.style }};
+
+    --body_font:{{ settings.base_type.family }}, {{ settings.base_type.fallback_families }};
+    --body_font_fallback:{{ settings.base_type.fallback_families }};        
+    --body_font_weight:{{ settings.base_type.weight }};
+    --body_font_weight_bold:700;
+    --body_font_weight_medium:500;
+  	--body_font_style:{{ base_font.style }};
+    
+    /* DEFAULT ICONS */
+
+    --icon_font:'Red_Plug_Design_v4';
+
+    --square_solid: '\e900';
+    --square_crossed: '\e905'; 
+    --x_only: '\e928';
+    --check: '\e91a';
+
+    --box: '\e901';
+    --box_check: '\e907';
+
+    --circle: '\e903';
+    --circle_check: '\e90f';
+
+    --menu_plus: '\e904';
+    --menu_minus: '\e925';
+    --menu_times: '\e90c';
+
+    --arrow_down: '\e91c';
+    --arrow_left: '\e91d';
+    --arrow_right: '\e91e';
+    --arrow_up: '\e91f';
+
+    --rss: '\e927';
+    --play: '\e940';
+    --threed: '\e911';
+    --bag: '\e917';
+    --cart: '\e902';
+    --search: '\e918';
+    --account:'\e919';
+
+    --pen: '\e920';
+    --pencil: '\e921';
+    --edit: '\e922';
+    --pencil_ruler: '\e945';
+    --fire: '\e95a';
+    --cloud: '\e97b';
+    --cloud_check: '\e98f';
+    --shield: '\e9a1';
+    --shield_check: '\e9a4';
+    --shield_star: '\e9ac';
+    --lock: '\e9b4';
+    --lock_encrypt: '\e9ae';
+    --gear: '\e9c5';
+    --wrench: '\e9c6';
+    --screwdriver: '\e9c8';
+    --hammer: '\e9c9';
+    --hammer_wrench: '\e9cb';
+    --wrench_screwdriver: '\e9cc';
+    --axe: '\e9ce';
+    --trash: '\e9d8';
+    --leaf: '\ec9b';
+    --recycle: '\e9d7';
+    --star: '\e9e9';
+    --envelope: '\e9f2';
+    --envelope_open: '\e9f3';
+    --envelope_letter: '\e9f4';
+    --paper_plane: '\e9f9';
+    --binoculars: '\ea10';
+    --file_text: '\ea22';
+    --clipboard_text: '\ea42';
+    --clipboard_paper: '\ea44';
+    --newsletter: '\ea53';
+    --certificate_vert: '\ea57';
+    --certificate_horiz: '\ea58';
+    --medal: '\ea59';
+    --trophy: '\ea5e';
+    --ticket: '\ea83';
+    --megaphone: '\ea84';
+    --camera: '\ea98';
+    --bookmark: '\eaa9';
+    --user_chat: '\eaba';
+    --support: '\eac1';
+    --shirt: '\eb02';
+    --tank_top: '\eb03';
+    --tag: '\eb32';
+    --tag_text: '\eb33';
+    --credit_card: '\eb36';
+    --telephone: '\eb60';
+    --telephone_answer: '\eb4d';
+    --map: '\eb70';
+    --map_marker: '\eb65';
+    --map_marker_check: '\eb6a';
+    --calendar: '\eb73';
+    --smartphone: '\eba6';
+    --monitor: '\ebc5';
+    --power: '\ebd4';
+    --lamp_bright: '\ebda';
+    --bubble_text: '\ec0c';
+    --bubble_two: '\ec10';
+    --bubble_shiny: '\ec12';
+    --bubble_chat: '\ec13';
+    --heart: '\ec2e';
+    --gift: '\ec51';
+    --crown: '\ec59';
+    --diamond: '\ec5d';
+    --diamond_shield: '\ec5c';
+    --weight_kg: '\ec75';
+    --weight_lb: '\ec76';
+    --weight_oz: '\ec77';
+    --platter: '\ec7c';
+    --piggy_bank: '\eb37';
+    --rocket: '\eca8';
+    --hand_truck: '\ecb1';
+    --truck: '\ecd7';
+    --truck_check: '\ecda';
+    --box_ship: '\eb1a';
+    --cube_ship: '\ed00';
+    --cube_return: '\ed05';
+    --ghost: '\ed41';
+    --witch_hat: '\ed45';
+    --halloween: '\ed46';
+    --snowman: '\ed47';
+    --christmas_tree: '\ed48';
+    --easter_egg: '\ed49';
+    --bell: '\ed55';
+    --volume: '\ed5b';
+    --return: '\ed8c';
+    --sync: '\ed8d';
+    --history: '\ed9a';
+    --alarm: '\eda5';
+    --pleased: '\ed26';
+    --smiley: '\ed1c';
+    --horns: '\ef04';
+    --thumbs_up: '\edca';
+    --thumbs_up_fb: '\edcc';
+    --warning_triangle: '\ee23';
+    --warning_octagon: '\ee25';
+    --stop: '\ee24';
+	--facebook: '\e94d';
+    --google_plus: '\e94e';
+    --instagram: '\e94f';
+    --pinterest: '\e952';
+    --tumblr: '\e954';
+    --twitter: '\e955';
+    --vimeo: '\e956';
+    --youtube: '\e958';
+    
+    /* DEFAULT SIZES */
+  
+	--base:{{ settings.font_size }}px;
+    --xx_small:calc(var(--base) * 0.75);	/* p  / 12 */
+    --x_small:calc(var(--base) * 0.875);	/* h6 / 14 */
+    --small:var(--base);					/* h5 / 16 */
+    --medium:calc(var(--base) * 1.125);		/* h4 / 18 */
+    --large:calc(var(--base) * 1.625);		/* h3 / 26 */
+    --x_large:calc(var(--base) * 2.125);	/* h2 / 34 */
+    --xx_large:calc(var(--base) * 3);		/* h1 / 48 */
+    --jumbo:calc(var(--base) * 4);			/* Icons / 56 */
+
+    --master_spacing:20px;
+    --swatches:36px;
+
+  }
+  
+  {% capture char_count %}{{ 'products.product.savings' | t }}{% endcapture %}
+  {% assign char_count = char_count.size %}
+
+  {% if char_count > 5 %}
+  {% assign char_count_final = 6 %}
+  {% else %}
+  {% assign char_count_final = 9 %}
+  {% endif %}
+
+  .badge {
+    height:{{ 'products.product.savings' | t | size | times: char_count_final }}px;
+    padding:{{ 'products.product.savings' | t | size | at_most: 6 }}px;
+    width:{{ 'products.product.savings' | t | size | times: char_count_final }}px;
+  }
+  
+  {% assign img_src = 'lifestyle-2' | placeholder_svg_tag | prepend: 'data:image/svg+xml,' | replace: '\n', ' ' | replace: '\r', ' ' | replace: '%', '%25' | replace: '"', '%22' | replace: "'", '%27' | replace: '&', '%26' | replace: '#', '%23' | replace: '{', '%7B' | replace: '}', '%7D' | replace: '<', '%3C' | replace: '>', '%3E' %}
+
+  .placeholder-svg-background {background-image:url('{{ img_src }}');}
+  
+</style>
+

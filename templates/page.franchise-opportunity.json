@@ -1,0 +1,148 @@
+{
+  "sections": {
+    "banner": {
+      "type": "ts-page-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg",
+        "title": "Franchise Opportunity",
+        "content": "",
+        "show_breadcrumbs": true,
+        "parent_label": "",
+        "parent_link": ""
+      }
+    },
+    "intro": {
+      "type": "ts-rich-text",
+      "settings": {
+        "alignment": "center",
+        "style": "default",
+        "tinted": false,
+        "eyebrow": "Partner with TAG® Safari",
+        "heading": "Bring authentic African safari clothing to your community",
+        "text": "<p>[PLACEHOLDER: Short intro about the TAG Safari franchise: who it is for, what a franchise location looks like, and what TAG Safari provides.]</p>",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "benefits": {
+      "type": "ts-text-columns",
+      "blocks": {
+        "brand": {
+          "type": "column",
+          "settings": {
+            "title": "An established brand",
+            "text": "<p>[PLACEHOLDER: TAG Safari's heritage since 1990 and its reputation with safari travellers and outdoor enthusiasts.]</p>"
+          }
+        },
+        "products": {
+          "type": "column",
+          "settings": {
+            "title": "Proven, quality products",
+            "text": "<p>[PLACEHOLDER: The product range franchisees can sell: clothing, hats, belts, gaiters, bags and gear.]</p>"
+          }
+        },
+        "support": {
+          "type": "column",
+          "settings": {
+            "title": "Ongoing support",
+            "text": "<p>[PLACEHOLDER: Training, marketing materials, stock supply and the support franchisees receive.]</p>"
+          }
+        },
+        "impact": {
+          "type": "column",
+          "settings": {
+            "title": "Trade, not aid",
+            "text": "<p>[PLACEHOLDER: How franchisees help support artisans and communities through TAG Safari's mission.]</p>"
+          }
+        }
+      },
+      "block_order": [
+        "brand",
+        "products",
+        "support",
+        "impact"
+      ],
+      "settings": {
+        "heading": "Why Partner with TAG Safari",
+        "text": "",
+        "style": "cards",
+        "columns": 4,
+        "tinted": true
+      }
+    },
+    "steps": {
+      "type": "ts-text-columns",
+      "blocks": {
+        "enquire": {
+          "type": "column",
+          "settings": {
+            "title": "Send an enquiry",
+            "text": "<p>Email us using the button below and tell us a little about yourself and your location.</p>"
+          }
+        },
+        "discuss": {
+          "type": "column",
+          "settings": {
+            "title": "Discuss the details",
+            "text": "<p>[PLACEHOLDER: What happens next: introductory call, franchise information pack, investment and requirements.]</p>"
+          }
+        },
+        "launch": {
+          "type": "column",
+          "settings": {
+            "title": "Launch your franchise",
+            "text": "<p>[PLACEHOLDER: Agreement, training and opening support.]</p>"
+          }
+        }
+      },
+      "block_order": [
+        "enquire",
+        "discuss",
+        "launch"
+      ],
+      "settings": {
+        "heading": "How to Get Started",
+        "text": "",
+        "style": "brand",
+        "columns": 3,
+        "tinted": false
+      }
+    },
+    "enquiry": {
+      "type": "ts-contact",
+      "blocks": {
+        "email": {
+          "type": "info",
+          "settings": {
+            "title": "Email Us",
+            "text": "<p><a href=\"mailto:team@tagsafari.com?subject=TAG%20Franchise%20Enquiry\">team@tagsafari.com</a></p><p>Prefer email? Your message will open with the subject TAG Franchise Enquiry.</p>"
+          }
+        },
+        "phone": {
+          "type": "info",
+          "settings": {
+            "title": "Call Us",
+            "text": "<p>Toll Free <a href=\"tel:+18008242703\">1-800-824-2703</a><br/>USA <a href=\"tel:+15173478733\">1-517-347-8733</a></p><p>M-F 8 AM - 4.00 PM EST<br/>SAT 10 AM - 2.00 PM EST</p>"
+          }
+        }
+      },
+      "block_order": [
+        "email",
+        "phone"
+      ],
+      "settings": {
+        "heading": "Send a Franchise Enquiry",
+        "text": "<p>Tell us about yourself, your location and your plans, and our team will be in touch.</p>",
+        "show_page_content": false,
+        "subject": "TAG Franchise Enquiry"
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "intro",
+    "benefits",
+    "steps",
+    "enquiry"
+  ]
+}

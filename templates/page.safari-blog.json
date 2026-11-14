@@ -1,0 +1,222 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "ts-page-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg",
+        "title": "Safari Blog",
+        "content": "",
+        "show_breadcrumbs": true,
+        "parent_label": "",
+        "parent_link": ""
+      }
+    },
+    "destinations": {
+      "type": "ts-blog-hub",
+      "blocks": {
+        "africa": {
+          "type": "blog",
+          "settings": {
+            "blog": "best-countries-in-africa-for-safari-adventures",
+            "title": "",
+            "description": "",
+            "link_label": "Explore"
+          }
+        },
+        "asia": {
+          "type": "blog",
+          "settings": {
+            "blog": "best-countries-in-asia-for-safari-adventure-1",
+            "title": "",
+            "description": "",
+            "link_label": "Explore"
+          }
+        },
+        "oceania": {
+          "type": "blog",
+          "settings": {
+            "blog": "best-countries-in-oceania-for-safari-adventure",
+            "title": "",
+            "description": "",
+            "link_label": "Explore"
+          }
+        },
+        "americas": {
+          "type": "blog",
+          "settings": {
+            "blog": "best-countries-in-americas-for-safari-adventures",
+            "title": "",
+            "description": "",
+            "link_label": "Explore"
+          }
+        }
+      },
+      "block_order": [
+        "africa",
+        "asia",
+        "oceania",
+        "americas"
+      ],
+      "settings": {
+        "heading": "Favorite Top Worldwide Destinations for Safari",
+        "text": "",
+        "columns": 4,
+        "show_latest": true,
+        "fallback_image": "shopify://shop_images/badge.png"
+      }
+    },
+    "wildlife": {
+      "type": "ts-blog-links",
+      "blocks": {
+        "africa": {
+          "type": "link",
+          "settings": {
+            "eyebrow": "Africa",
+            "title": "Incredible Animals & Other Fauna to Experience in AFRICA",
+            "link": "",
+            "link_label": "Read more"
+          }
+        },
+        "asia": {
+          "type": "link",
+          "settings": {
+            "eyebrow": "Asia",
+            "title": "Exotic, Exhilarating Wildlife to See in ASIA",
+            "link": "",
+            "link_label": "Read more"
+          }
+        },
+        "oceania": {
+          "type": "link",
+          "settings": {
+            "eyebrow": "Oceania",
+            "title": "Beautiful Animals in OCEANIA for Photo Safari",
+            "link": "",
+            "link_label": "Read more"
+          }
+        },
+        "north_america": {
+          "type": "link",
+          "settings": {
+            "eyebrow": "North America",
+            "title": "Amazing Wildlife in NORTH AMERICA that must be on your bucket list",
+            "link": "",
+            "link_label": "Read more"
+          }
+        }
+      },
+      "block_order": [
+        "africa",
+        "asia",
+        "oceania",
+        "north_america"
+      ],
+      "settings": {
+        "heading": "Must See Wildlife During Safari Holidays Worldwide",
+        "text": "",
+        "columns": 4,
+        "tinted": true
+      }
+    },
+    "travel_advice": {
+      "type": "ts-blog-hub",
+      "blocks": {
+        "planning_tips": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://pages/safari-travel-planning-tips",
+            "eyebrow": "Travel Guide",
+            "title": "Safari Travel & Planning Tips",
+            "description": "We are often asked about what one should pack when going on an African Safari. The keywords here are \"Travel Light.\"",
+            "image": "shopify://shop_images/Tag_Safari_Product_Mockups_-6.jpg",
+            "link_label": "Read more"
+          }
+        },
+        "gear_checklist": {
+          "type": "link",
+          "settings": {
+            "link": "shopify://pages/safari-essantial-gear-checklist",
+            "eyebrow": "Checklist",
+            "title": "Safari Essential Gear Checklist",
+            "description": "Going on safari is an adventure not to be taken lightly. Your Journey will create memories that you will share for years to come.",
+            "image": "shopify://shop_images/Tag_Safari_Product_Mockups_-18.jpg",
+            "link_label": "Read more"
+          }
+        }
+      },
+      "block_order": [
+        "planning_tips",
+        "gear_checklist"
+      ],
+      "settings": {
+        "heading": "Safari Vacation & Travel Advice",
+        "text": "",
+        "columns": 2,
+        "show_latest": false,
+        "fallback_image": "shopify://shop_images/badge.png"
+      }
+    },
+    "newsletter": {
+      "type": "ts-newsletter",
+      "settings": {
+        "eyebrow": "Newsletter",
+        "heading": "Join the adventure",
+        "text": "<p>Safari stories, travel tips and new arrivals, straight to your inbox.</p>",
+        "button_label": "Subscribe",
+        "success_message": "Thanks for subscribing! Look out for our next email.",
+        "disclaimer": "",
+        "layout": "split",
+        "background": "none",
+        "image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg",
+        "image_style": "overlay",
+        "overlay_opacity": 55,
+        "link_label": "Read our safari blog",
+        "link_url": "shopify://pages/safari-blog"
+      },
+      "blocks": {
+        "stories": {
+          "type": "feature",
+          "settings": {
+            "icon": "compass",
+            "text": "Safari stories"
+          }
+        },
+        "tips": {
+          "type": "feature",
+          "settings": {
+            "icon": "globe",
+            "text": "Travel tips"
+          }
+        },
+        "arrivals": {
+          "type": "feature",
+          "settings": {
+            "icon": "tag",
+            "text": "New arrivals"
+          }
+        }
+      },
+      "block_order": [
+        "stories",
+        "tips",
+        "arrivals"
+      ]
+    }
+  },
+  "order": [
+    "banner",
+    "destinations",
+    "wildlife",
+    "travel_advice",
+    "newsletter"
+  ]
+}

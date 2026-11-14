@@ -1,0 +1,77 @@
+{%- comment -%}
+  Product-page size guide. Opens a modal with the same size guide section as the Sizing Charts page
+  (sections/ts-size-chart.liquid), loaded from that page and opened at the table matching the product's tags.
+  Edit the tables on that page's template; there is no separate copy here.
+{%- endcomment -%}
+{%- assign size_page = pages['sizing-charts-fit-guide'] -%}
+{%- if size_page != blank -%}
+  <button type="button" class="ts-size-link size-guide-link" data-size-modal-open aria-haspopup="dialog">
+    {%- render 'ts-icon', icon: 'ruler' -%}
+    <span>Size Guide</span>
+  </button>
+  <dialog class="ts-modal" aria-label="Size guide" data-size-modal data-size-url="{{ size_page.url }}?view=size-chart" data-size-tags="{{ product.tags | join: ',' | downcase | escape }}">
+    <button type="button" class="ts-modal__close" data-size-modal-close aria-label="Close size guide">&times;</button>
+    <div data-size-modal-body>
+      <p class="ts-modal__status" role="status">Loading size guide…</p>
+    </div>
+  </dialog>
+
+  <script>
+    (function() {
+      var dialog = document.currentScript.previousElementSibling;
+      var opener = dialog.previousElementSibling;
+      if (!dialog || !opener || dialog.dataset.ready) return;
+      dialog.dataset.ready = 'true';
+      var body = dialog.querySelector('[data-size-modal-body]');
+      var tags = dialog.getAttribute('data-size-tags').split(',').map(function(t) { return t.trim(); });
+      var loaded = null;
+
+      var loadScript = function() {
+        if (window.tsSizeChart) return Promise.resolve();
+        return new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          s.src = {{ 'ts-size-chart.js' | asset_url | json }};
+          s.onload = resolve;
+          s.onerror = reject;
+          document.head.appendChild(s);
+        });
+      };
+      var load = function() {
+        if (loaded) return loaded;
+        loaded = fetch(dialog.getAttribute('data-size-url'), { credentials: 'same-origin' })
+          .then(function(r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+          .then(function(html) {
+            var chart = new DOMParser().parseFromString(html, 'text/html').querySelector('[data-size-chart]');
+            if (!chart) throw new Error('No size guide found');
+            body.innerHTML = '';
+            body.appendChild(document.importNode(chart, true));
+            return loadScript();
+          })
+          .then(function() {
+            var root = body.querySelector('[data-size-chart]');
+            window.tsSizeChart(root);
+            if (root.showForTags) root.showForTags(tags);
+          })
+          .catch(function() {
+            loaded = null;
+            body.innerHTML = '<p class="ts-modal__status">Sorry, the size guide could not be loaded. <a href="' + dialog.getAttribute('data-size-url').split('?')[0] + '">Open the size guide page</a>.</p>';
+          });
+        return loaded;
+      };
+
+      opener.addEventListener('click', function() {
+        if (typeof dialog.showModal !== 'function') { window.location.href = dialog.getAttribute('data-size-url').split('?')[0]; return; }
+        dialog.showModal();
+        document.documentElement.style.overflow = 'hidden';
+        load();
+      });
+      dialog.addEventListener('close', function() {
+        document.documentElement.style.overflow = '';
+        opener.focus();
+      });
+      dialog.querySelector('[data-size-modal-close]').addEventListener('click', function() { dialog.close(); });
+      // Click on the dimmed backdrop closes it.
+      dialog.addEventListener('click', function(e) { if (e.target === dialog) dialog.close(); });
+    })();
+  </script>
+{%- endif -%}

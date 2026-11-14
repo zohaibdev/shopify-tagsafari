@@ -1,0 +1,346 @@
+{
+  "sections": {
+    "banner": {
+      "type": "ts-page-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/Tag_Safari_Product_Mockups_-7.jpg",
+        "title": "Frequently Asked Questions",
+        "content": "<p>Everything you need to know about TAG Safari clothing, sizing, orders and more.</p>",
+        "button_label": "",
+        "button_link": "",
+        "show_breadcrumbs": true,
+        "parent_label": "",
+        "parent_link": ""
+      }
+    },
+    "faq": {
+      "type": "ts-faq",
+      "blocks": {
+        "question_1": {
+          "type": "question",
+          "settings": {
+            "question": "What does Tag stand for?",
+            "answer": "<p>\"Tag\" is the official hunting license number issued by the department of wildlife management in Zimbabwe. The tag is fixed to the kill to indicate a legal hunt. The \"Tag\" ( a round numbered perspex disc ) helps prevent poaching and is useful in conservation of wildlife resources as taxidermists and trophy processors use it to identify legal trophies.</p>"
+          }
+        },
+        "question_2": {
+          "type": "question",
+          "settings": {
+            "question": "Where are the products made?",
+            "answer": "<p>Products are made at our plant in Zimbabwe Africa, by a team of highly trained workers. All workers are paid a fair wage, negotiated through a collective bargaining agreement between employers, employees and unions.</p>"
+          }
+        },
+        "question_3": {
+          "type": "question",
+          "settings": {
+            "question": "What are the clothes made of?",
+            "answer": "<p>All our clothing is made of 100% Zimbabwean cotton. The high quality long staple cotton is grown (mostly by peasant farmers) and processed into cloth, by world class cloth mills.</p>"
+          }
+        },
+        "question_4": {
+          "type": "question",
+          "settings": {
+            "question": "How do the sizes run?",
+            "answer": "<p>The clothes are generously sized, and run true to American specifications. The size chart on the site will provide measurements to accurately select your proper size.</p>"
+          }
+        },
+        "question_5": {
+          "type": "question",
+          "settings": {
+            "question": "How much will the clothes shrink?",
+            "answer": "<p>\"Tag\" clothing is made of \"pigment dyed\" cloth. The washing process removes most of the excess pigment before leaving our factory. This gives the garments a \"worn look.\" Following the sewn in wash care label will prevent further color loss.</p>"
+          }
+        },
+        "question_6": {
+          "type": "question",
+          "settings": {
+            "question": "Will the clothes fade?",
+            "answer": "<p>\"Tag\" clothing is made of \"pigment dyed\" cloth. The washing process removes most of the excess pigment before leaving our factory. This gives the garments a \"worn look.\" Following the sewn in wash care label will prevent further color loss.</p>"
+          }
+        },
+        "question_7": {
+          "type": "question",
+          "settings": {
+            "question": "What about the buttons?",
+            "answer": "<p>All garments are fitted with \"four hole\" polyester resin buttons, tightly sewn through all four holes. These buttons will withstand heavy washing and pressing. We provide \"two\" extra buttons sewn into every shirt and \"one\" on every pair of pants and other garment. We use only the best buttons and trims available.</p>"
+          }
+        },
+        "question_8": {
+          "type": "question",
+          "settings": {
+            "question": "What is pigment dyeing?",
+            "answer": "<p>Cloth can be vat dyed in a water based \"wet process\" called reactive dyeing or \"pigment dyed\" dry on the stenter table using a p.v.a. type dye. We use the pigment process with environment friendly dye stuff.</p>"
+          }
+        },
+        "question_9": {
+          "type": "question",
+          "settings": {
+            "question": "What about the thread used to sew the garments?",
+            "answer": "<p>We use only high quality imported polyester thread with a high tensile strength and high melting point to make our stitching withstand the stresses of nature and the heavy use we expect them to endure.</p>"
+          }
+        },
+        "question_10": {
+          "type": "question",
+          "settings": {
+            "question": "What if the clothes don't fit me?",
+            "answer": "<p>We want you to be fully satisfied with your purchase. We will exchange any garment returned to us in the original condition without exception. We will gladly refund the purchase price if returned to us within fourteen days of shipping. We will promptly replace any clothing that has slipped past our stringent quality control, and pay the shipping cost for the replacement. \"We believe in our products and respect our customers\"</p>"
+          }
+        },
+        "question_11": {
+          "type": "question",
+          "settings": {
+            "question": "What about custom orders?",
+            "answer": "<p>Custom orders can be done. A minimum quantity of 240 garments is required. These can be in different colors and sizes of one product. Delivery would take twelve weeks. This will be confirmed after the detailed order is received and may be sooner or later depending on the time of year.</p>"
+          }
+        },
+        "question_12": {
+          "type": "question",
+          "settings": {
+            "question": "What about custom logos?",
+            "answer": "<p>We can arrange to have custom logos done for you. The extra cost will depend on the logo and quantity ordered, and will be quoted once artwork is received in the acceptable format. Generally, custom production runs of 240 garments requiring logos are done at our factory in Africa. Smaller quantities can be done in the U.S. We can handle this for you. Note: all custom work and logo orders must be paid for in full before any work can commence.</p>"
+          }
+        },
+        "question_13": {
+          "type": "question",
+          "settings": {
+            "question": "How do I make payment for my order?",
+            "answer": "<p>Payments can be made by Visa or Mastercard.</p>"
+          }
+        },
+        "question_14": {
+          "type": "question",
+          "settings": {
+            "question": "What about sales tax?",
+            "answer": "<p>Sales tax is collected on all sales, except dealers with registered tax I.D. who are purchasing for resale.</p>"
+          }
+        },
+        "question_15": {
+          "type": "question",
+          "settings": {
+            "question": "How long will it take to receive the order?",
+            "answer": "<p>All items on our online shopping site are available in our warehouse for next day shipment. In the event that the item is temporarily out of stock, you may elect to choose another similar product, or place an order with us. We will ship it as soon as it is available again.</p>"
+          }
+        },
+        "question_16": {
+          "type": "question",
+          "settings": {
+            "question": "How do I become a \"Tag\" dealer?",
+            "answer": "<p>We have a strong, professional distribution and dealer policy and all dealers must be pre-approved before they can receive the benefits available to \"Tag\" dealers. Prospective dealers must among other things satisfy us of their ability and willingness to serve our customers well. They must submit a sound business plan for the proposed market region, and proof of financial stability. We will in turn give approved dealers comprehensive training and support to achieve their goals. Ask us about dealer opportunities in your area by emailing us at sales@tagsafari.com</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_1",
+        "question_2",
+        "question_3",
+        "question_4",
+        "question_5",
+        "question_6",
+        "question_7",
+        "question_8",
+        "question_9",
+        "question_10",
+        "question_11",
+        "question_12",
+        "question_13",
+        "question_14",
+        "question_15",
+        "question_16"
+      ],
+      "settings": {
+        "heading": "Your Questions, Answered",
+        "text": "",
+        "open_first": true,
+        "tinted": false
+      }
+    },
+    "help": {
+      "type": "ts-rich-text",
+      "settings": {
+        "alignment": "center",
+        "style": "default",
+        "tinted": true,
+        "eyebrow": "Need help?",
+        "heading": "Still have questions?",
+        "text": "<p>Our team is happy to help. Call us toll free on <a href=\"tel:+18008242703\">1-800-824-2703</a> or send us a message.</p>",
+        "button_label": "Contact Us",
+        "button_link": "shopify://pages/contact"
+      }
+    },
+    "newsletter": {
+      "type": "ts-newsletter",
+      "settings": {
+        "eyebrow": "Newsletter",
+        "heading": "Join the adventure",
+        "text": "<p>Safari stories, travel tips and new arrivals, straight to your inbox.</p>",
+        "button_label": "Subscribe",
+        "success_message": "Thanks for subscribing! Look out for our next email.",
+        "disclaimer": "",
+        "layout": "split",
+        "background": "none",
+        "image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg",
+        "image_style": "overlay",
+        "overlay_opacity": 55,
+        "link_label": "Read our safari blog",
+        "link_url": "shopify://pages/safari-blog"
+      },
+      "blocks": {
+        "stories": {
+          "type": "feature",
+          "settings": {
+            "icon": "compass",
+            "text": "Safari stories"
+          }
+        },
+        "tips": {
+          "type": "feature",
+          "settings": {
+            "icon": "globe",
+            "text": "Travel tips"
+          }
+        },
+        "arrivals": {
+          "type": "feature",
+          "settings": {
+            "icon": "tag",
+            "text": "New arrivals"
+          }
+        }
+      },
+      "block_order": [
+        "stories",
+        "tips",
+        "arrivals"
+      ]
+    },
+    "logos": {
+      "type": "ts-logos",
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/houston_safari_club_logo.png",
+            "name": "Houston Safari Club",
+            "link": ""
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wild_sheep_foundation_logo.png",
+            "name": "Wild Sheep Foundation",
+            "link": ""
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/age_africa_logo.png",
+            "name": "Advancing Girls Education In Africa",
+            "link": ""
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/dallas_safari_club_logo.png",
+            "name": "Dallas Safari Club",
+            "link": ""
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Texas_Parks_Wildlife_logo.png",
+            "name": "Texas Parks & Wildlife",
+            "link": ""
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sethule_orphans_trust_logo.png",
+            "name": "Sethule Orphans Trust",
+            "link": ""
+          }
+        },
+        "logo_7": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/safari_club_international_logo.png",
+            "name": "Safari Club International",
+            "link": ""
+          }
+        },
+        "logo_8": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/texas_wildlife_association_logo.png",
+            "name": "Texas Wildlife Association",
+            "link": ""
+          }
+        },
+        "logo_9": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wildlife_conservation_society_logo.png",
+            "name": "Wildlife Conservation Society",
+            "link": ""
+          }
+        },
+        "logo_10": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/WWF_world_wildlife_fund.png",
+            "name": "World Wildlife Fund",
+            "link": ""
+          }
+        },
+        "logo_11": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wateraid_logo.png",
+            "name": "WaterAid America",
+            "link": ""
+          }
+        },
+        "logo_12": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sierra_club_logo.png",
+            "name": "Sierra Club",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6",
+        "logo_7",
+        "logo_8",
+        "logo_9",
+        "logo_10",
+        "logo_11",
+        "logo_12"
+      ],
+      "settings": {
+        "heading": "Member & Supporter of These Fine Organizations",
+        "text": "",
+        "duration": 40,
+        "grayscale": true,
+        "tinted": false
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "faq",
+    "help",
+    "newsletter",
+    "logos"
+  ]
+}

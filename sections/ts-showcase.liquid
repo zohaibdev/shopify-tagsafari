@@ -1,0 +1,199 @@
+<div class="container">
+    <div class="showcase__blocks">
+        <div class="showcase__block" style="background-image: url({{ section.settings.left_image | img_url: 'master' }});">
+            <div class="showcase__block-content">
+                <h2>{{ section.settings.left_title }}</h2>
+                <p>{{ section.settings.left_subtitle }}</p>
+                {% if section.settings.left_button_link %}
+                    <a href="{{ section.settings.left_button_link }}" class="th-btn">{{ section.settings.left_button_label }}</a>
+                {% endif %}
+            </div>
+            <div class="showcase__collections-wrapper">
+                <div class="showcase__collections">
+                    {% for block in section.blocks %}
+                        {% if block.type == 'left_collection' %}
+                            <div class="showcase__collection">
+                                {% if block.settings.image %}
+                                    <a href="{{ block.settings.link }}">
+                                        <img src="{{ block.settings.image | img_url: 'medium' }}" alt="{{ block.settings.title }}">
+                                    </a>
+                                {% endif %}
+                                <a href="{{ block.settings.link }}">
+                                    <h3>{{ block.settings.title }}</h3>
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="showcase__collections-link">
+                    <a href="{{ section.settings.left_button_link }}">{{ section.settings.left_view_all_label }}</a>
+                </div>
+            </div>
+        </div>
+        <div class="showcase__block" style="background-image: url({{ section.settings.right_image | img_url: 'master' }});">
+            <div class="showcase__block-content">
+                <h2>{{ section.settings.right_title }}</h2>
+                <p>{{ section.settings.right_subtitle }}</p>
+                {% if section.settings.right_button_link %}
+                    <a href="{{ section.settings.right_button_link }}" class="th-btn">{{ section.settings.right_button_label }}</a>
+                {% endif %}
+            </div>
+            <div class="showcase__collections-wrapper">
+                <div class="showcase__collections">
+                    {% for block in section.blocks %}
+                        {% if block.type == 'right_collection' %}
+                            <div class="showcase__collection">
+                                {% if block.settings.image %}
+                                    <a href="{{ block.settings.link }}">
+                                        <img src="{{ block.settings.image | img_url: 'medium' }}" alt="{{ block.settings.title }}">
+                                    </a>
+                                {% endif %}
+                                <a href="{{ block.settings.link }}">
+                                    <h3>{{ block.settings.title }}</h3>
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="showcase__collections-link">
+                    <a href="{{ section.settings.right_button_link }}">{{ section.settings.right_view_all_label }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Split Collection Showcase",
+  "tag": "section",
+  "class": "showcase",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left panel"
+    },
+    {
+      "type": "html",
+      "id": "left_title",
+      "label": "Left title",
+      "default": "Men's Safari Clothing"
+    },
+    {
+      "type": "textarea",
+      "id": "left_subtitle",
+      "label": "Left subtitle",
+      "default": "Built for comfort. Made for adventure."
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left background image"
+    },
+    {
+      "type": "text",
+      "id": "left_view_all_label",
+      "label": "Left view all label",
+      "default": "View All"
+    },
+    {
+      "type": "text",
+      "id": "left_button_label",
+      "label": "Left button label",
+      "default": "Shop Men's Collection"
+    },
+    {
+      "type": "url",
+      "id": "left_button_link",
+      "label": "Left button link"
+    },
+    {
+      "type": "header",
+      "content": "Right panel"
+    },
+    {
+      "type": "html",
+      "id": "right_title",
+      "label": "Right title",
+      "default": "Women's Safari Clothing"
+    },
+    {
+      "type": "textarea",
+      "id": "right_subtitle",
+      "label": "Right subtitle",
+      "default": "Designed for the wild. Styled for everywhere."
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right background image"
+    },
+    {
+      "type": "text",
+      "id": "right_view_all_label",
+      "label": "Right view all label",
+      "default": "View All"
+    },
+    {
+      "type": "text",
+      "id": "right_button_label",
+      "label": "Right button label",
+      "default": "Shop Women's Collection"
+    },
+    {
+      "type": "url",
+      "id": "right_button_link",
+      "label": "Right button link"
+    },
+  ],
+  "blocks": [
+    {
+        "type": "left_collection",
+        "name": "Left Collection",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "url",
+                "id": "link",
+                "label": "Link"
+            }
+        ]
+    },
+    {
+        "type": "right_collection",
+        "name": "Right Collection",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "url",
+                "id": "link",
+                "label": "Link"
+            }
+        ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split Collection Showcase"
+    }
+  ]
+}
+{% endschema %}

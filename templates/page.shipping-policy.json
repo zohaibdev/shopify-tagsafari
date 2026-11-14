@@ -1,0 +1,252 @@
+{
+  "sections": {
+    "policy": {
+      "type": "ts-policy",
+      "blocks": {
+        "section_1": {
+          "type": "section",
+          "settings": {
+            "heading": "Delivery Policy",
+            "text": "<p>Thank you for shopping with <strong>TagSafari.com</strong>. Below, you will find our shipping and delivery policy outlining our processes and guidelines for shipping orders to our customers.</p>"
+          }
+        },
+        "section_2": {
+          "type": "section",
+          "settings": {
+            "heading": "Processing Time",
+            "text": "<p>Orders placed with us require up to <strong>1 business day</strong> for processing before they are dispatched. Please note that processing time does not include shipping time.</p><p>Orders received by 12 noon are shipped on the same day we receive them, except orders received during weekends and holidays are shipped on the first business day thereafter</p>"
+          }
+        },
+        "section_3": {
+          "type": "section",
+          "settings": {
+            "heading": "Shipping Methods & Costs",
+            "text": "<p>We offer the following shipping methods:</p><ul><li><strong>Local Services within the USA (USPS) – Free of charge</strong></li><li><strong>Courier Services – Chargeable</strong> (costs vary based on service and location)</li><li>We use FedEx Ground and FedEx Air for overseas shipments.</li></ul>"
+          }
+        },
+        "section_4": {
+          "type": "section",
+          "settings": {
+            "heading": "Delivery Timeframes",
+            "text": "<ul><li><strong>USA Deliveries:</strong> Estimated delivery time is<strong>up to 3 days</strong>. However, delivery times are <strong>not guaranteed</strong>, and we do not offer discounts or refunds for transport delays.</li><li><strong>International Deliveries:</strong> Estimated delivery time is <strong>up to 10 days</strong>, depending on the destination. We aim to use the fastest available shipping method, but <strong>delivery times are not guaranteed</strong>. We do not provide discounts or refunds for transport delays.</li></ul>"
+          }
+        },
+        "section_5": {
+          "type": "section",
+          "settings": {
+            "heading": "Tracking Information",
+            "text": "<p>Where applicable or available, tracking information will be provided to customers once the order has been dispatched.</p>"
+          }
+        },
+        "section_6": {
+          "type": "section",
+          "settings": {
+            "heading": "Duties & Taxes",
+            "text": "<p>Customers in Canada and Mexico should expect additional Taxes and Duties collected by their Customs Departments.</p><p>All consignments are shipped under <strong>Delivered at Place (DAP) terms.</strong> This means we do <strong>not cover local country duties or taxes -</strong> these are the responsibility of the buyer and are <strong>not included in our prices.</strong></p>"
+          }
+        },
+        "section_7": {
+          "type": "section",
+          "settings": {
+            "heading": "Returns & Refunds",
+            "text": "<p>For information on returns and refunds, please refer to our policies at the links below:</p><ul><li><a href=\"https://tagsafari.co.uk/pages/request-return-authorization\">Request Return Authorization</a></li><li><a href=\"/pages/exchange-return-policy\">Exchange &amp; Return Policy</a></li></ul><p>If you have any questions regarding our delivery policy, please feel free to contact us.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "section_1",
+        "section_2",
+        "section_3",
+        "section_4",
+        "section_5",
+        "section_6",
+        "section_7"
+      ],
+      "settings": {
+        "eyebrow": "Policies",
+        "title": "Shipping and Delivery Policy",
+        "summary": "",
+        "last_updated": "",
+        "show_toc": true,
+        "toc_title": "On this page",
+        "help_heading": "Need help? Contact us",
+        "help_text": "<p>Our team is happy to help. Call us toll free on <a href=\"tel:+18008242703\">1-800-824-2703</a> or send us a message.</p>",
+        "help_button_label": "Contact Us",
+        "help_button_link": "shopify://pages/contact"
+      }
+    },
+    "newsletter": {
+      "type": "ts-newsletter",
+      "settings": {
+        "eyebrow": "Newsletter",
+        "heading": "Join the adventure",
+        "text": "<p>Safari stories, travel tips and new arrivals, straight to your inbox.</p>",
+        "button_label": "Subscribe",
+        "success_message": "Thanks for subscribing! Look out for our next email.",
+        "disclaimer": "",
+        "layout": "split",
+        "background": "none",
+        "image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg",
+        "image_style": "overlay",
+        "overlay_opacity": 55,
+        "link_label": "Read our safari blog",
+        "link_url": "shopify://pages/safari-blog"
+      },
+      "blocks": {
+        "stories": {
+          "type": "feature",
+          "settings": {
+            "icon": "compass",
+            "text": "Safari stories"
+          }
+        },
+        "tips": {
+          "type": "feature",
+          "settings": {
+            "icon": "globe",
+            "text": "Travel tips"
+          }
+        },
+        "arrivals": {
+          "type": "feature",
+          "settings": {
+            "icon": "tag",
+            "text": "New arrivals"
+          }
+        }
+      },
+      "block_order": [
+        "stories",
+        "tips",
+        "arrivals"
+      ]
+    },
+    "logos": {
+      "type": "ts-logos",
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/houston_safari_club_logo.png",
+            "name": "Houston Safari Club",
+            "link": ""
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wild_sheep_foundation_logo.png",
+            "name": "Wild Sheep Foundation",
+            "link": ""
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/age_africa_logo.png",
+            "name": "Advancing Girls Education In Africa",
+            "link": ""
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/dallas_safari_club_logo.png",
+            "name": "Dallas Safari Club",
+            "link": ""
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Texas_Parks_Wildlife_logo.png",
+            "name": "Texas Parks & Wildlife",
+            "link": ""
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sethule_orphans_trust_logo.png",
+            "name": "Sethule Orphans Trust",
+            "link": ""
+          }
+        },
+        "logo_7": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/safari_club_international_logo.png",
+            "name": "Safari Club International",
+            "link": ""
+          }
+        },
+        "logo_8": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/texas_wildlife_association_logo.png",
+            "name": "Texas Wildlife Association",
+            "link": ""
+          }
+        },
+        "logo_9": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wildlife_conservation_society_logo.png",
+            "name": "Wildlife Conservation Society",
+            "link": ""
+          }
+        },
+        "logo_10": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/WWF_world_wildlife_fund.png",
+            "name": "World Wildlife Fund",
+            "link": ""
+          }
+        },
+        "logo_11": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wateraid_logo.png",
+            "name": "WaterAid America",
+            "link": ""
+          }
+        },
+        "logo_12": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sierra_club_logo.png",
+            "name": "Sierra Club",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6",
+        "logo_7",
+        "logo_8",
+        "logo_9",
+        "logo_10",
+        "logo_11",
+        "logo_12"
+      ],
+      "settings": {
+        "heading": "Member & Supporter of These Fine Organizations",
+        "text": "",
+        "duration": 40,
+        "grayscale": true,
+        "tinted": false
+      }
+    }
+  },
+  "order": [
+    "policy",
+    "newsletter",
+    "logos"
+  ]
+}

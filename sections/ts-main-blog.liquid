@@ -1,0 +1,141 @@
+{%- paginate blog.articles by section.settings.articles_per_page -%}
+<div class="container">
+    {%- if section.settings.show_tags and blog.all_tags.size > 0 -%}
+        <nav class="ts-blog__tags" aria-label="{{ blog.title | escape }}">
+            <ul>
+                <li><a href="{{ blog.url }}"{% unless current_tags %} class="active" aria-current="page"{% endunless %}>{{ 'blogs.article.read_all' | t }}</a></li>
+                {%- for tag in blog.all_tags -%}
+                    {%- assign is_active = false -%}
+                    {%- if current_tags contains tag -%}{%- assign is_active = true -%}{%- endif -%}
+                    <li><a href="{{ blog.url }}/tagged/{{ tag | handleize }}"{% if is_active %} class="active" aria-current="page"{% endif %}>{{ tag }}</a></li>
+                {%- endfor -%}
+            </ul>
+        </nav>
+    {%- endif -%}
+
+    {%- if blog.articles.size > 0 -%}
+        <div class="ts-card-grid" style="--col: {{ section.settings.columns }}">
+            {%- for article in blog.articles -%}
+                <article class="ts-post">
+                    {%- if article.image -%}
+                        <div class="ts-post__media">
+                            {%- assign image_alt = article.image.alt | default: article.title -%}
+                            {{ article.image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '400, 600, 800', sizes: '(min-width: 1025px) 380px, (min-width: 768px) 50vw, 100vw', alt: image_alt }}
+                        </div>
+                    {%- elsif section.settings.fallback_image != blank -%}
+                        <div class="ts-post__media ts-post__media--fallback">
+                            {{ section.settings.fallback_image | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}
+                        </div>
+                    {%- endif -%}
+                    <div class="ts-post__body">
+                        {%- if section.settings.show_date or section.settings.show_author -%}
+                            <p class="ts-post__meta">
+                                {%- if section.settings.show_date -%}
+                                    <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%B %-d, %Y' }}</time>
+                                {%- endif -%}
+                                {%- if section.settings.show_date and section.settings.show_author %} · {% endif -%}
+                                {%- if section.settings.show_author -%}{{ article.author }}{%- endif -%}
+                            </p>
+                        {%- endif -%}
+                        <h2 class="ts-post__title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+                        {%- if section.settings.show_excerpt -%}
+                            {%- if article.excerpt != blank -%}
+                                {%- assign excerpt = article.excerpt -%}
+                            {%- else -%}
+                                {%- assign excerpt = article.content -%}
+                            {%- endif -%}
+                            {%- assign excerpt = excerpt | strip_html | strip | truncatewords: 24 -%}
+                            {%- if excerpt != blank -%}
+                                <p class="ts-post__excerpt">{{ excerpt }}</p>
+                            {%- endif -%}
+                        {%- endif -%}
+                        <span class="ts-post__link">{{ 'blogs.article.read_more' | t }}</span>
+                    </div>
+                </article>
+            {%- endfor -%}
+        </div>
+
+        {%- if paginate.pages > 1 -%}
+            <nav class="ts-pagination" aria-label="{{ 'general.breadcrumbs.page' | t: current_page: paginate.current_page, pages: paginate.pages }}">
+                <ul>
+                    {%- if paginate.previous.is_link -%}
+                        <li><a href="{{ paginate.previous.url }}" aria-label="Previous page">&larr;</a></li>
+                    {%- endif -%}
+                    {%- for part in paginate.parts -%}
+                        {%- if part.is_link -%}
+                            <li><a href="{{ part.url }}">{{ part.title }}</a></li>
+                        {%- elsif part.title == paginate.current_page -%}
+                            <li><span aria-current="page">{{ part.title }}</span></li>
+                        {%- else -%}
+                            <li><span>{{ part.title }}</span></li>
+                        {%- endif -%}
+                    {%- endfor -%}
+                    {%- if paginate.next.is_link -%}
+                        <li><a href="{{ paginate.next.url }}" aria-label="Next page">&rarr;</a></li>
+                    {%- endif -%}
+                </ul>
+            </nav>
+        {%- endif -%}
+    {%- else -%}
+        <p class="ts-empty">{{ 'blogs.sidebar.empty' | t }}</p>
+    {%- endif -%}
+</div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Blog Posts",
+  "tag": "section",
+  "class": "ts-section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "articles_per_page",
+      "label": "Articles per page",
+      "min": 3,
+      "max": 24,
+      "step": 3,
+      "default": 9
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns on desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show tag filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "Show excerpt",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "fallback_image",
+      "label": "Image for articles without one",
+      "info": "Shown on a tinted background, e.g. the TAG® Safari badge"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,1037 @@
+<script type="text/javascript">
+  //BOOSTER APPS COMMON JS CODE
+  window.BoosterApps = window.BoosterApps || {};
+  window.BoosterApps.common = window.BoosterApps.common || {};
+  window.BoosterApps.common.shop = {
+    permanent_domain: '{{ shop.permanent_domain }}',
+    currency: {{ shop.currency | json }},
+    money_format: {{ shop.money_format | json }},
+    id: 50546802880
+  };
+  {% if customer %}
+  window.BoosterApps.common.customer = {
+    id: {{ customer.id | json }},
+    tags: {{ customer.tags | json }},
+    email: {{customer.email | json}},
+    accepts_marketing: {{ customer.accepts_marketing | json }},
+    first_name: {{ customer.first_name | json }},
+    last_name: {{ customer.last_name | json }},
+    orders_count: {{ customer.orders_count | json }},
+    tags: {{ customer.tags | json }},
+    total_spent: {{ customer.total_spent | json }}
+  };
+  {% endif %}
+  window.BoosterApps.common.template = '{{ template | split: "." | first }}';
+  window.BoosterApps.common.cart = {{ cart | json }};
+  window.BoosterApps.common.vapid_public_key = "BO5RJ2FA8w6MW2Qt1_MKSFtoVpVjUMLYkHb2arb7zZxEaYGTMuLvmZGabSHj8q0EwlzLWBAcAU_0z-z9Xps8kF8=";
+
+  window.BoosterApps.cs_app_url = "/apps/ba_fb_app";
+
+  window.BoosterApps.global_config = {{shop.metafields.ba_global.config | json}};
+
+
+
+
+    window.BoosterApps.bis_config = {{shop.metafields.ba_bis.config | json}};
+    window.BoosterApps.bis_config.domain_name = "boosterapps.com/apps/back-in-stock";
+
+  for (i = 0; i < window.localStorage.length; i++) {
+    var key = window.localStorage.key(i);
+    if (key.slice(0,10) === "ba_msg_sub") {
+      window.BoosterApps.can_update_cart = true;
+    }
+  }
+
+  {% if product %}
+    if (window.BoosterApps.common.template == 'product'){
+      window.BoosterApps.common.product = {
+        id: {{product.id}}, price: {{product.price}}, handle: '{{product.handle}}', tags: '{{ product.tags}}',
+        available: {{product.available}}, title: "{{product.title}}", variants: {{product.variants | json}}
+      };
+      window.BoosterApps.common.product.review_data = {{product.metafields.ba_rev.review_data | json}};
+    }
+  {% endif %}
+
+</script>
+
+<script type="text/javascript">
+  !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){"undefined"!==typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"===typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="https://boosterapps.com/apps/back-in-stock/packs/",r(r.s=19)}({19:function(e,t){}});
+//# sourceMappingURL=application-ad7371c519d11e7fca41.js.map
+
+  //Global snippet for Booster Apps
+  //this is updated automatically - do not edit manually.
+
+  function loadScript(src, done) {
+    var js = document.createElement('script');
+    js.src = src;
+    js.defer = true;
+    js.onload = function(){done();};
+    js.onerror = function(){
+      done(new Error('Failed to load script ' + src));
+    };
+    document.head.appendChild(js);
+  }
+
+  function browserSupportsAllFeatures() {
+    return window.Promise && window.fetch && window.Symbol;
+  }
+
+  if (browserSupportsAllFeatures()) {
+    main();
+  } else {
+    loadScript('https://polyfill.io/v3/polyfill.min.js?features=Promise,fetch', main);
+  }
+
+  function main(err) {
+    //isolate the scope
+    (function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global.baMet = factory());
+}(this, (function () { 'use strict';
+
+  function isUndefined(value) {
+    return value === undefined;
+  }
+
+  function isNull(value) {
+    return value === null;
+  }
+
+  function isObject(value) {
+    return value === Object(value);
+  }
+
+  function isArray(value) {
+    return Array.isArray(value);
+  }
+
+  function isDate(value) {
+    return value instanceof Date;
+  }
+
+  function isBlob(value) {
+    return (
+      value &&
+      typeof value.size === 'number' &&
+      typeof value.type === 'string' &&
+      typeof value.slice === 'function'
+    );
+  }
+
+  function isFile(value) {
+    return (
+      isBlob(value) &&
+      (typeof value.lastModifiedDate === 'object' ||
+        typeof value.lastModified === 'number') &&
+      typeof value.name === 'string'
+    );
+  }
+
+  function isFormData(value) {
+    return value instanceof FormData;
+  }
+
+  var baCookies = {
+    set: function (name, value, ttl, domain) {
+      var expires = "";
+      var cookieDomain = "";
+      if (ttl) {
+        var date = new Date();
+        date.setTime(date.getTime() + (ttl * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+      }
+      if (domain) {
+        cookieDomain = "; domain=" + domain;
+      }
+      document.cookie = name + "=" + escape(value) + expires + cookieDomain + "; path=/";
+    },
+    get: function (name) {
+      var i, c;
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for (i = 0; i < ca.length; i++) {
+        c = ca[i];
+        while (c.charAt(0) === ' ') {
+          c = c.substring(1, c.length);
+        }
+        if (c.indexOf(nameEQ) === 0) {
+          return unescape(c.substring(nameEQ.length, c.length));
+        }
+      }
+      return null;
+    }
+  };
+
+  /////////////////////////////////////
+
+  var config = {
+    urlPrefix: "",
+    visitsUrl: window.BoosterApps.global_config.proxy_paths.app_metrics,
+    baEvsUrl:  window.BoosterApps.global_config.proxy_paths.app_metrics,
+    page: null,
+    useBeacon: false, //TODO re-enable for when we use SQS or lambda
+    startOnReady: true,
+    applyVisits: true,
+    cookies: true,
+    cookieDomain: null,
+    headers: {},
+    visitParams: {},
+    withCredentials: false,
+    uat: window.BoosterApps.global_config.uat,
+    pv: window.BoosterApps.global_config.pv
+  };
+
+  var baMet = window.baMet || {};
+
+  baMet.configure = function (options) {
+    for (var key in options) {
+      if (options.hasOwnProperty(key)) {
+        config[key] = options[key];
+      }
+    }
+  };
+
+  // legacy
+  baMet.configure(baMet);
+
+  var visitId, visitorId, register;
+  var visitTtl = 30; // 30 minutes after last visit
+  var visitorTtl = 2 * 365 * 24 * 60; // 2 years
+  var isReady = false;
+  var queue = [];
+  var canStringify = typeof(JSON) !== "undefined" && typeof(JSON.stringify) !== "undefined";
+  var baEvQueue = [];
+  var atcAppliedTime;
+  var ttlAtcApplied = 3; // seconds
+
+  function visitsUrl() {
+    return config.urlPrefix + config.visitsUrl;
+  }
+
+  function baEvsUrl() {
+    return config.urlPrefix + config.baEvsUrl;
+  }
+
+  function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+  }
+
+  function canApplyNow() {
+    return (config.useBeacon || config.applyNow) && isEmpty(config.headers) && canStringify && typeof(window.navigator.sendBeacon) !== "undefined" && !config.withCredentials;
+  }
+
+  baMet.setCookie = function(name, value, ttl) {
+    baCookies.set(name, value, ttl, config.cookieDomain || config.domain);
+  }
+
+  baMet.getCookie = function(name) {
+    return baCookies.get(name);
+  }
+
+  baMet.destroyCookie = function(name){
+    baCookies.set(name, "", -1);
+  }
+
+  baMet.log = function(message) {
+    if (baMet.getCookie("baMet_debug")) {
+      window.console.log(message);
+    }
+  }
+
+  function setReady() {
+    var callback;
+    while ((callback = queue.shift())) {
+      callback();
+    }
+    isReady = true;
+  }
+
+  function ready(callback) {
+    if (isReady) {
+      callback();
+    } else {
+      queue.push(callback);
+    }
+  }
+
+  function matchesSelector(element, selector) {
+    var matches = element.matches ||
+      element.matchesSelector ||
+      element.mozMatchesSelector ||
+      element.msMatchesSelector ||
+      element.oMatchesSelector ||
+      element.webkitMatchesSelector;
+
+    if (matches) {
+      return matches.apply(element, [selector]);
+    } else {
+      baMet.log("Unable to match");
+      return false;
+    }
+  }
+
+  baMet.onBaEv = function(baEvName, selector, callback) {
+    document.addEventListener(baEvName, function (e) {
+      if (matchesSelector(e.target, selector)) {
+        callback(e);
+      }
+    });
+  }
+
+  function getParsedCart(cartToken, data){
+    var items = [];
+    for (i = 0; i < data.items.length; i++) {
+      var item = data.items[i];
+      items.push({
+        id: item.id, properties: item.properties,
+        quantity: item.quantity, variant_id: item.variant_id,
+        product_id: item.product_id, final_price: item.final_price,
+        image: item.image, handle: item.handle, title: item.title
+      });
+    }
+    var parsedData = {
+      token: cartToken,
+      total_price: data.total_price,
+      items: items,
+      currency: data.currency
+    };
+    return parsedData;
+  }
+
+  function handleCartAjaxEvent(request){
+    if (request._url.indexOf('/cart/add') >= 0){
+      baMet.getCartData(function(data){
+        baMet.log(data);
+        baMet.setCartAttributes(true, data);
+      });
+    } else {
+      baMet.setCartAttributes(true, request.response);
+    }
+  }
+
+  function handleCartFetchEvent(){
+    baMet.getCartData(function(data){
+      baMet.setCartAttributes(true, data);
+    });
+  }
+
+  //https://stackoverflow.com/questions/5202296/add-a-hook-to-all-ajax-requests-on-a-page
+  function catchCartAjax() {
+    baMet.log('awaiting ajax cart update')
+    try{
+      var origOpen = XMLHttpRequest.prototype.open;
+      XMLHttpRequest.prototype.open = function() {
+        this.addEventListener('load', function() {
+          if(this._url && this._url.search(/cart.*js/) >= 0 && this._method != "GET"){
+            baMet.log('its a cart endpoint thats not a get request');
+            //change.js, clear.js, updates.js returns full cart items
+            //add.js returns the single cart item
+            handleCartAjaxEvent(this);
+          }
+        });
+        origOpen.apply(this, arguments);
+      };
+    } catch (e) {
+      // do nothing
+      baMet.log(e);
+      baMet.log('error catching ajax cart')
+    }
+  }
+
+  function catchCartFetch(){
+    //catch fetch api calls
+    baMet.log('awaiting cart fetch update')
+    var oldFetch = fetch;
+    fetch = function(url, options) {
+      var handleAjax = false;
+      if ((url && url.search(/cart.*js/) >= 0 && url.search("ba_request") < 0) && (options.method == "POST" || options.method == "PUT")){
+        console.log("caught a fetch cart event", url, options)
+        var handleAjax = true;
+      }
+
+      var promise = oldFetch(url, options);
+    	promise.then(
+        function(value) {
+          if (handleAjax){
+            handleCartFetchEvent();
+          }
+        }
+      );
+      return promise;
+    }
+  }
+
+  function setParsedCart(cartToken){
+    window.BoosterApps.common.cart = getParsedCart(cartToken, window.BoosterApps.common.cart);
+  }
+
+  // http://beeker.io/jquery-document-ready-equivalent-vanilla-javascript
+  function documentReady(callback) {
+    document.readyState === "interactive" || document.readyState === "complete" ? callback() : document.addEventListener("DOMContentLoaded", callback);
+  }
+
+  // https://stackoverflow.com/a/2117523/1177228
+  function generateId() {
+    return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+      return v.toString(16)
+    }) + Math.floor(Date.now()).toString();
+  }
+
+  function generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+  function saveBaEvQueue() {
+    if (config.cookies && canStringify) {
+      baMet.setCookie("baMet_baEvs", JSON.stringify(baEvQueue), 1);
+    }
+  }
+
+
+  // from rails-ujs
+  function csrfToken() {
+    var meta = document.querySelector("meta[name=csrf-token]");
+    return meta && meta.content;
+  }
+
+  function csrfParam() {
+    var meta = document.querySelector("meta[name=csrf-param]");
+    return meta && meta.content;
+  }
+
+  baMet.sendRequest = function(url, data, success) {
+    fetch(url, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(function(res){
+      console.log(res)
+      success(res);
+    })
+    .catch(function(res){ console.log(res) })
+  }
+
+  baMet.getCartData = function(success) {
+    fetch("/cart.js?ba_request=1", {
+      method: "GET",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(function(response){
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' + response.status);
+        return;
+      }
+
+      response.json().then(function(data) {
+        success(data);
+      });
+    })
+    .catch(function(err){ console.log(err) })
+  }
+
+  function baEvData(baEv) {
+    var data = baEv;
+  	data.common = window.BoosterApps.common;
+    return data;
+  }
+
+  function applyBaEv(baEv) {
+    ready( function () {
+      baMet.sendRequest(baEvsUrl(), baEvData(baEv), function() {
+        // remove from queue
+        for (var i = 0; i < baEvQueue.length; i++) {
+          if (baEvQueue[i].id == baEv.id) {
+            baEvQueue.splice(i, 1);
+            break;
+          }
+        }
+        saveBaEvQueue();
+      });
+    });
+  }
+
+  function applyBaEvNow(baEv) {
+    ready( function () {
+      var data = baEvData(baEv);
+      var param = csrfParam();
+      var token = csrfToken();
+      if (param && token) { data[param] = token; }
+      // stringify so we keep the type
+      //TODO - delete uneeded from data
+      window.navigator.sendBeacon(baEvsUrl(), JSON.stringify(data));
+    });
+  }
+
+  function sendData(data){
+    if (canApplyNow()) {
+      applyBaEvNow(data);
+    } else {
+      baEvQueue.push(data);
+      saveBaEvQueue();
+      setTimeout( function () {
+        applyBaEv(data);
+      }, 1000);
+    }
+  }
+
+  function page() {
+    return window.location.pathname;
+  }
+
+  function presence(str) {
+    return (str && str.length > 0) ? str : null;
+  }
+
+  function cleanObject(obj) {
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        if (obj[key] === null) {
+          delete obj[key];
+        }
+      }
+    }
+    return obj;
+  }
+
+  function baEvProperties(e) {
+    var target = e.target;
+    return cleanObject({
+      tag: target.tagName.toLowerCase(),
+      id: presence(target.id),
+      "class": presence(target.className),
+      page: page()
+    });
+  }
+
+  function cleanIntegers(obj){
+    for (var key in obj){
+      if (isNaN(obj[key]) == false){
+        obj[key] = parseInt(obj[key]);
+      }
+    }
+    return obj;
+  }
+
+  function registerPageView(additionalProperties) {
+    var properties = baMet.page_hash;
+
+    if (additionalProperties) {
+      for(var propName in additionalProperties) {
+        if (additionalProperties.hasOwnProperty(propName)) {
+          properties[propName] = additionalProperties[propName];
+        }
+      }
+    }
+    baMet.register("page_view", properties, "ba");
+  }
+
+  function updateSession() {
+    var visitId    = baMet.getVisitId();
+    var visitorId  = baMet.getVisitorId();
+    var regenerate = (visitorId && !visitId);
+    baMet.log("current visit_token");
+    baMet.log(visitId);
+
+    var currentD = new Date();
+    var middnightD = new Date();
+    var limitSecBeforeMiddnight = 2; // update session if before midnight less than 2 secs
+    middnightD.setUTCHours(23,59,59,59);
+
+    var secondsBeforeMidnight = (middnightD - currentD)/1000; // in seconds
+    var ttl = secondsBeforeMidnight/60; // in minutes
+
+    if(ttl > visitTtl || secondsBeforeMidnight < limitSecBeforeMiddnight) { ttl = visitTtl };
+
+    //Visitor token exists but no visit token
+    if (!visitId || secondsBeforeMidnight < limitSecBeforeMiddnight) {
+      visitId = generateId();
+      baMet.setCookie("baMet_visit", visitId, ttl);
+      if (regenerate){
+        syncSession();
+      }
+    } else {
+      baMet.setCookie("baMet_visit", visitId, ttl);
+    }
+
+    return visitId;
+  }
+
+  function syncSession(){
+    var rightNow = new Date();
+    var utcDate  = rightNow.toISOString().slice(0,10);
+
+    var data = {
+      shop_id: window.BoosterApps.common.shop.id,
+      name: "create_visit",
+      params: {
+        user_agent: navigator.userAgent,
+        landing_page: window.location.href,
+        screen_width: window.screen.width,
+        screen_height: window.screen.height
+      },
+      timestamp:  parseInt(rightNow.getTime()),
+      date: utcDate,
+      hour: rightNow.getUTCHours(),
+      id: generateId(),
+      visit_token: baMet.getVisitId(),
+      visitor_token: baMet.getVisitorId(),
+      app: 'ba'
+    };
+
+    // referrer
+    if (document.referrer.length > 0) {
+      data.referrer = document.referrer;
+    }
+
+    for (var key in config.visitParams) {
+      if (config.visitParams.hasOwnProperty(key)) {
+        data[key] = config.visitParams[key];
+      }
+    }
+
+    baMet.log(data);
+    if (config.uat){
+      sendData(data);
+    }
+  }
+
+  function createVisit() {
+    var isReady = false;
+
+    //sets baMet_visit cookie for session. Updates 30 mins after last activity or at midnight
+    var visitId = updateSession();
+
+    var visitorId = baMet.getVisitorId();
+
+    if (config.cookies === false || config.applyVisits === false) {
+      baMet.log("Visit applying disabled");
+      setReady();
+    } else if (visitId && visitorId) {
+      // TODO keep visit alive?
+      baMet.log("Active visit");
+      setReady();
+    } else {
+      // make sure cookies are enabled
+      if (baMet.getCookie("baMet_visit")) {
+        baMet.log("Visit started");
+
+        if (!visitorId) {
+          visitorId = generateId();
+          //baMet.setCookie("baMet_visitor", visitorId, visitorTtl);
+          localStorage.setItem("baMet_visitor", visitorId);
+        }
+
+        syncSession();
+        setReady();
+      } else {
+        baMet.log("baCookies disabled");
+        setReady();
+      }
+    }
+  }
+
+  baMet.syncCsId = function (){
+    var csId = baMet.getCookie("baMet_cs_id");
+    if (!csId){csId = generateId();}
+    baMet.setCookie('baMet_cs_id', csId, 20160);
+    return csId;
+  };
+
+  baMet.getVisitId = baMet.getVisitToken = function () {
+    return baMet.getCookie("baMet_visit");
+  };
+
+  baMet.getVisitorId = baMet.getVisitorToken = function () {
+    return localStorage.getItem("baMet_visitor");
+  };
+
+  baMet.getCustomerId = function () {
+    return localStorage.getItem("baMet_customer_id");
+  };
+
+  baMet.isAdmin = function(){
+    return baMet.getCookie("ba_admin");
+  };
+
+  baMet.reset = function () {
+    baMet.destroyCookie("baMet_visit");
+    //baMet.destroyCookie("baMet_visitor");
+    localStorage.removeItem("baMet_visitor");
+    baMet.destroyCookie("baMet_baEvs");
+    baMet.destroyCookie("baMet_apply");
+    return true;
+  };
+
+  baMet.debug = function (enabled) {
+    if (enabled === false) {
+      baMet.destroyCookie("baMet_debug");
+    } else {
+      baMet.setCookie("baMet_debug", "t", 365 * 24 * 60); // 1 year
+    }
+    return true;
+  };
+
+  baMet.getBrowserInfo = function () {
+    var module = {
+      options: [],
+      header: [navigator.platform, navigator.userAgent, navigator.appVersion, navigator.vendor, window.opera],
+      dataos: [
+        { name: 'Windows Phone', value: 'Windows Phone', version: 'OS' },
+        { name: 'Windows', value: 'Win', version: 'NT' },
+        { name: 'iPhone', value: 'iPhone', version: 'OS' },
+        { name: 'iPad', value: 'iPad', version: 'OS' },
+        { name: 'Android', value: 'Android', version: 'Android' },
+        { name: 'Mac OS', value: 'Mac', version: 'OS X' },
+        { name: 'Linux', value: 'Linux', version: 'rv' },
+        { name: 'Palm', value: 'Palm', version: 'PalmOS' }
+      ],
+      databrowser: [
+        { name: 'Chrome', value: 'Chrome', version: 'Chrome' },
+        { name: 'Firefox', value: 'Firefox', version: 'Firefox' },
+        { name: 'Safari', value: 'Safari', version: 'Version' },
+        { name: 'Internet Explorer', value: 'MSIE', version: 'MSIE' },
+        { name: 'Opera', value: 'Opera', version: 'Opera' },
+        { name: 'BlackBerry', value: 'CLDC', version: 'CLDC' },
+        { name: 'Mozilla', value: 'Mozilla', version: 'Mozilla' }
+      ],
+      init: function () {
+        var agent = this.header.join(' '),
+          os = this.matchItem(agent, this.dataos),
+          browser = this.matchItem(agent, this.databrowser),
+          timezoneOffset = (new Date().getTimezoneOffset() / 60);
+        return { os: os, browser: browser, tz_offset: timezoneOffset};
+      },
+      matchItem: function (string, data) {
+        var i = 0, j = 0, regex, regexv, match, matches, version;
+        for (i = 0; i < data.length; i += 1) {
+          regex = new RegExp(data[i].value, 'i');
+          match = regex.test(string);
+          if (match) {
+            regexv = new RegExp(data[i].version + '[- /:;]([\\d._]+)', 'i');
+            matches = string.match(regexv);
+            version = '';
+            if (matches) { if (matches[1]) { matches = matches[1]; } }
+            if (matches) {
+              matches = matches.split(/[._]+/);
+              for (j = 0; j < matches.length; j += 1) {
+                if (j === 0) {
+                  version += matches[j] + '.';
+                } else {
+                  version += matches[j];
+                }
+              }
+            } else {
+              version = '0';
+            }
+            return data[i].name;
+          }
+        }
+        return { name: 'unknown', version: 0 };
+      }
+    };
+    return module.init();
+  }
+
+  baMet.register = function (name, properties, appName) {
+    try{
+    var rightNow = new Date();
+    var utcDate  = rightNow.toISOString().slice(0,10);
+
+    // generate unique id
+    var baEv = {
+      shop_id: window.BoosterApps.common.shop.id,
+      name: name,
+      params: properties || {},
+      timestamp: parseInt(rightNow.getTime()),
+      date: utcDate,
+      hour: rightNow.getUTCHours(),
+      id: generateId(),
+      app: appName
+    };
+
+    ready( function () {
+      if (config.cookies && !baMet.getVisitId()) {
+        createVisit();
+      }
+
+      ready( function () {
+        baMet.log(baEv);
+
+        baEv.visit_token = baMet.getVisitId();
+        baEv.visitor_token = baMet.getVisitorId();
+
+        sendData(baEv);
+      });
+    });
+    } catch (e) {
+      // do nothing
+      baMet.log(e);
+      baMet.log('error applying')
+    }
+    return true;
+  };
+
+  baMet.registerAppClicks = function () {
+    baMet.onBaEv("click", ".ba-met-handler", function (e) {
+      try {
+        var target = e.target;
+        var name   = target.getAttribute("data-ba-met-name");
+        if (name){
+          var properties  = baEvProperties(e);
+          var appName     = target.getAttribute("data-ba-met-app");
+          properties.text = properties.tag == "input" ? target.value : (target.textContent || target.innerText || target.innerHTML).replace(/[\s\r\n]+/g, " ").trim();
+          properties.href = target.href;
+
+          var extras 	    = target.getAttribute("data-ba-met-extras");
+          if (extras){
+            var extras = cleanNumbers(JSON.parse(extras));
+            for(var propName in extras) {
+              if (extras.hasOwnProperty(propName)) {
+                properties[propName] = extras[propName];
+              }
+            }
+          }
+          baMet.register(name, properties, appName);
+        }
+      } catch(ex) {
+         baMet.log('applyAppClicks exception')
+         baMet.log(ex)
+      }
+    });
+  };
+
+  baMet.registerAtc = function(){
+    baMet.onBaEv("click", ".product-form__cart-submit, #AddToCart-product-template, .product-atc-btn, .product-menu-button.product-menu-button-atc, .button-cart, .product-add, .add-to-cart input, .btn-addtocart, [name=add]", function (e) {
+      atcAppliedTime = Date.now();
+      var target = e.target;
+      var properties = baEvProperties(e);
+      properties.text = properties.tag == "input" ? target.value : (target.textContent || target.innerText || target.innerHTML).replace(/[\s\r\n]+/g, " ").trim();
+      properties.href = target.href;
+      baMet.register("atc", properties, "ba");
+    });
+  }
+
+  baMet.saveBaCartData = function(baCartData){
+    if (canStringify) {
+      var currentCartData = baMet.getBaCartData();
+      currentCartData.push(baCartData);
+      localStorage.setItem("baMet_cartData", JSON.stringify(currentCartData));
+    }
+  }
+
+  baMet.getBaCartData = function(){
+    try {
+      var rawCartStorage = localStorage.getItem("baMet_cartData");
+      if (rawCartStorage){
+        var expirationTime = parseInt(new Date().getTime()) - 259200000;
+        var parsedCart = JSON.parse(localStorage.getItem("baMet_cartData"));
+        var finalCart = parsedCart.filter(function(v){ return parseInt(v.ts) > expirationTime}).reverse();
+        localStorage.setItem("baMet_cartData", JSON.stringify(finalCart));
+        return finalCart;
+      } else {
+        return [];
+      }
+    } catch (e) {
+      // do nothing
+      baMet.log(e);
+      baMet.log('error getting ba')
+    }
+  }
+
+  //save the cart token when we sync with our backend
+  baMet.updateBaCart = function(forceUpdate){
+
+    baMet.log('checking if cart is out of sync with db');
+    var cartToken       = baMet.getCookie('cart');
+    var baCartToken     = baMet.getCookie('ba_cart_token');
+    var latestCartData  = localStorage.getItem("baMet_latest_cart");
+    var syncedCartData  = localStorage.getItem("baMsg_synced_cart");
+    var cartNeedsSync   = (forceUpdate || (latestCartData != syncedCartData) || cartToken != baCartToken);
+
+    if(cartNeedsSync == false){
+      baMet.log('cart is in sync with db');
+      return;
+    }
+
+    if (window.BoosterApps.cs_app_url && config.uat != true){
+      //LEGACY LOGIC -> Remove as soon as possible.
+      var cartUid = baMet.syncCsId();
+      var latestCart = JSON.parse(latestCartData);
+      if (latestCart.token != cartToken){
+        var oldUid = latestCart.token;
+      } else {
+        var oldUid = "";
+      }
+      var data = {
+        action_type: 'track_cart', cart_json: latestCart,
+        visit_token: baMet.getVisitId(), visitor_token: baMet.getVisitorToken(),
+        cart_uid: cartUid, old_uid: oldUid
+      }
+      baMet.sendRequest(window.BoosterApps.cs_app_url, data, function(){
+        baMet.log('posted to app url')
+        localStorage.setItem("baMsg_synced_cart", latestCartData);
+      });
+    }
+
+
+    baMet.setCookie("ba_cart_token", cartToken, 2880);
+    if (config.uat){
+      baMet.register("update_cart_db", {}, "ba");
+    }
+    //todo - set as callback
+    localStorage.setItem("baMsg_synced_cart", latestCartData);
+    baMet.log('cart token changed -posting to the API from here');
+  }
+
+  //Function is to keep the Shopify and Ba carts in sync
+  //Fires on page load and when an ajax post to the cart api is fired.
+  baMet.setCartAttributes = function(ajaxUpdate, ajaxCartData){
+   try {
+       baMet.log('setting cart attributes');
+       //transform the ajaxCartData to json if needed
+       if (typeof ajaxCartData === 'string'){
+         var cartJson = JSON.parse(ajaxCartData);
+       } else {
+         var cartJson = ajaxCartData;
+       }
+
+       var shopifyCartToken = baMet.getCookie('cart');
+       var latestCart = localStorage.getItem("baMet_latest_cart");
+       if (!shopifyCartToken && !latestCart){return;}
+
+       //get the Shopify cart data from api response or liquid on page load.
+       if (ajaxUpdate) {
+         baMet.log('set cart attributes identified ajax cart update');
+         baMet.log(cartJson);
+         var parsedCartData = getParsedCart(shopifyCartToken, cartJson);
+         window.BoosterApps.common.cart = parsedCartData;
+       } else {
+         //unify cart data
+         setParsedCart(shopifyCartToken);
+         var parsedCartData = window.BoosterApps.common.cart;
+       }
+       localStorage.setItem("baMet_latest_cart", JSON.stringify(parsedCartData));
+
+       //identify any conversion items in the cart
+       var items = parsedCartData.items;
+       var baCartData = baMet.getBaCartData();
+       if (baCartData.length > 0){
+         var baConversionData = {
+             visit_token: baMet.getVisitId(), visitor_token: baMet.getVisitorToken(),
+             items: [], cart_token: shopifyCartToken
+         };
+         for (i = 0; i < items.length; i++) {
+             var item = items[i];
+             if (item) {
+                 var baDataItem = baCartData.find(function (el) {
+                     return el.id == item.id
+                 })
+                 if (baDataItem) {
+                     item.ba_conversion_data = baDataItem;
+                     baConversionData.items.push(baDataItem);
+                     window.BoosterApps.common.has_ba_conversion = true;
+                 }
+             }
+         }
+         var baConversionDataString = JSON.stringify(baConversionData);
+       } else {
+         var baConversionDataString;
+       }
+
+       var currentCoversionData = localStorage.getItem("ba_conversion_data");
+       window.BoosterApps.common.ba_conversion_data = baConversionData;
+
+       //determine if we need to sync the cart
+       if ((currentCoversionData != baConversionDataString) || (window.BoosterApps.common.ba_conversion_data && window.BoosterApps.common.template == 'cart')) {
+           baMet.log('saving ba_conversion_data');
+           localStorage.setItem("ba_conversion_data", baConversionDataString);
+           baMet.updateBaCart(true);
+       } else {
+           baMet.updateBaCart(false);
+       }
+   } catch(ex) {
+      baMet.log('setCartAttributes exception')
+      baMet.log(ex)
+   }
+  }
+
+  baMet.registerAll = function() {
+    if (document.referrer.indexOf('/admin/shops/') > 0){
+      baMet.setCookie('ba_admin', 1, visitorTtl);
+    }
+    baMet.setCartAttributes(false, {});
+    baMet.registerAppClicks();
+  };
+
+  // push baEvs from queue
+  try {
+    baEvQueue = JSON.parse(baMet.getCookie("baMet_baEvs") || "[]");
+  } catch (e) {
+    // do nothing
+  }
+
+
+  for (var i = 0; i < baEvQueue.length; i++) {
+    applyBaEv(baEvQueue[i]);
+  }
+
+  catchCartAjax();
+  catchCartFetch();
+
+  baMet.start = function () {
+    createVisit();
+
+    baMet.start = function () {};
+    if (config.page_views){
+      registerPageView();
+    }
+
+    if (window.BoosterApps.common.customer && !window.baMet.getCustomerId()){
+      baMet.register("sync_customer", {}, "ba");
+      //todo -set as callback
+      localStorage.setItem("baMet_customer_id", window.BoosterApps.common.customer.id);
+    }
+  };
+
+
+  documentReady(function() {
+    if (config.startOnReady) {
+      baMet.start();
+    }
+  });
+
+  baMet.page_hash = {
+    url: window.location.href,
+    page: page(),
+    template: window.BoosterApps.common.template
+  }
+
+  return baMet;
+
+})));
+
+baMet.registerAll();
+
+    (function() {
+
+
+
+        loadScript(window.BoosterApps.global_config.asset_urls.bis.init_js, function(){});
+
+
+    })();
+
+  }
+</script>

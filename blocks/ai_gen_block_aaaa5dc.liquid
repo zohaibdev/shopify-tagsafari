@@ -1,0 +1,238 @@
+{% doc %}
+  @prompt
+    Create a complete replacement Our Mission page block for TAG Safari with a refined safari-inspired editorial brand-journal layout, not a generic landing page, image gallery, or statistics dashboard. Preserve EVERY sentence of the original copy supplied below and use ALL FIVE existing images at their exact URLs. Divide the copy into readable paragraphs and purposeful chapters; do not summarize, omit, invent claims, or replace the text with placeholders. Use warm cream, sandy beige, muted brown, and deep olive, generous whitespace, large editorial headings, fine brown dividers, and narrow readable text columns. Alternate image/text placement on desktop; on mobile stack each image directly above its related text. Keep maps fully visible and faces uncropped. Avoid sliders, decorative cards, heavy animations, and text overlays on photographs.
+    
+    Layout: 1. People-first opening: large headline “Helping Africa Through Trade, Not Aid” beside the square smiling sisters photograph, with opening mission paragraphs. 2. Trade chapter: full Africa relief map beside all trade statistics and their explanation; a large typographic “1%” accent, not a stat card. Present figures as part of the supplied mission statement, not newly verified current statistics. 3. Origins chapter titled “Our roots in Bulawayo”: entire Zimbabwe road map beside all city, origins, historical sites, and safari-route copy. 4. People chapter: children photograph beside the two-founder/2006 employment account. 5. Craftsmanship chapter: cotton-picking photograph beside all materials, cotton, manufacturing and packaging copy. Both cotton and children photographs are 400x400: display at modest sizes, never full-width stretched banners. 6. Transition chapter: all Houston relocation and pledge copy in a spacious text layout. 7. Closing deep-olive chapter with cream text: all worldwide artisan expansion and present-day employment copy, then the full thank-you and large closing mission statement. Preserve the story's meaning and chronological flow, using the original paragraph order wherever practical.
+    
+    Images:
+    Africa map: https://cdn.shopify.com/s/files/1/0505/4680/2880/files/africa_relief_map.jpg
+    Zimbabwe road map: https://cdn.shopify.com/s/files/1/0505/4680/2880/files/zimbabwe_road_map.png
+    Smiling sisters: https://cdn.shopify.com/s/files/1/0505/4680/2880/files/smiling_sisters_africa.jpg
+    Cotton picking: https://cdn.shopify.com/s/files/1/0505/4680/2880/files/TAG_Safari_Clothing_Gear_Style_Zimbabwe_Long_Staple_Cotton_Our_Mission_O.jpg
+    Children: https://cdn.shopify.com/s/files/1/0505/4680/2880/files/TAG_Safari_Clothing_Gear_Style_Zimbabwe_Children_Our_Mission_O.jpg
+    
+    Exact original copy to include in full:
+    “Helping Africa Through Trade, Not Aid”
+    This was our focus when TAG Safari first came to life.
+    Trade is the key to long-term, sustainable economic growth and development in Africa.
+    Trade is also crucial to communities across the world...
+    Africa currently contributes to about 2% of all world trade, down from 3.5% in 1970.
+    If Africa was able to increase its share of world trade from 2% back to 3%, that one percent increase would generate about $70 billion of additional income annually for Africa, or about three times the total aid assistance Africa gets from the entire world.
+    Our origins began in the late 80s in the vibrant city of Bulawayo, located on a plain in the south-west of Zimbabwe near the watershed between the Zambezi River and the Limpopo drainage basins.
+    Bulawayo is a central location on Zimbabwe’s road network.
+    Since its formation in the late 1800s, it has been the industrial center of Zimbabwe.
+    It is the country’s main producer of textiles, food products, electronics, and more.
+    Besides being the lead producer of goods in the country, Bulawayo is also home to many famous historical sites, as well as the Natural History Museum of Zimbabwe.
+    Safari adventure travelers must pass through Bulawayo when traveling between Matobo Hills National Park and Victoria Falls, and Harare or Hwange National Park.
+    It is the perfect spot to serve safari travelers with their needs.
+    We started with just two enterprising immigrants, but by 2006, we had employed over a hundred local Zimbabweans and supported all their families and communities.
+    The materials we use are locally grown and processed in Zimbabwe, including the cotton we use.
+    It is among the finest in the world - long-staple cotton.
+    It’s hand-picked, spun into high-quality yarn, woven into durable wear and dyed in a range of natural colors for safari and outdoor wear.
+    Our packaging, labels, and boxes are also locally made in Zimbabwe from tree pulp, giving these items an authentic local stamp.
+    Due to war, economic upheaval and various restrictions and controls, we picked up and moved our operations to Houston, Texas, USA in 2011.
+    Our pledge to all our employees in Zimbabwe, their families, and communities was to rebuild and continue to grow TAG Safari and help uplift more families.
+    As we worked to establish our operations in the US, it became apparent that there are so many more communities of artisans in the world that we could be helping by introducing their creations into the world market.
+    We were so inspired by the artisans we met in the US that our mission for TAG Safari has expanded to encompass communities all across the world.
+    In the past few years, we have been able to reach out to communities in India and countries in South America & Southeast Asia, as well as expand our reach in Africa, in our effort to help people worldwide.
+    This also includes talented creators and artisans in our new home - USA.
+    By sourcing handcrafted artisanal products that support local economies, we have been able to change the lives of many families around the globe.
+    Many of our products we make available to the world market are still handcrafted in Zimbabwe.
+    Today, several hundred local Zimbabweans are employed by TAG Safari.
+    We look forward to welcoming those from countries all over the world to be part of our growing network.
+    On behalf of all the men, women and children who are part of the TAG Safari family, we give you a heartfelt THANK YOU for your support to fulfill our new mission:
+    Helping & Empowering Communities Worldwide Through Trade”
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-mission-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+    color: {{ block.settings.text_color }};
+    background: {{ block.settings.cream }};
+    font-family: {{ block.settings.body_font.family }}, {{ block.settings.body_font.fallback_families }};
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .ai-mission-{{ ai_gen_id }} *,
+  .ai-mission-{{ ai_gen_id }} *::before,
+  .ai-mission-{{ ai_gen_id }} *::after { box-sizing: border-box; }
+  .ai-mission-{{ ai_gen_id }}__chapter { padding: clamp(42px, 7vw, 94px) clamp(20px, 6vw, 84px); border-bottom: 1px solid {{ block.settings.rule_color }}; }
+  .ai-mission-{{ ai_gen_id }}__intro { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(240px, .8fr); gap: clamp(32px, 7vw, 100px); align-items: center; }
+  .ai-mission-{{ ai_gen_id }}__row { display: grid; grid-template-columns: minmax(220px, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 7vw, 100px); align-items: center; }
+  .ai-mission-{{ ai_gen_id }}__row--reverse { grid-template-columns: minmax(0, 1.1fr) minmax(220px, .9fr); }
+  .ai-mission-{{ ai_gen_id }}__row--reverse .ai-mission-{{ ai_gen_id }}__media { order: 2; }
+  .ai-mission-{{ ai_gen_id }}__row--reverse .ai-mission-{{ ai_gen_id }}__copy { order: 1; }
+  .ai-mission-{{ ai_gen_id }}__copy { max-width: 620px; }
+  .ai-mission-{{ ai_gen_id }}__copy p { margin: 0 0 1.1em; }
+  .ai-mission-{{ ai_gen_id }}__copy p:last-child { margin-bottom: 0; }
+  .ai-mission-{{ ai_gen_id }}__eyebrow { display: block; margin: 0 0 16px; color: {{ block.settings.brown }}; font-size: 11px; font-weight: 600; letter-spacing: .16em; line-height: 1.4; text-transform: uppercase; }
+  .ai-mission-{{ ai_gen_id }} h1,
+  .ai-mission-{{ ai_gen_id }} h2 { margin: 0 0 24px; color: {{ block.settings.olive }}; font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }}; font-weight: 500; line-height: 1.14; letter-spacing: -.035em; }
+  .ai-mission-{{ ai_gen_id }} h1 { font-size: clamp(38px, 5.7vw, 76px); }
+  .ai-mission-{{ ai_gen_id }} h2 { font-size: clamp(30px, 4vw, 52px); }
+  .ai-mission-{{ ai_gen_id }}__media { width: 100%; }
+  .ai-mission-{{ ai_gen_id }}__media img { display: block; width: 100%; height: auto; object-fit: contain; }
+  .ai-mission-{{ ai_gen_id }}__media--square { max-width: 440px; justify-self: center; }
+  .ai-mission-{{ ai_gen_id }}__media--square img { aspect-ratio: 1 / 1; object-fit: cover; }
+  .ai-mission-{{ ai_gen_id }}__media--map { max-width: 520px; justify-self: center; }
+  .ai-mission-{{ ai_gen_id }}__media--small { max-width: 320px; justify-self: center; }
+  .ai-mission-{{ ai_gen_id }}__placeholder { display: flex; min-height: 240px; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: {{ block.settings.sand }}; color: {{ block.settings.brown }}; text-align: center; font-size: 13px; }
+  .ai-mission-{{ ai_gen_id }}__placeholder svg { display: block; width: min(100%, 300px); height: auto; }
+  .ai-mission-{{ ai_gen_id }}__trade { display: grid; grid-template-columns: minmax(240px, 1fr) minmax(0, 1fr); gap: clamp(32px, 7vw, 100px); align-items: center; }
+  .ai-mission-{{ ai_gen_id }}__accent { display: block; margin: 20px 0 14px; color: {{ block.settings.olive }}; font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }}; font-size: clamp(86px, 14vw, 176px); font-weight: 500; letter-spacing: -.08em; line-height: .9; }
+  .ai-mission-{{ ai_gen_id }}__transition { max-width: 760px; margin: 0 auto; }
+  .ai-mission-{{ ai_gen_id }}__closing { background: {{ block.settings.olive }}; color: {{ block.settings.closing_text }}; border: 0; }
+  .ai-mission-{{ ai_gen_id }}__closing .ai-mission-{{ ai_gen_id }}__eyebrow,
+  .ai-mission-{{ ai_gen_id }}__closing h2 { color: {{ block.settings.closing_text }}; }
+  .ai-mission-{{ ai_gen_id }}__closing h2 { font-size: clamp(34px, 5vw, 66px); }
+  .ai-mission-{{ ai_gen_id }}__closing-quote { display: block; margin-top: 36px; max-width: 980px; font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }}; font-size: clamp(34px, 5.8vw, 76px); font-weight: 500; line-height: 1.12; letter-spacing: -.04em; }
+  @media screen and (max-width: 749px) {
+    .ai-mission-{{ ai_gen_id }}__chapter { padding: 42px 22px; }
+    .ai-mission-{{ ai_gen_id }}__intro,
+    .ai-mission-{{ ai_gen_id }}__row,
+    .ai-mission-{{ ai_gen_id }}__row--reverse,
+    .ai-mission-{{ ai_gen_id }}__trade { grid-template-columns: 1fr; gap: 28px; }
+    .ai-mission-{{ ai_gen_id }}__row--reverse .ai-mission-{{ ai_gen_id }}__media,
+    .ai-mission-{{ ai_gen_id }}__row--reverse .ai-mission-{{ ai_gen_id }}__copy { order: initial; }
+    .ai-mission-{{ ai_gen_id }}__media--square { max-width: 340px; }
+    .ai-mission-{{ ai_gen_id }}__media--small { max-width: 280px; }
+    .ai-mission-{{ ai_gen_id }}__media--map { max-width: 100%; }
+  }
+{% endstyle %}
+
+<div class="ai-mission-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <section class="ai-mission-{{ ai_gen_id }}__chapter">
+    <div class="ai-mission-{{ ai_gen_id }}__intro">
+      <div class="ai-mission-{{ ai_gen_id }}__copy">
+        <span class="ai-mission-{{ ai_gen_id }}__eyebrow">TAG Safari · Our mission</span>
+        <h1>Helping Africa Through Trade, Not Aid</h1>
+        <p>This was our focus when TAG Safari first came to life.</p>
+        <p>Trade is the key to long-term, sustainable economic growth and development in Africa.</p>
+        <p>Trade is also crucial to communities across the world...</p>
+      </div>
+      <div class="ai-mission-{{ ai_gen_id }}__media ai-mission-{{ ai_gen_id }}__media--square">
+        <img src="https://cdn.shopify.com/s/files/1/0505/4680/2880/files/smiling_sisters_africa.jpg" alt="Smiling sisters in Africa" loading="lazy" width="900" height="900">
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-mission-{{ ai_gen_id }}__chapter">
+    <div class="ai-mission-{{ ai_gen_id }}__trade">
+      <div class="ai-mission-{{ ai_gen_id }}__media ai-mission-{{ ai_gen_id }}__media--map">
+        <img src="https://cdn.shopify.com/s/files/1/0505/4680/2880/files/africa_relief_map.jpg" alt="Relief map of Africa" loading="lazy" width="1200" height="900">
+      </div>
+      <div class="ai-mission-{{ ai_gen_id }}__copy">
+        <span class="ai-mission-{{ ai_gen_id }}__eyebrow">Trade · The opportunity</span>
+        <span class="ai-mission-{{ ai_gen_id }}__accent" aria-label="One percent">1%</span>
+        <p>Africa currently contributes to about 2% of all world trade, down from 3.5% in 1970.</p>
+        <p>If Africa was able to increase its share of world trade from 2% back to 3%, that one percent increase would generate about $70 billion of additional income annually for Africa, or about three times the total aid assistance Africa gets from the entire world.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-mission-{{ ai_gen_id }}__chapter">
+    <div class="ai-mission-{{ ai_gen_id }}__row ai-mission-{{ ai_gen_id }}__row--reverse">
+      <div class="ai-mission-{{ ai_gen_id }}__media ai-mission-{{ ai_gen_id }}__media--map">
+        <img src="https://cdn.shopify.com/s/files/1/0505/4680/2880/files/zimbabwe_road_map.png" alt="Road map of Zimbabwe" loading="lazy" width="1200" height="900">
+      </div>
+      <div class="ai-mission-{{ ai_gen_id }}__copy">
+        <span class="ai-mission-{{ ai_gen_id }}__eyebrow">Zimbabwe · Where it began</span>
+        <h2>Our roots in Bulawayo</h2>
+        <p>Our origins began in the late 80s in the vibrant city of Bulawayo, located on a plain in the south-west of Zimbabwe near the watershed between the Zambezi River and the Limpopo drainage basins.</p>
+        <p>Bulawayo is a central location on Zimbabwe’s road network.</p>
+        <p>Since its formation in the late 1800s, it has been the industrial center of Zimbabwe.</p>
+        <p>It is the country’s main producer of textiles, food products, electronics, and more.</p>
+        <p>Besides being the lead producer of goods in the country, Bulawayo is also home to many famous historical sites, as well as the Natural History Museum of Zimbabwe.</p>
+        <p>Safari adventure travelers must pass through Bulawayo when traveling between Matobo Hills National Park and Victoria Falls, and Harare or Hwange National Park.</p>
+        <p>It is the perfect spot to serve safari travelers with their needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-mission-{{ ai_gen_id }}__chapter">
+    <div class="ai-mission-{{ ai_gen_id }}__row">
+      <div class="ai-mission-{{ ai_gen_id }}__media ai-mission-{{ ai_gen_id }}__media--small">
+        <img src="https://cdn.shopify.com/s/files/1/0505/4680/2880/files/TAG_Safari_Clothing_Gear_Style_Zimbabwe_Children_Our_Mission_O.jpg" alt="Children in Zimbabwe" loading="lazy" width="400" height="400">
+      </div>
+      <div class="ai-mission-{{ ai_gen_id }}__copy">
+        <span class="ai-mission-{{ ai_gen_id }}__eyebrow">People · Growing together</span>
+        <p>We started with just two enterprising immigrants, but by 2006, we had employed over a hundred local Zimbabweans and supported all their families and communities.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-mission-{{ ai_gen_id }}__chapter">
+    <div class="ai-mission-{{ ai_gen_id }}__row ai-mission-{{ ai_gen_id }}__row--reverse">
+      <div class="ai-mission-{{ ai_gen_id }}__media ai-mission-{{ ai_gen_id }}__media--small">
+        <img src="https://cdn.shopify.com/s/files/1/0505/4680/2880/files/TAG_Safari_Clothing_Gear_Style_Zimbabwe_Long_Staple_Cotton_Our_Mission_O.jpg" alt="Cotton being picked in Zimbabwe" loading="lazy" width="400" height="400">
+      </div>
+      <div class="ai-mission-{{ ai_gen_id }}__copy">
+        <span class="ai-mission-{{ ai_gen_id }}__eyebrow">Craftsmanship · Made close to home</span>
+        <h2>Made with care, from the ground up</h2>
+        <p>The materials we use are locally grown and processed in Zimbabwe, including the cotton we use.</p>
+        <p>It is among the finest in the world - long-staple cotton.</p>
+        <p>It’s hand-picked, spun into high-quality yarn, woven into durable wear and dyed in a range of natural colors for safari and outdoor wear.</p>
+        <p>Our packaging, labels, and boxes are also locally made in Zimbabwe from tree pulp, giving these items an authentic local stamp.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-mission-{{ ai_gen_id }}__chapter">
+    <div class="ai-mission-{{ ai_gen_id }}__transition">
+      <span class="ai-mission-{{ ai_gen_id }}__eyebrow">A new chapter · 2011</span>
+      <h2>Carrying the pledge forward</h2>
+      <div class="ai-mission-{{ ai_gen_id }}__copy">
+        <p>Due to war, economic upheaval and various restrictions and controls, we picked up and moved our operations to Houston, Texas, USA in 2011.</p>
+        <p>Our pledge to all our employees in Zimbabwe, their families, and communities was to rebuild and continue to grow TAG Safari and help uplift more families.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-mission-{{ ai_gen_id }}__chapter ai-mission-{{ ai_gen_id }}__closing">
+    <div class="ai-mission-{{ ai_gen_id }}__transition">
+      <span class="ai-mission-{{ ai_gen_id }}__eyebrow">Worldwide · Our growing family</span>
+      <h2>Many communities, one shared future</h2>
+      <div class="ai-mission-{{ ai_gen_id }}__copy">
+        <p>As we worked to establish our operations in the US, it became apparent that there are so many more communities of artisans in the world that we could be helping by introducing their creations into the world market.</p>
+        <p>We were so inspired by the artisans we met in the US that our mission for TAG Safari has expanded to encompass communities all across the world.</p>
+        <p>In the past few years, we have been able to reach out to communities in India and countries in South America &amp; Southeast Asia, as well as expand our reach in Africa, in our effort to help people worldwide.</p>
+        <p>This also includes talented creators and artisans in our new home - USA.</p>
+        <p>By sourcing handcrafted artisanal products that support local economies, we have been able to change the lives of many families around the globe.</p>
+        <p>Many of our products we make available to the world market are still handcrafted in Zimbabwe.</p>
+        <p>Today, several hundred local Zimbabweans are employed by TAG Safari.</p>
+        <p>We look forward to welcoming those from countries all over the world to be part of our growing network.</p>
+        <p>On behalf of all the men, women and children who are part of the TAG Safari family, we give you a heartfelt THANK YOU for your support to fulfill our new mission:</p>
+      </div>
+      <strong class="ai-mission-{{ ai_gen_id }}__closing-quote">Helping &amp; Empowering Communities Worldwide Through Trade</strong>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Our mission journal",
+  "settings": [
+    { "type": "range", "id": "desktop_width_percent", "label": "Desktop width", "min": 50, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "cream", "label": "Cream background", "default": "#F5F0E6" },
+    { "type": "color", "id": "sand", "label": "Sandy beige", "default": "#E6D9C5" },
+    { "type": "color", "id": "text_color", "label": "Body text", "default": "#40392F" },
+    { "type": "color", "id": "olive", "label": "Deep olive", "default": "#343B2B" },
+    { "type": "color", "id": "brown", "label": "Muted brown", "default": "#665442" },
+    { "type": "color", "id": "rule_color", "label": "Dividers", "default": "#B9AA95" },
+    { "type": "color", "id": "closing_text", "label": "Closing text", "default": "#F5F0E6" },
+    { "type": "header", "content": "Typography" },
+    { "type": "font_picker", "id": "heading_font", "label": "Headings", "default": "merriweather_n4" },
+    { "type": "font_picker", "id": "body_font", "label": "Body", "default": "poppins_n4" }
+  ],
+  "presets": [
+    { "name": "Our mission journal" }
+  ],
+  "tag": null,
+  "class": "our-mission-journal"
+}
+{% endschema %}

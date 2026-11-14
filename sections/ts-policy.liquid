@@ -1,0 +1,255 @@
+{%- assign policy_title = section.settings.title | default: page.title -%}
+{%- assign toc_blocks = section.blocks | where: 'type', 'section' -%}
+
+<div class="ts-policy">
+    <header class="ts-policy__hero">
+        <div class="container">
+            {%- if section.settings.eyebrow != blank -%}
+                <span class="ts-eyebrow">{{ section.settings.eyebrow }}</span>
+            {%- endif -%}
+            <h1 class="ts-policy__title">{{ policy_title }}</h1>
+            {%- if section.settings.summary != blank -%}
+                <div class="ts-policy__summary">{{ section.settings.summary }}</div>
+            {%- endif -%}
+            {%- if section.settings.last_updated != blank -%}
+                <p class="ts-policy__updated">{%- render 'ts-icon', icon: 'clock' -%}<span>{{ section.settings.last_updated }}</span></p>
+            {%- endif -%}
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="ts-policy__layout{% if section.settings.show_toc == false or toc_blocks.size < 2 %} ts-policy__layout--single{% endif %}">
+            {%- if section.settings.show_toc and toc_blocks.size > 1 -%}
+                {%- comment -%} Built from the section headings below; collapsible on small screens. {%- endcomment -%}
+                <aside class="ts-policy__toc">
+                    <details class="ts-policy__toc-box" open data-policy-toc>
+                        <summary class="ts-policy__toc-title">{{ section.settings.toc_title }}</summary>
+                        <ol class="ts-policy__toc-list">
+                            {%- for block in toc_blocks -%}
+                                <li><a href="#policy-{{ block.id }}">{{ block.settings.heading }}</a></li>
+                            {%- endfor -%}
+                        </ol>
+                    </details>
+                </aside>
+            {%- endif -%}
+
+            <article class="ts-policy__content">
+                {%- for block in section.blocks -%}
+                    {%- case block.type -%}
+                        {%- when 'intro' -%}
+                            <div class="ts-policy__intro ts-rte" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+                        {%- when 'section' -%}
+                            <section class="ts-policy__section" id="policy-{{ block.id }}" aria-labelledby="policy-{{ block.id }}-title" {{ block.shopify_attributes }}>
+                                <h2 class="ts-policy__heading" id="policy-{{ block.id }}-title">{{ block.settings.heading }}</h2>
+                                <div class="ts-rte">{{ block.settings.text }}</div>
+                            </section>
+                        {%- when 'notice' -%}
+                            <aside class="ts-notice ts-notice--{{ block.settings.style }}" {{ block.shopify_attributes }}>
+                                <span class="ts-notice__icon">
+                                    {%- case block.settings.style -%}
+                                        {%- when 'warning' -%}{%- render 'ts-icon', icon: 'shield' -%}
+                                        {%- when 'success' -%}{%- render 'ts-icon', icon: 'check' -%}
+                                        {%- else -%}{%- render 'ts-icon', icon: 'chat' -%}
+                                    {%- endcase -%}
+                                </span>
+                                <div>
+                                    {%- if block.settings.title != blank -%}<p class="ts-notice__title">{{ block.settings.title }}</p>{%- endif -%}
+                                    <div class="ts-rte">{{ block.settings.text }}</div>
+                                </div>
+                            </aside>
+                    {%- endcase -%}
+                {%- endfor -%}
+
+                {%- if section.settings.help_heading != blank -%}
+                    <div class="ts-help-card">
+                        <span class="ts-help-card__icon">{%- render 'ts-icon', icon: 'phone' -%}</span>
+                        <div class="ts-help-card__body">
+                            <h2 class="ts-help-card__title">{{ section.settings.help_heading }}</h2>
+                            {%- if section.settings.help_text != blank -%}<div class="ts-rte">{{ section.settings.help_text }}</div>{%- endif -%}
+                        </div>
+                        {%- if section.settings.help_button_label != blank and section.settings.help_button_link != blank -%}
+                            <a href="{{ section.settings.help_button_link }}" class="th-btn ts-help-card__button">{{ section.settings.help_button_label }}</a>
+                        {%- endif -%}
+                    </div>
+                {%- endif -%}
+            </article>
+        </div>
+    </div>
+</div>
+
+{%- if section.settings.show_toc and toc_blocks.size > 1 -%}
+<script>
+  // Policy contents: mark the heading in view, and collapse the list on small screens.
+  (function() {
+    var root = document.getElementById('shopify-section-{{ section.id }}');
+    if (!root) return;
+    var toc = root.querySelector('[data-policy-toc]');
+    var mobile = window.matchMedia('(max-width: 1024px)');
+    var syncOpen = function() { toc.open = !mobile.matches; };
+    syncOpen();
+    mobile.addEventListener('change', syncOpen);
+    toc.addEventListener('click', function(event) {
+      if (event.target.closest('a') && mobile.matches) toc.open = false;
+    });
+    if (!('IntersectionObserver' in window)) return;
+    var links = {};
+    toc.querySelectorAll('a').forEach(function(a) { links[a.getAttribute('href').slice(1)] = a; });
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        Object.keys(links).forEach(function(id) { links[id].removeAttribute('aria-current'); });
+        links[entry.target.id].setAttribute('aria-current', 'true');
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    root.querySelectorAll('.ts-policy__section').forEach(function(s) { observer.observe(s); });
+  })();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Policy Page",
+  "tag": "section",
+  "class": "ts-section ts-section--flush",
+  "max_blocks": 40,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Policies"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "info": "Leave blank to use the page title"
+    },
+    {
+      "type": "richtext",
+      "id": "summary",
+      "label": "Summary"
+    },
+    {
+      "type": "text",
+      "id": "last_updated",
+      "label": "Last updated text",
+      "info": "e.g. Last updated: 1 October 2026"
+    },
+    {
+      "type": "header",
+      "content": "Table of contents"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_toc",
+      "label": "Show table of contents",
+      "info": "Built from the section headings. Shown when there are 2 or more sections.",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "toc_title",
+      "label": "Contents heading",
+      "default": "On this page"
+    },
+    {
+      "type": "header",
+      "content": "Help card"
+    },
+    {
+      "type": "text",
+      "id": "help_heading",
+      "label": "Heading",
+      "default": "Need help? Contact us"
+    },
+    {
+      "type": "richtext",
+      "id": "help_text",
+      "label": "Text",
+      "default": "<p>Our team is happy to help with any questions about this policy.</p>"
+    },
+    {
+      "type": "text",
+      "id": "help_button_label",
+      "label": "Button label",
+      "default": "Contact Us"
+    },
+    {
+      "type": "url",
+      "id": "help_button_link",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "intro",
+      "name": "Introduction",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Introduce this policy.</p>"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "name": "Policy section",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Section heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Section text.</p>"
+        }
+      ]
+    },
+    {
+      "type": "notice",
+      "name": "Notice box",
+      "settings": [
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "default": "info",
+          "options": [
+            { "value": "info", "label": "Information" },
+            { "value": "warning", "label": "Important" },
+            { "value": "success", "label": "Good to know" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Highlight something important.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Policy Page",
+      "blocks": [
+        { "type": "intro" },
+        { "type": "section" },
+        { "type": "section" }
+      ]
+    }
+  ]
+}
+{% endschema %}

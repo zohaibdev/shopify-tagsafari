@@ -1,0 +1,244 @@
+{
+  "sections": {
+    "policy": {
+      "type": "ts-policy",
+      "blocks": {
+        "notice_1": {
+          "type": "notice",
+          "settings": {
+            "style": "info",
+            "title": "Exchanges",
+            "text": "<p>Any Exchanges are handled by phone or email, using a new order to expedite exchanges. Please Call or Email us for Exchange Order</p>"
+          }
+        },
+        "intro_2": {
+          "type": "intro",
+          "settings": {
+            "text": "<p>If, for any reason, you are not satisfied with your online purchase and wish to return it, please contact Tag Safari for a Return Authorization Number (RMA):</p>"
+          }
+        },
+        "section_3": {
+          "type": "section",
+          "settings": {
+            "heading": "For Customers in the United States",
+            "text": "<ul><li><strong>Call Toll Free:</strong> 1-800-824-2703 or 713-688-3424 (Mon–Fri, 10am–5pm CST)</li><li><strong>Email:</strong> <a href=\"mailto:Orders@tagsafari.com\">Orders@tagsafari.com</a></li><li><strong>Chat:</strong> Website Chat Hours (Mon–Fri, 10am–5pm CST). Chats initiated after these times will be sent to us as emails, and we will respond to you via email or call you.</li></ul>"
+          }
+        },
+        "section_4": {
+          "type": "section",
+          "settings": {
+            "heading": "For Customers in Canada and International Countries",
+            "text": "<ul><li><strong>Call:</strong> 1-713-688-3424 (Mon–Fri, 10am–5pm CST)</li><li><strong>Email:</strong> <a href=\"mailto:Orders@tagsafari.com\">Orders@tagsafari.com</a></li><li><strong>Chat:</strong> Website Chat Hours (Mon–Fri, 10am–5pm CST). Chats initiated after these times will be sent to us as emails, and we will respond to you via email or call you.</li></ul><p>Returns should be sent by a Trackable shipping Method To:</p><p>Tag Safari Returns Department</p><p>1800 W. Grand River Ave.</p><p>Okemos, MI 48864</p><ul><li>Write the Return Merchandise Authorization number we give you on the Outside of the Returning Package</li><li>Include a copy of your Order in the package, indicating which items you are returning for Refund</li><li>Use a Shipping method with Tracking to safeguard your Return</li><li>Returns sent without first obtaining a (RMA) will incur a 10% restocking fee</li><li>A 10% restocking fee may apply for all orders returned after 30 days of purchase</li><li>COST OF SHIPPING IS NON REFUNDABLE</li><li>Refunds take 7-10 days from the receipt of the item at the US distribution facility.</li><li>Refunds are processed in the same currency and using the same exchange rate as your original order; they will include duties and taxes originally paid.</li><li>We will refund the purchase price of the items you return, after they are received in our warehouse. Clothing must be unused, unworn, have original tags and packaging to receive a FULL refund.</li></ul><p>TAG Safari values your support and wants you to be fully satisfied with the clothing and accessories you purchase.</p><p>We only use natural hand picked cotton materials that suit the most rugged conditions, and our accessories are made from genuine game skins obtained from renewable sustainable resources.</p>"
+          }
+        },
+        "section_5": {
+          "type": "section",
+          "settings": {
+            "heading": "Defective Products",
+            "text": "<p>Our facilities and team members employ strict quality controls and monitoring. In rare cases, you may receive an item that appears to be defective. If so, please call Team TAG Customer Service at <strong>1-800-824-2703 or</strong> send an email to <a href=\"mailto:orders@tagsafari.com\">Orders@tagsafari.com</a> within 24 hours of receiving the product.</p>"
+          }
+        },
+        "section_6": {
+          "type": "section",
+          "settings": {
+            "heading": "Shipping Damage",
+            "text": "<p>If you receive our items and the packaging is damaged, please take ample photographs with your mobile phone of the damaged areas and resulting damage to the product immediately.</p><p>Within 24 hours of receiving or sooner, please contact the mail carrier, USPS, UPS, DHL etc to report the Damaged Package, then contact TAG Safari to report the damaged package, email the pics of the damaged packaging and contents, and send us your message with details to Orders@tagsafari.com.</p><p>Our Team TAG Customer Service will quickly work with you to get your order, undamaged in your hands as fast as possible.</p><p>You may also call Team TAG Customer Service at <strong>1-800-824-2703 or</strong> send an email to <a href=\"mailto:Orders@tagsafari.com\">Orders@tagsafari.com</a></p><p>Please review our <a href=\"/pages/our-100-satisfaction-guarantee\">100% Money Back Satisfaction Guarantee</a> for more information.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "notice_1",
+        "intro_2",
+        "section_3",
+        "section_4",
+        "section_5",
+        "section_6"
+      ],
+      "settings": {
+        "eyebrow": "Policies",
+        "title": "Exchange & Return Policy",
+        "summary": "",
+        "last_updated": "",
+        "show_toc": true,
+        "toc_title": "On this page",
+        "help_heading": "Need help? Contact us",
+        "help_text": "<p>Our team is happy to help. Call us toll free on <a href=\"tel:+18008242703\">1-800-824-2703</a> or send us a message.</p>",
+        "help_button_label": "Contact Us",
+        "help_button_link": "shopify://pages/contact"
+      }
+    },
+    "newsletter": {
+      "type": "ts-newsletter",
+      "settings": {
+        "eyebrow": "Newsletter",
+        "heading": "Join the adventure",
+        "text": "<p>Safari stories, travel tips and new arrivals, straight to your inbox.</p>",
+        "button_label": "Subscribe",
+        "success_message": "Thanks for subscribing! Look out for our next email.",
+        "disclaimer": "",
+        "layout": "split",
+        "background": "none",
+        "image": "shopify://shop_images/Rhino_Banner_3_475e8443-1e2d-4c48-8d4a-1e831bc8a6e3.jpg",
+        "image_style": "overlay",
+        "overlay_opacity": 55,
+        "link_label": "Read our safari blog",
+        "link_url": "shopify://pages/safari-blog"
+      },
+      "blocks": {
+        "stories": {
+          "type": "feature",
+          "settings": {
+            "icon": "compass",
+            "text": "Safari stories"
+          }
+        },
+        "tips": {
+          "type": "feature",
+          "settings": {
+            "icon": "globe",
+            "text": "Travel tips"
+          }
+        },
+        "arrivals": {
+          "type": "feature",
+          "settings": {
+            "icon": "tag",
+            "text": "New arrivals"
+          }
+        }
+      },
+      "block_order": [
+        "stories",
+        "tips",
+        "arrivals"
+      ]
+    },
+    "logos": {
+      "type": "ts-logos",
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/houston_safari_club_logo.png",
+            "name": "Houston Safari Club",
+            "link": ""
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wild_sheep_foundation_logo.png",
+            "name": "Wild Sheep Foundation",
+            "link": ""
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/age_africa_logo.png",
+            "name": "Advancing Girls Education In Africa",
+            "link": ""
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/dallas_safari_club_logo.png",
+            "name": "Dallas Safari Club",
+            "link": ""
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Texas_Parks_Wildlife_logo.png",
+            "name": "Texas Parks & Wildlife",
+            "link": ""
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sethule_orphans_trust_logo.png",
+            "name": "Sethule Orphans Trust",
+            "link": ""
+          }
+        },
+        "logo_7": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/safari_club_international_logo.png",
+            "name": "Safari Club International",
+            "link": ""
+          }
+        },
+        "logo_8": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/texas_wildlife_association_logo.png",
+            "name": "Texas Wildlife Association",
+            "link": ""
+          }
+        },
+        "logo_9": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wildlife_conservation_society_logo.png",
+            "name": "Wildlife Conservation Society",
+            "link": ""
+          }
+        },
+        "logo_10": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/WWF_world_wildlife_fund.png",
+            "name": "World Wildlife Fund",
+            "link": ""
+          }
+        },
+        "logo_11": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/wateraid_logo.png",
+            "name": "WaterAid America",
+            "link": ""
+          }
+        },
+        "logo_12": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sierra_club_logo.png",
+            "name": "Sierra Club",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6",
+        "logo_7",
+        "logo_8",
+        "logo_9",
+        "logo_10",
+        "logo_11",
+        "logo_12"
+      ],
+      "settings": {
+        "heading": "Member & Supporter of These Fine Organizations",
+        "text": "",
+        "duration": 40,
+        "grayscale": true,
+        "tinted": false
+      }
+    }
+  },
+  "order": [
+    "policy",
+    "newsletter",
+    "logos"
+  ]
+}

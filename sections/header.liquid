@@ -1,0 +1,800 @@
+{% assign published_locales = false %}
+{% assign enabled_currencies = false %}
+{% if shop.published_locales.size > 1 and section.settings.enable_locales %}
+  {% for locale in shop.published_locales %}
+    {% if locale.name == request.locale.name %}
+      {% capture locale_name %}{{ locale.iso_code | upcase }}{% endcapture %}
+    {% endif %}
+  {% endfor %}
+  {% assign published_locales = true %}
+{% endif %}
+{% if shop.enabled_currencies.size > 1 and section.settings.enable_multiple_currencies -%}
+  {%- assign enabled_currencies = true -%}
+{%- endif %}
+
+<div
+  data-section-id="{{ section.id }}"
+  data-section-type="header-section"
+  data-multi="{% if enabled_currencies or published_locales and locale_name != blank %}true{% else %}false{% endif %}"
+  class="clearfix"
+>
+  <header>
+    <div class="header-toolbar{% if section.settings.use_sticky %} sticky{% endif %} open-container">
+      <div class="header-customerbar {% if section.settings.include_customerbar_border %}include-border {% endif %}customer_color_scheme">
+        <div class="container full clearfix">
+          <div class="header-customerbar-container table">
+            {% unless template == 'gift_card' %}
+              {% if section.blocks != blank %}
+                <div class="customer-bullets table-cell">
+                  {% render 'social-follow' %}
+                  <div class="log_txt">
+                    <p>Authentic African Safari Clothing & Gear</p>
+                  </div>
+                  <ul>
+                    {% for block in section.blocks limit: 1 %}
+                      <li class="first" {{ block.shopify_attributes }}>
+                        {% if block.settings.info_bullets != blank %}<div id="fsb_placeholder"></div>{% endif %}
+                      </li>
+                    {% endfor %}
+                    {% if section.blocks.size > 1 %}
+                      <div class="open-container-bullets">
+                        <a
+                          tabindex="0"
+                          class="open open-btn open-bullets"
+                          title="{{ 'collections.general.open' | t }}"
+                          aria-controls="bullets"
+                          role="button"
+                          aria-label="{{ 'collections.general.open' | t }}"
+                          ><span class="icon icon-plus btn text-center"></span
+                        ></a>
+                        <div id="bullets" class="open-slide-bullets">
+                          {% for block in section.blocks offset: 1 %}
+                            <li class="borders" {{ block.shopify_attributes }}>
+                              {% if block.settings.info_bullets != blank -%}
+                                {{- block.settings.info_bullets -}}
+                              {%- else %}
+                                <p>{{ 'homepage.onboarding.promo_no_title' | t }}</p>
+                              {% endif %}
+                            </li>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    {% endif %}
+                  </ul>
+                </div>
+              {% endif %}
+              <div class="customer-links table-cell text-right">
+                <ul role="navigation" role="menubar" aria-Label="{{ 'layout.general.nav_customer' | t }}">
+                  <li class="search">
+                    <a
+                      href="{{ routes.search_url }}"
+                      class="open open-{{ section.id }}"
+                      title="{{ 'general.search.title' | t }}"
+                      aria-label="{{ 'general.search.title' | t }}"
+                      role="menuitem"
+                      ><span class="icon icon-search" aria-hidden="true"></span
+                    ></a>
+                  </li>
+                  {% if enabled_currencies %}
+                    <li
+                      class="account currencies new-select"
+                      role="menuitem"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <a
+                        class="currencies"
+                        role="button"
+                        tabindex="0"
+                        title="{{ 'general.language.currency' | t }}"
+                        data-multi="currency"
+                      >
+                        {{- cart.currency.iso_code }}
+                        {{ cart.currency.symbol -}}
+                      </a>
+                      <ul
+                        class="text-left account-dropdown options"
+                        role="menu"
+                        aria-hidden="true"
+                        aria-label="{{ 'layout.general.nav_sub' | t }}"
+                      >
+                        {% for currency in shop.enabled_currencies %}
+                          <li>
+                            <a
+                              role="button"
+                              tabindex="0"
+                              data-multi="currency"
+                              data-code="{{ currency.iso_code }}"
+                              data-footer_symbol="{{ currency.iso_code }} {{ currency.symbol }}"
+                              data-header_symbol="{{ currency.iso_code }} {{ currency.symbol }}"
+                              title="{{ currency.name | escape }}"
+                            >
+                              {{- currency.iso_code }}
+                              {{ currency.symbol -}}
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                  {% endif %}
+
+                  {% if shop.customer_accounts_enabled %}
+                    <li
+                      class="account"
+                      {% if customer %}
+                        role="menuitem" aria-haspopup="true" aria-expanded="false"
+                      {% endif %}
+                    >
+                      {% if customer %}
+                        <a
+                          href="{{ routes.account_url }}"
+                          title="{{ 'layout.customer.account' | t }}"
+                          role="button"
+                          aria-label="{{ 'layout.customer.account' | t }}"
+                          aria-expanded="false"
+                          aria-haspopup="true"
+                          ><span class="icon icon-user"></span
+                        ></a>
+                        <ul
+                          class="text-right account-dropdown"
+                          role="menu"
+                          aria-hidden="true"
+                          aria-label="{{ 'layout.general.nav_sub' | t }}"
+                        >
+                          <li role="menuitem">
+                            <a href="{{ routes.account_url }}" title="{{ 'layout.customer.account' | t }}">
+                              {{- 'layout.customer.greeting' | t }}
+                              {{ customer.first_name -}}
+                            </a>
+                          </li>
+                          <li role="menuitem">
+                            <a href="{{ routes.account_url }}" title="{{ 'layout.customer.account' | t }}">
+                              {{- 'layout.customer.account' | t -}}
+                            </a>
+                          </li>
+                          <li role="menuitem">
+                            <a href="{{ routes.account_logout_url }}" title="{{ 'layout.customer.log_out' | t }}">
+                              {{- 'layout.customer.log_out' | t -}}
+                            </a>
+                          </li>
+                        </ul>
+                      {% else %}
+                        <a
+                          href="{{ routes.account_login_url }}"
+                          title="{{ 'layout.customer.log_in' | t }}"
+                          class="relative"
+                          role="button"
+                          aria-label="{{ 'layout.customer.log_in' | t }}"
+                          ><span class="icon icon-user"></span
+                        ></a>
+                      {% endif %}
+                    </li>
+                  {% endif %}
+
+                  {% if published_locales and locale_name != blank %}
+                    <li
+                      class="account currencies new-select"
+                      role="menuitem"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <a
+                        class="currencies"
+                        role="button"
+                        tabindex="0"
+                        title="{{ 'general.language.locale' | t }}"
+                        data-multi="locale"
+                      >
+                        {{- locale_name -}}
+                      </a>
+                      <ul
+                        class="text-left account-dropdown options"
+                        aria-hidden="true"
+                        aria-label="{{ 'layout.general.nav_sub' | t }}"
+                      >
+                        {% for locale in shop.published_locales %}
+                          <li>
+                            <a
+                              role="button"
+                              tabindex="0"
+                              data-multi="locale"
+                              data-code="{{ locale.iso_code }}"
+                              data-footer_symbol="{{ locale.endonym_name }}"
+                              data-header_symbol="{{ locale.iso_code | upcase }}"
+                              title="{{ locale.endonym_name | escape }}"
+                            >
+                              {{- locale.endonym_name -}}
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                  {% endif %}
+
+
+                  <li
+                    id="cart-count-desktop"
+                    class="cart-count cart-info"
+                    {% if cart.item_count > 0 %}
+                      role="menuitem" aria-haspopup="true" aria-expanded="false"
+                    {% endif %}
+                  >
+                    <a
+                      href="{{ routes.cart_url }}"
+                      title="{{ 'layout.cart.title' | t }}"
+                      class="relative"
+                      role="button"
+                      aria-label="{{ 'layout.cart.title' | t }}"
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      ><span
+                        >
+                          <span class="icon icon-{{ section.settings.cart_icon }} relative"></span>
+                            <span class="cartCountSelector hidden">{{ cart.item_count }}</span>
+                            {% comment %}
+                            <span class="cartTotalSelector hidden">
+                              {{- cart.total_price | money_without_trailing_zeros -}}
+                            </span>
+                          {% endcomment %}
+                        </span
+                      ></a
+                    >
+                    <span id="cart-dropdown-span">
+                      {% if cart.item_count > 2 %}
+                        <ul
+                          id="cart-dropdown"
+                          {% if shop.customer_accounts_enabled %}
+                            class="account-active"
+                          {% endif %}
+                          role="menu"
+                          aria-hidden="true"
+                          aria-label="{{ 'layout.general.nav_sub' | t }}"
+                        >
+                          {% for line_item in cart.items limit: '2' %}
+                            <li class="clearfix cart-dropdown-product{% if forloop.last %} last{% endif %}">
+                              <div class="table-center item item-row clearfix">
+                                {% if line_item.variant.featured_media %}
+                                  {% assign line_item_featured_media = line_item.variant.featured_media %}
+                                {% elsif line_item.product.featured_media %}
+                                  {% assign line_item_featured_media = line_item.product.featured_media %}
+                                {% endif %}
+
+                                {% if line_item_featured_media %}
+                                  <div class="five negative-left item-thumb title-align title-align-left">
+                                    <div class="relative">
+                                      <a
+                                        href="{{ line_item.variant.url | within: collections.all }}"
+                                        title="{{ line_item.title | escape }}"
+                                        class="img-align"
+                                      >
+                                        {%- render 'image-load',
+                                          img_src: line_item_featured_media,
+                                          size: 180,
+                                          id: line_item.id,
+                                          alt: line_item.title
+                                        -%}
+                                      </a>
+                                    </div>
+                                  </div>
+                                {% endif %}
+                                <div class="{% if line_item_featured_media %}seven{% else %}twelve negative-left{% endif %} negative-right">
+                                  <div class="item-title">
+                                    <h5>
+                                      <a
+                                        href="{{ line_item.variant.url | within: collections.all }}"
+                                        title="{{ line_item.title | escape }}"
+                                      >
+                                        {{- line_item.product.title -}}
+                                        {%- if line_item.variant.title
+                                          and line_item.variant.title != 'Default Title'
+                                        -%}
+                                          <br>
+                                          <small>{{ line_item.variant.title }}</small>
+                                        {%- endif -%}
+                                      </a>
+                                    </h5>
+                                  </div>
+                                  {% if settings.reviews_enable %}
+                                    <div class="reviews item-reviews">
+                                      <!-- To add a new review app, install code between the comments -->
+                                      <span
+                                        class="shopify-product-reviews-badge"
+                                        data-id="{{ line_item.product.id }}"
+                                      ></span>
+                                      <!-- End comments -->
+                                    </div>
+                                  {% endif %}
+                                  <div class="product-price">
+                                    <h6>
+                                      {% if line_item.price > 0 -%}
+                                        {{- line_item.price | money }}
+                                        {{ 'cart.general.each' | t -}}
+                                      {%- else -%}
+                                        {{- 'products.product.free' | t -}}
+                                      {%- endif %}
+                                      {%- render 'product-unit-price', variant: line_item -%}
+                                      {% if line_item.line_level_discount_allocations != blank -%}
+                                        <small>
+                                          {%- for discount_allocation in line_item.line_level_discount_allocations -%}
+                                            <br>
+                                            {{ discount_allocation.discount_application.title }}:
+                                            {{ discount_allocation.amount | money | prepend: '-' -}}
+                                          {%- endfor -%}
+                                        </small>
+                                      {%- endif %}
+                                    </h6>
+                                  </div>
+                                  <p>
+                                    <span class="total-item-{{ line_item.id}} vendors">
+                                      {{- 'cart.general.carttotal' | t }}
+                                      {{ line_item.line_price | money -}}
+                                      {%- if line_item.total_discount > 0 %}
+                                        <s>{{ line_item.original_line_price | money }}</s>
+                                      {%- endif -%}
+                                    </span>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                          {% endfor %}
+
+                          {%- assign loop_index = 1 -%}
+                          {% for line_item in cart.items %}
+                            {%- capture total -%}{{ loop_index }}{%- endcapture -%}
+                            {%- capture loop_index -%}{{ loop_index | plus:1 }}{%- endcapture -%}
+                          {% endfor %}
+
+                          {%- assign new_total = total | plus: 0 -%}
+                          {% if new_total > 2 %}
+                            {%- assign total_count = total | minus: '2' -%}
+                            <li class="clearfix">
+                              <div class="bottompad-half">
+                                <p>{{ 'layout.cart.total_count' | t: total_count: total_count }}</p>
+                              </div>
+                            </li>
+                          {% endif %}
+
+                          <li class="clearfix">
+                            <div class="six negative-left">
+                              <form action="{{ routes.cart_url }}">
+                                <input
+                                  type="submit"
+                                  value="{{ 'products.product.ajax_view' | t }}"
+                                  class="btn auto-full-width outline"
+                                >
+                              </form>
+                            </div>
+                            <div class="six negative-right">
+                              <form action="{{ routes.cart_url }}" method="post">
+                                <input
+                                  type="submit"
+                                  name="checkout"
+                                  value="{{ 'cart.general.checkout' | t }}"
+                                  class="btn auto-full-width"
+                                >
+                              </form>
+                            </div>
+                          </li>
+                        </ul>
+                      {% endif %}
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            {% endunless %}
+          </div>
+        </div>
+      </div>
+      <div class="header-searchbar hs-desktop search open-slide">
+        <div class="container full clearfix">
+          <div class="twelve">
+            {%- render 'search', search_class: 'header text-center' -%}
+          </div>
+        </div>
+      </div>
+
+      <div class="header sticky-navigation {% if section.settings.include_bar_border %}include-border {% endif %}relative clearfix">
+        <div class="sticky-navigation-container open-container">
+          <div id="header-navigation" class="header-navigation{% if template == 'index' %} home{% endif %}">
+            <div class="header-navigation-width hidden">
+              {%- for link in linklists[section.settings.menu].links -%}
+                <span>{{ link.title }}</span>
+              {%- endfor -%}
+            </div>
+            <div class="container full clearfix">
+              <div class="twelve">
+                <div class="relative">
+                  <div class="table -width clearfix">
+                    <div class="logo table-cell">
+                      {% if section.settings.logo != blank %}
+                        <a href="{{ shop.url }}" title="{{ shop.name | escape }}" class="img-align">
+                          {% if section.settings.logo != blank %}
+                            {%- capture image_size -%}{{ section.settings.logo_max_width }}x{%- endcapture -%}
+                            <img
+                              src="{{ section.settings.logo | img_url: image_size }}"
+                              srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                              alt="{% if template == '404' %}{{ 'general.404.title' | t }} {% else %}{{ page_title | escape }} {% if current_tags %}{%- capture meta_tags -%}{%- for tag in current_tags -%}{{ tag | split: '_' | last | escape }} {%- endfor -%}{%- endcapture -%}{{ 'general.meta.tags' | t: tags: meta_tags | escape }}{% endif %}{% if current_page != 1 %}| {{ 'general.meta.page' | t: page: current_page | escape }} {% endif %}{% endif %}{% unless page_title contains shop.name or template == 'password' %}| {{ shop.name | escape }}{% endunless %}"
+                            >
+                          {% else %}
+                            {{ shop.name }}
+                          {% endif %}
+                          <h3>TAG<sup>®</sup><span> Safari</span></h3>
+                        </a>
+                      {% else %}
+                        <a href="{{ shop.url }}" title="{{ shop.name | escape }}" class="sticky-text">
+                          {{- shop.name -}}
+                        </a>
+                      {% endif %}
+                    </div>
+                    <div class="main-menu table-cell">
+                      {% render 'navigation' %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>         
+          <div class="header-searchbar search open-slide">
+            <div class="container full clearfix">
+              <div class="twelve">
+                {%- render 'search', search_class: 'header text-center' -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
+{% comment %}
+  <div class="parentsdfgas">
+  <ul class="parent">
+  {% for link in linklists[section.settings.main_linklist].links %}
+  <li  {% if link.links != blank %} class="linklists--dropdown"    {% endif %} data-link_title="{{ link.title }}"  ><a href="{{ link.url }}">{{ link.title }}</a>
+  {% if link.links != blank %}
+    <ul class="child">
+      {% for child_link in link.links %}
+      <li ><a href= "{{ child_link.url }}">{{ child_link.title }}</a>
+      {% if child_link.links != blank %}
+        <ul class="grandchild">
+        {% for grandchild_link in child_link.links %}
+          <li><a href= "{{ grandchild_link.url }}">{{ grandchild_link.title }}</a></li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  </li>
+  {% endfor %}
+  </ul>
+  </div>
+{% endcomment %}
+{% comment %}
+   <ul class="parent">
+  {% for link in linklists[section.settings.main_linklist].links %}
+  <li><a href="{{ link.url }}">{{ link.title }}</a>
+  {% if link.links != blank %}
+    <ul class="child">
+      {% for child_link in link.links %}
+      <li><a href= "{{ child_link.url }}">{{ child_link.title }}</a>
+      {% if child_link.links != blank %}
+        <ul class="grandchild">
+        {% for grandchild_link in child_link.links %}
+          <li><a href= "{{ grandchild_link.url }}">{{ grandchild_link.title }}</a></li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  </li>
+  {% endfor %}
+  </ul>
+{% endcomment %}
+
+
+<style>
+  .header-toolbar .header-customerbar .header-customerbar-container ul {
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 767px) {
+    .header-toolbar .header-customerbar .header-customerbar-container .socials {
+        display: flex;
+        justify-content: center;
+    }
+}
+</style>
+
+{% if template == 'index' or template == 'page' %}
+  <style>
+        .sub-menu-parent { position: relative; display:inline-block;padding:0 10px;}
+
+    .sub-menu {
+    list-style-type:none;
+    display:none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 200px;
+      transform: translateY(-2em);
+      z-index: 100000;
+      transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+    background:#fff;
+    padding:10px;
+    }
+
+    .sub-menu li {display:block;}
+    .sub-menu-parent:hover .sub-menu {
+    display:block;
+      z-index: 100000;
+      transform: translateY(0%);
+      transition-delay: 0s, 0s, 0.3s;
+    }
+  </style>
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "name": {{ shop.name | json }},
+      {% if shop.description != blank %}"description": {{ shop.description | json }},{% endif %}
+      {% if section.settings.logo != blank %}"logo": {%- capture image_size -%}{{ section.settings.logo_max_width }}x{%- endcapture -%}{{ section.settings.logo | img_url: image_size | prepend:'https:' | json }},{% endif %}
+      "url": {{ shop.url | append: page.url | json }},
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "telephone": {{ shop.phone | json }},
+        "contactType": "Customer service"
+    	}]{% if settings.social_twitter_link != blank or settings.social_facebook_link != blank or settings.social_pinterest_link != blank or settings.social_instagram_link != blank or settings.social_tumblr_link != blank or settings.social_youtube_link != blank or settings.social_vimeo_link != blank %},
+      "sameAs": [
+        {{ settings.social_twitter_link | json }},
+        {{ settings.social_facebook_link | json }},
+        {{ settings.social_pinterest_link | json }},
+        {{ settings.social_instagram_link | json }},
+        {{ settings.social_tumblr_link | json }},
+        {{ settings.social_youtube_link | json }},
+        {{ settings.social_vimeo_link | json }}
+      ]
+      {% endif %}
+    }
+  </script>
+{% endif %}
+
+{% if template == 'index' %}
+  {% assign potential_action_target = shop.url | append: routes.search_url | append: '?q={search_term_string}' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+     "url": {{ shop.url | json }}
+    }
+  </script>
+{% endif %}
+
+<style>
+  .customer_color_scheme,
+  .customer_color_scheme .account:before {
+    background: {{ section.settings.customer_background_color }};
+    color: {{ section.settings.customer_font_color }};
+  }
+  .mobile-only.no-scroll .customer_color_scheme {
+    visibility:hidden;
+  }
+  .customer-bullets ul li.borders p,
+  .customer_color_scheme a {
+    color: {{ section.settings.customer_font_color }};
+  }
+  .customer_color_scheme a:hover,
+  .customer_color_scheme a:focus, {
+    color: {{ section.settings.customer_hover_font_color }};
+  }
+  .customer_color_scheme .customer-links a,
+  .customer_color_scheme .customer-links span.icon {
+    color: {{ section.settings.customer_font_color }};
+  }
+  .customer_color_scheme .customer-links li:hover,
+  .customer_color_scheme .customer-links li:hover a,
+  .customer_color_scheme .customer-links li:hover span.icon,
+  .customer_color_scheme .customer-links li:hover.account:before,
+  .customer_color_scheme .customer-links li:focus,
+  .customer_color_scheme .customer-links li:focus a,
+  .customer_color_scheme .customer-links li:focus span.icon,
+  .customer_color_scheme .customer-links li:focus.account:before {
+    {% if section.settings.customer_font_color == '#ffffff' %}
+    background: {{ section.settings.customer_font_color }};
+    color: {{ section.settings.customer_background_color }};
+    {% else %}
+    background: #fff;
+    color: {{ section.settings.customer_hover_font_color }};
+    {% endif %}
+  }
+  #cart-dropdown {
+    background: #fff;
+  }
+  .header-navigation nav .responsiveMenu > li > a {
+    font-size: {{ section.settings.menu_size }}px;
+  }
+  .header-navigation .header-navigation-width span  {
+    font-size: {{ section.settings.menu_size | plus: 2 }}px;
+  }
+  {% if section.settings.use_sticky %}
+  #shopify-section-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+  }
+  {% endif %}
+</style>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Customer Bar"
+      },
+      {
+        "type": "color",
+        "id": "customer_background_color",
+        "label": "Background color"
+      },
+      {
+        "type": "color",
+        "id": "customer_font_color",
+        "label": "Text color"
+      },
+      {
+        "type": "color",
+        "id": "customer_hover_font_color",
+        "label": "Text hover"
+      },
+      {
+        "type": "checkbox",
+        "id": "include_customerbar_border",
+        "label": "Show border",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "cart_icon",
+        "label": "Cart icon",
+        "default": "bag",
+        "options": [
+          {
+            "value": "bag",
+            "label": "Bag"
+          },
+          {
+            "value": "cart",
+            "label": "Cart"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_locales",
+        "label": "Show language selector",
+        "default": true,
+        "info": "To add a language, go to your [language settings.](\/admin\/settings\/languages)"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_multiple_currencies",
+        "label": "Show currency selector",
+        "default": true,
+        "info": "To add a currency, go to your [currency settings.](\/admin\/settings\/payments)"
+      },
+      {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Image"
+      },
+      {
+        "type": "range",
+        "id": "logo_max_width",
+        "min": 40,
+        "max": 250,
+        "step": 10,
+        "unit": "px",
+        "label": "Max logo width",
+        "default": 130
+      },
+      {
+        "type": "header",
+        "content": "Navigation"
+      },
+      {
+       "type": "link_list",
+       "label": "Menu",
+       "id": "menu",
+       "default": "main-menu"
+      },
+{
+       "type":      "link_list",
+       "id":        "main_linklist",
+       "label":     "main linklist",
+       "info":      "main linklist"
+       },
+      {
+        "type": "range",
+        "id": "menu_size",
+        "min": 14,
+        "max": 22,
+        "step": 2,
+        "unit": "px",
+        "label": "Link size",
+        "default": 14
+      },
+      {
+        "type": "select",
+        "id": "menu_alignment",
+        "label": "Position",
+        "default": "right",
+        "options": [
+          {
+            "value": "right",
+            "label": "Right"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "use_sticky",
+        "label": "Enable sticky header",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "use_image",
+        "label": "Show image",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "use_product_image",
+        "label": "Show first product image",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "include_bar_border",
+        "label": "Show border",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "info_bullets",
+        "name": "Promotion",
+        "limit": 2,
+        "settings": [
+          {
+            "type": "richtext",
+            "label": "Text",
+            "id": "info_bullets",
+	    	"default": "<p>Add a promotion or highlight specials</p>"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

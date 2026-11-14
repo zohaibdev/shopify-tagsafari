@@ -1,0 +1,114 @@
+{
+  "sections": {
+    "banner": {
+      "type": "ts-page-banner",
+      "settings": {
+        "background_image": "shopify://shop_images/Tag_Safari_Product_Mockups_-18.jpg",
+        "title": "Monogramming & Embroidery",
+        "content": "<p>Flexible options for every team size</p>",
+        "show_breadcrumbs": true,
+        "parent_label": "",
+        "parent_link": ""
+      }
+    },
+    "intro": {
+      "type": "ts-image-text",
+      "settings": {
+        "image": "shopify://shop_images/TAG_Safari_Clothing_Gear_Style_Zimbabwe_Long_Staple_Cotton_Our_Mission_O.jpg",
+        "image_position": "left",
+        "image_fit": "cover",
+        "eyebrow": "Logo Embroidery Program",
+        "heading": "Monogramming & Embroidery on TAG Safari Clothing",
+        "text": "<p>At TAG Safari, we know that personalised apparel can set your team apart from the pack — whether you’re a small team, an outdoor business, or a large organisation, we have a program that allows you to add customised logos to any TAG Safari clothing.</p><ul><li>There is no minimum order requirement on blank clothing orders.</li><li>Fast shipping to anywhere in the world.</li><li>Handle your own embroidery on orders of less than 24 garments.</li><li>We can handle your embroidery needs on bulk orders of 24 and up.</li></ul><p>See program details below.</p>",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "programs": {
+      "type": "ts-text-columns",
+      "blocks": {
+        "program_1": {
+          "type": "column",
+          "settings": {
+            "title": "Program 1: Need less than 12 garments embroidered with your company logo?",
+            "text": "<p>If you only need a small number of shirts, jackets, vests, pants and shorts, this is the most cost-effective and convenient choice. Purchase your “blank” garments directly from TAG Safari, and then add your monogram or logo through your trusted local embroidery company.</p><p>Ideal for small team uniforms, hunting guides and outfitters, or company logo gear. You get premium TAG Safari garments without committing to large volumes.</p><ul><li>Order directly from our website <a href=\"/\">www.TagSafari.com</a></li><li>Buy blank shirts, jackets, pants or shorts.</li><li>Mix and match colors, sizes and styles.</li><li>Use your local embroiderer to do the decorating for you.</li><li>Fast shipping from our warehouse to you or your local embroiderer.</li></ul>"
+          }
+        },
+        "program_2": {
+          "type": "column",
+          "settings": {
+            "title": "Program 2: Full-Service Embroidery (minimum 24 pieces)",
+            "text": "<p>Need 24 garments or more embroidered with your company logo? For larger orders, we can manage the entire embroidery process for you. Order 24 pieces of the same product, and you’re free to mix sizes, colours, and styles within that product line.</p><ul><li>Buy blank shirts, jackets, pants or shorts in bulk.</li><li>Mix and match colors, sizes and styles.</li><li>Email your requirements to <a href=\"mailto:Orders@Tagsafari.com?subject=TAG%20Embroidery%20Order\">Orders@Tagsafari.com</a></li><li>Tell us how many garments you need.</li><li>Tell us what styles, colors and sizes you need.</li><li>Send us your logo in digitized format.</li><li>Apply for wholesale pricing (bona fide businesses only).</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "program_1",
+        "program_2"
+      ],
+      "settings": {
+        "heading": "Program Details",
+        "text": "",
+        "style": "cards",
+        "columns": 2,
+        "tinted": true
+      }
+    },
+    "we_handle": {
+      "type": "ts-text-columns",
+      "blocks": {
+        "digitising": {
+          "type": "column",
+          "settings": {
+            "title": "Digitising your logo or monogram",
+            "text": "<p>In machine-readable DST file format.</p>"
+          }
+        },
+        "embroidery": {
+          "type": "column",
+          "settings": {
+            "title": "Professional embroidery",
+            "text": "<p>With high-quality stitching.</p>"
+          }
+        },
+        "branding": {
+          "type": "column",
+          "settings": {
+            "title": "Consistent branding",
+            "text": "<p>Across all garments.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "digitising",
+        "embroidery",
+        "branding"
+      ],
+      "settings": {
+        "heading": "On Program 2, We Will Handle",
+        "text": "Perfect for safari lodges, conservation teams, shooting clubs, corporate groups, and retail partners who want a polished, ready-to-wear solution.",
+        "style": "brand",
+        "columns": 3,
+        "tinted": false
+      }
+    },
+    "quick_order": {
+      "type": "ts-quick-order",
+      "settings": {
+        "heading": "Quick Order Form",
+        "text": "<p>Tell us what you need and our team will confirm availability, pricing and embroidery details before anything is charged. Sizes are optional.</p>",
+        "subject": "TAG Embroidery Quick Order",
+        "button_label": "Send order request",
+        "success_message": "Thank you. Your order request has been sent and our team will be in touch to confirm it.",
+        "tinted": false
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "intro",
+    "programs",
+    "we_handle",
+    "quick_order"
+  ]
+}
